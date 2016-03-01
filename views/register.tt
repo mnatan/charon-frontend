@@ -1,0 +1,52 @@
+<form name="register" action="register" method="post" accept-charset="utf-8">  
+    <ul>  
+        <li>
+            <label for="user_name">Name</label>  
+            <input
+                type="text"
+                name="user_name"
+                placeholder="John"
+                required
+            >
+        </li>  
+        <li>
+            <label for="user_surname">Surname</label>  
+            <input
+                type="text"
+                name="user_surname"
+                placeholder="Wilson"
+                required
+            >
+        </li>  
+        <li>
+            <label for="usermail">Email</label>  
+            <input
+                type="email"
+                name="usermail"
+                placeholder="yourname@email.com"
+                required
+            >
+        </li>  
+        <li>
+            <label for="password">Password</label>  
+            <input
+                type="password"
+                name="password"
+                placeholder="password"
+                required
+            >
+        </li>  
+        <li>
+            <label for="password">Confirm password</label>  
+            <input
+                type="password"
+                name="password_confirm"
+                placeholder="password again"
+                required
+            >
+        </li>  
+        <li>  
+            <input type="submit" value="Register">
+        </li>  
+    </ul>  
+</form>  
