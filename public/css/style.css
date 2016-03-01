@@ -19,10 +19,9 @@ body {
 
 h1 {
     font-size: 28px;
-    color: #000;
 }
 
-a  {color: #03c}
+a  {color: #aaa}
 a:hover {
     background-color: #03c;
     color: white;
@@ -36,14 +35,6 @@ a:hover {
     margin-left: auto;
     padding-left: 0px;
     margin-right: auto;
-}
-
-#content {
-    margin: auto;
-    background-color: white;
-    border: 3px solid #aaa;
-    padding: 25px;
-    width: 70%;
 }
 
 #sidebar {
@@ -65,7 +56,6 @@ a:hover {
 }
 #header h1, #header h2 {margin: 0}
 #header h2 {
-    color: #888;
     font-weight: normal;
     font-size: 16px;
 }
@@ -92,8 +82,6 @@ a:hover {
     padding-top: 3px;
     padding-bottom: 3px;
 }
-#about-content td.name  {color: #555}
-#about-content td.value {color: #000}
 
 #about-content.failure {
     background-color: #fcc;
@@ -117,7 +105,6 @@ a:hover {
     margin: 0;
     font-size: 14px;
     font-weight: normal;
-    color: #333;
     margin-bottom: 25px;
 }
 #getting-started ol {
@@ -126,17 +113,14 @@ a:hover {
 }
 #getting-started li {
     font-size: 18px;
-    color: #888;
     margin-bottom: 25px;
 }
 #getting-started li h2 {
     margin: 0;
     font-weight: normal;
     font-size: 18px;
-    color: #333;
 }
 #getting-started li p {
-    color: #555;
     font-size: 13px;
 }
 

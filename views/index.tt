@@ -42,39 +42,37 @@
 
 <div class="container">
 
-    <div id="content">
-        <div id="header">
-            <h1>Charon</h1>
-            <h2>System rejestracji na studia podyplomowe</h2>
-        </div>
+    <div id="header">
+        <h1>Charon</h1>
+        <h2>System rejestracji na studia podyplomowe</h2>
+    </div>
 
-        <div id="getting-started">
-            <h1>Aktualna oferta studiów</h1>
-            <h2>Otwarte rejestracje:</h2>
+    <div id="getting-started">
+        <h1>Aktualna oferta studiów</h1>
+        <h2>Otwarte rejestracje:</h2>
 
-            <ol>
-                <% FOREACH field IN fields %>
-                <li>
-                <h2><% field.name %></h2>
-                <p><% field.description %></p>
-                <p>Zarejestrowano <% field.registered %>/<% field.place_limit %><p>
+        <ol>
+            <% FOREACH field IN fields %>
+            <li>
+            <h2><% field.name %></h2>
+            <p><% field.description %></p>
+            <p>Zarejestrowano <% field.registered %>/<% field.place_limit %><p>
 
-                <% IF session.logged_in %>
-                <form name="field_register"
-                    action="field_register/<% field.fieldid %>"
-                    method="post"
-                    accept-charset="utf-8">  
-                    <input type="submit" value="Register"
-                    <% IF not field.registration_possible %>
-                    disabled="true"
-                    <% END %>
-                    >
-                </form>  
+            <% IF session.logged_in %>
+            <form name="field_register"
+                action="field_register/<% field.fieldid %>"
+                method="post"
+                accept-charset="utf-8">  
+                <input type="submit" value="Register"
+                <% IF not field.registration_possible %>
+                disabled="true"
                 <% END %>
-                </li>
-                <% END %>
-            </ol>
-        </div>
+                >
+            </form>  
+            <% END %>
+            </li>
+            <% END %>
+        </ol>
     </div>
 
 </div> <!-- /container -->
