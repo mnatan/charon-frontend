@@ -4,8 +4,8 @@ use Dancer2::Plugin::Auth::Tiny;
 use Data::Dumper;
 use Encode qw(decode);
 
-use Charon::Users;
-use Charon::Registrations;
+use CharonFront::Users;
+use CharonFront::Registrations;
 
 our $VERSION = '0.1';
 
