@@ -15,11 +15,15 @@ my $BACKEND_SERVER_URL = "http://localhost:3000";
 get '/' => sub {
     my $registrations = http_get( $BACKEND_SERVER_URL . "registrations" );
     $registrations = [
-        {   name => "Testowanie",
-            due  => "20/04/2016",
+        {   name       => "Testowanie",
+            due        => "20/04/2016",
+            registered => 20,
+            limit      => 30,
         },
-        {   name => "Automatyzacja",
-            due  => "22/04/2016",
+        {   name       => "Automatyzacja",
+            due        => "22/04/2016",
+            registered => 27,
+            limit      => 30,
         },
     ];
     template 'index', { registrations => $registrations };

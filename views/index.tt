@@ -23,7 +23,8 @@
                                 Przedmiot: [% registration.name %] <br>
                             </div>
                             <div class="panel-body">
-                                Data: [% registration.due %]
+                                Data: [% registration.due %]<br>
+                                Zarejestrowano: [% registration.registered %]/[% registration.limit %]
                             </div>
                         </div>
                         [% END %]
