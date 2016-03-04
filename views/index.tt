@@ -5,6 +5,11 @@
 <div class="container bs-docs-container"> 
     <div class="row"> 
         <div class="col-md-9" role="main">
+            [% IF deferred.error %]
+            <div class="alert alert-danger">
+                [% deferred.error %] 
+            </div>
+            [% END %]
             <section id="rejestracje">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -30,7 +35,6 @@
                     [% END %]
                 </div>
             </section>
-            <br> <br> <br> <br>
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">@</span>
                 <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">

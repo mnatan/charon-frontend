@@ -4,6 +4,8 @@ use Dancer2::Plugin::Auth::Tiny;
 use Data::Dumper;
 use Encode qw(decode);
 
+use Dancer2::Plugin::Deferred;
+
 use LWP::Simple::REST qw(http_post http_get);
 
 our $VERSION = '0.1';
@@ -12,7 +14,7 @@ my $BACKEND_SERVER_URL = "http://localhost:3000";
 
 get '/' => sub {
     my $registrations = http_get( $BACKEND_SERVER_URL . "registrations" );
-    my $registrations = [
+    $registrations = [
         {   name => "Testowanie",
             due  => "20/04/2016",
         },
@@ -21,6 +23,14 @@ get '/' => sub {
         },
     ];
     template 'index', { registrations => $registrations };
+};
+
+get '/hehe' => sub {
+    deferred error => "HIDDEN FEATURE YAY";
+    redirect '/hehe2';
+};
+get '/hehe2' => sub {
+    template 'index';
 };
 
 post '/field_register/:fieldid' => needs login => sub {
