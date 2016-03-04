@@ -186,7 +186,7 @@ code, tt {
 
 #watermark img {
     position: fixed;
-    height: 100px;
+    height: 70px;
     left: 50px;
     bottom:50px;
     opacity: 0.5;

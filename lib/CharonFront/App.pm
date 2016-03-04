@@ -4,17 +4,29 @@ use Dancer2::Plugin::Auth::Tiny;
 use Data::Dumper;
 use Encode qw(decode);
 
+use LWP::Simple::REST qw(http_post http_get);
+
 our $VERSION = '0.1';
 
+my $BACKEND_SERVER_URL = "http://localhost:3000";
+
 get '/' => sub {
-    my $registrations = "LWP get!";
-    template 'index', { fields => $registrations };
+    my $registrations = http_get( $BACKEND_SERVER_URL . "registrations" );
+    my $registrations = [
+        {   name => "Testowanie",
+            due  => "20/04/2016",
+        },
+        {   name => "Automatyzacja",
+            due  => "22/04/2016",
+        },
+    ];
+    template 'index', { registrations => $registrations };
 };
 
 post '/field_register/:fieldid' => needs login => sub {
     my $email   = session('user');
     my $fieldid = param('fieldid');
-    Charon::Registrations::add({ email => $email, fieldid => $fieldid });
+    Charon::Registrations::add( { email => $email, fieldid => $fieldid } );
     redirect '/';
 };
 
@@ -25,11 +37,13 @@ post '/login' => sub {
     my $pass       = param('password');
     my $return_url = param('return_url') // '/';
 
-    unless (Charon::Users::auth_user({ email => $email, password => $pass })) {
+    unless (
+        Charon::Users::auth_user( { email => $email, password => $pass } ) )
+    {
         redirect '/login';
     }
 
-    my $user_data = Charon::Users::user_info({ email => $email });
+    my $user_data = Charon::Users::user_info( { email => $email } );
 
     session user      => $email;
     session role      => $user_data->{role};
@@ -50,14 +64,15 @@ post '/register' => sub {
     my $pass_c = param('password_confirm');
 
     return 'PASSWORD MISMATCH' if $pass ne $pass_c;
-    return 'USER EXISTS' if Charon::Users::user_exists({ email => $email });
+    return 'USER EXISTS' if Charon::Users::user_exists( { email => $email } );
 
-    Charon::Users::add_user({
-        email    => $email,
-        password => $pass,
-        name     => param('user_name'),
-        surname  => param('user_surname')
-    });
+    Charon::Users::add_user(
+        {   email    => $email,
+            password => $pass,
+            name     => param('user_name'),
+            surname  => param('user_surname')
+        }
+    );
 
     session user => $email;
     redirect '/';
