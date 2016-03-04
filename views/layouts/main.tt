@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="[% settings.charset %]">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>Charon</title>
+        <link rel="stylesheet" href="[% request.uri_base %]/css/bootstrap.css">
+        <link rel="stylesheet" href="[% request.uri_base %]/css/style.css">
+    </head>
+
+    <body>
+        [% content %]
+
+        <div id="watermark">
+            <a href="http://www.uj.edu.pl/">
+                <img src="/images/uj.png" alt="..." />
+            </a>
+        </div>
+        <div id="footer">
+            Powered by <a href="http://perldancer.org/">Dancer2</a> + Bootstrap
+        </div>
+    </body>
+
+    <!-- Bootstrap core JavaScript
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="[% request.uri_base %]/javascripts/jquery.js"></script>
+    <script src="[% request.uri_base %]/javascripts/bootstrap.min.js"></script>
+
+</html>
