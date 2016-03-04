@@ -1,31 +1,19 @@
 package CharonFront::App;
 use Dancer2;
 use Dancer2::Plugin::Auth::Tiny;
-use Data::Dumper;
-use Encode qw(decode);
-
 use Dancer2::Plugin::Deferred;
 
+use JSON::XS;
 use LWP::Simple::REST qw(http_post http_get);
 
-our $VERSION = '0.1';
+use Data::Dumper;
 
+our $VERSION = '0.1';
 my $BACKEND_SERVER_URL = "http://localhost:3000";
 
 get '/' => sub {
-    my $registrations = http_get( $BACKEND_SERVER_URL . "registrations" );
-    $registrations = [
-        {   name       => "Testowanie",
-            due        => "20/04/2016",
-            registered => 20,
-            limit      => 30,
-        },
-        {   name       => "Automatyzacja",
-            due        => "22/04/2016",
-            registered => 27,
-            limit      => 30,
-        },
-    ];
+    my $registrations = http_get( $BACKEND_SERVER_URL . "/registrations" );
+    $registrations = decode_json($registrations);
     template 'index', { registrations => $registrations };
 };
 
