@@ -4,19 +4,10 @@ use Dancer2::Plugin::Auth::Tiny;
 use Data::Dumper;
 use Encode qw(decode);
 
-use CharonFront::Users;
-use CharonFront::Registrations;
-
 our $VERSION = '0.1';
 
 get '/' => sub {
-    my $registrations = Charon::Registrations::list();
-    foreach my $field (@$registrations) {
-        @$field{qw(name description)} =
-          map { decode('UTF-8', $_) } @$field{qw(name description)};
-        $field->{registration_possible} =
-          $field->{registered} < $field->{place_limit};
-    }
+    my $registrations = "LWP get!";
     template 'index', { fields => $registrations };
 };
 

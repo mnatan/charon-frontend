@@ -50,16 +50,20 @@
                         </div>
                     </div>
                 </div>
-                <ul class="nav bs-docs-sidenav">
-                    <li>
-                    <a href="#hehe">
-                        hehe</a>
-                    </li>
-                    <li>
-                    <a href="#asdf">
-                        asdf</a>
-                    </li>
-                </ul>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <ul class="nav bs-docs-sidenav">
+                            <li>
+                            <a href="#hehe">
+                                hehe</a>
+                            </li>
+                            <li>
+                            <a href="#asdf">
+                                asdf</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="panel panel-default" style="margin-top:30px;">
                     <div class="panel-body">Footer</div>
                 </div>
