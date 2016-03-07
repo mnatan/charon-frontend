@@ -85,4 +85,9 @@ post '/register' => sub {
     redirect '/';
 };
 
+hook before_template => sub {
+    my $tokens = shift;
+    $tokens->{'register_url'} = uri_for('/register');
+};
+
 true;

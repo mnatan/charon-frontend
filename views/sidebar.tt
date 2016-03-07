@@ -7,7 +7,9 @@
 				<input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
 				<div class="btn-group" role="group" aria-label="..." style="margin:auto;">
 					<button type="button" class="btn btn-default">Zaloguj</button>
-					<button type="button" class="btn btn-default">Zarejestruj</button>
+					<a href="[% register_url %]">
+						<button type="button" class="btn btn-default">Zarejestruj</button>
+					</a>
 				</div>
 			</div>
 		</div>

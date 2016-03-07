@@ -1,218 +1,221 @@
 html {
-    height:100%;
-    background-color: #333;
+	height:100%;
+	background-color: #333;
 }
 body {
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-    background-repeat: no-repeat;
-    background-position: top left;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	background-repeat: no-repeat;
+	background-position: top left;
 
-    font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
-    font-size: 13px;
+	font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+	font-size: 13px;
 
-    color: black;
-    background-color: #dadada;
-    box-shadow: inset 0 0 300px #dadada;
-    padding-top: 50px;
+	color: black;
+	background-color: #dadada;
+	box-shadow: inset 0 0 300px #dadada;
+	padding-top: 50px;
 }
 
 h1 {
-    font-size: 28px;
+	font-size: 28px;
 }
 
 a  {color: #aaa}
 a:hover {
-    background-color: #03c;
-    color: white;
-    text-decoration: none;
+	background-color: #03c;
+	color: white;
+	text-decoration: none;
 }
 
 #page {
-    background-color: #ddd;
-    width: 750px;
-    margin: auto;
-    margin-left: auto;
-    padding-left: 0px;
-    margin-right: auto;
+	background-color: #ddd;
+	width: 750px;
+	margin: auto;
+	margin-left: auto;
+	padding-left: 0px;
+	margin-right: auto;
 }
 
 #sidebar {
-    float: right;
-    width: 175px;
+	float: right;
+	width: 175px;
 }
 
 #header, #about, #getting-started {
-    padding-left: 75px;
-    padding-right: 30px;
+	padding-left: 75px;
+	padding-right: 30px;
 }
 
 
 #header {
-    background-image: url("/images/charon.png");
-    background-repeat: no-repeat;
-    background-position: top left;
-    height: 100px;
-    margin:auto;
-    width:500px;
+	background-image: url("/images/charon.png");
+	background-repeat: no-repeat;
+	background-position: top left;
+	height: 100px;
+	margin:auto;
+	width:500px;
 }
-#header h1, #header h2 {margin: 0}
+#header h1, #header h2 {
+	margin: 0;
+	color: black;
+}
 #header h2 {
-    font-weight: normal;
-    font-size: 16px;
+	font-weight: normal;
+	font-size: 16px;
 }
 
 #about h3 {
-    margin: 0;
-    margin-bottom: 10px;
-    font-size: 14px;
+	margin: 0;
+	margin-bottom: 10px;
+	font-size: 14px;
 }
 
 #about-content {
-    background-color: #ffd;
-    border: 1px solid #fc0;
-    margin-left: -11px;
+	background-color: #ffd;
+	border: 1px solid #fc0;
+	margin-left: -11px;
 }
 #about-content table {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 11px;
-    border-collapse: collapse;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 11px;
+	border-collapse: collapse;
 }
 #about-content td {
-    padding: 10px;
-    padding-top: 3px;
-    padding-bottom: 3px;
+	padding: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
 }
 
 #about-content.failure {
-    background-color: #fcc;
-    border: 1px solid #f00;
+	background-color: #fcc;
+	border: 1px solid #f00;
 }
 #about-content.failure p {
-    margin: 0;
-    padding: 10px;
+	margin: 0;
+	padding: 10px;
 }
 
 #getting-started {
-    border-top: 1px solid #ccc;
-    margin-top: 25px;
-    padding-top: 15px;
+	border-top: 1px solid #ccc;
+	margin-top: 25px;
+	padding-top: 15px;
 }
 #getting-started h1 {
-    margin: 0;
-    font-size: 20px;
+	margin: 0;
+	font-size: 20px;
 }
 #getting-started h2 {
-    margin: 0;
-    font-size: 14px;
-    font-weight: normal;
-    margin-bottom: 25px;
+	margin: 0;
+	font-size: 14px;
+	font-weight: normal;
+	margin-bottom: 25px;
 }
 #getting-started ol {
-    margin-left: 0;
-    padding-left: 0;
+	margin-left: 0;
+	padding-left: 0;
 }
 #getting-started li {
-    font-size: 18px;
-    margin-bottom: 25px;
+	font-size: 18px;
+	margin-bottom: 25px;
 }
 #getting-started li h2 {
-    margin: 0;
-    font-weight: normal;
-    font-size: 18px;
+	margin: 0;
+	font-weight: normal;
+	font-size: 18px;
 }
 #getting-started li p {
-    font-size: 13px;
+	font-size: 13px;
 }
 
 #search {
-    margin: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 11px;
+	margin: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 11px;
 }
 #search input {
-    font-size: 11px;
-    margin: 2px;
+	font-size: 11px;
+	margin: 2px;
 }
 #search-text {width: 170px}
 
 #sidebar ul {
-    margin-left: 0;
-    padding-left: 0;
+	margin-left: 0;
+	padding-left: 0;
 }
 #sidebar ul h3 {
-    margin-top: 25px;
-    font-size: 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+	margin-top: 25px;
+	font-size: 16px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ccc;
 }
 #sidebar li {
-    list-style-type: none;
+	list-style-type: none;
 }
 #sidebar ul.links li {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: sans-serif;
-    margin: 1.2em 0 0.6em 0;
+	font-family: sans-serif;
+	margin: 1.2em 0 0.6em 0;
 }
 
 p {
-    line-height: 1.5em;
-    margin: 1.6em 0;
+	line-height: 1.5em;
+	margin: 1.6em 0;
 }
 
 code, tt {
-    font-family: 'Andale Mono', Monaco, 'Liberation Mono', 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', monospace;
+	font-family: 'Andale Mono', Monaco, 'Liberation Mono', 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', monospace;
 }
 
 #footer {
-    clear: both;
-    text-align: center;
-    font-family: sans-serif;
-    font-size: 10px;
+	clear: both;
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 10px;
 }
 
 .affix {
-    top:5px;
-    min-width: 250px;
+	top:5px;
+	min-width: 250px;
 }
 
 #watermark img {
-    position: fixed;
-    height: 70px;
-    left: 50px;
-    bottom:50px;
-    opacity: 0.5;
-    filter:alpha(opacity=50);
-    transition: all 2s ease;
-    -ms-transform: rotate(0deg); /* IE 9 */
-    -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
-    transform: rotate(0deg);
+	position: fixed;
+	height: 70px;
+	left: 50px;
+	bottom:50px;
+	opacity: 0.5;
+	filter:alpha(opacity=50);
+	transition: all 2s ease;
+	-ms-transform: rotate(0deg); /* IE 9 */
+	-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+	transform: rotate(0deg);
 }
 
 #watermark img:hover {
-    transition: all 0.5s ease;
-    -ms-transform: rotate(45deg); /* IE 9 */
-    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-    transform: rotate(45deg);
+	transition: all 0.5s ease;
+	-ms-transform: rotate(45deg); /* IE 9 */
+	-webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+	transform: rotate(45deg);
 }
 
 .nav > li > a {
-    color: black;
-    background-color: #eee;
+	color: black;
+	background-color: #eee;
 }
 .nav > li > a:hover {
-    color: black;
-    background-color: #ddd;
+	color: black;
+	background-color: #ddd;
 }
 
 .error {
-    background: #CEE5F5;
-    padding: 0.5em;
-    border: 1px solid #AACBE2; 
+	background: #CEE5F5;
+	padding: 0.5em;
+	border: 1px solid #AACBE2; 
 }
