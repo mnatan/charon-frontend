@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="[% settings.charset %]">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        <title>Charon</title>
-        <link rel="stylesheet" href="[% request.uri_base %]/css/bootstrap.css">
-        <link rel="stylesheet" href="[% request.uri_base %]/css/style.css">
-    </head>
+	<head>
+		<meta charset="[% settings.charset %]">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+		<title>Charon</title>
+		<link rel="stylesheet" href="[% request.uri_base %]/css/bootstrap.css">
+		<link rel="stylesheet" href="[% request.uri_base %]/css/style.css">
+	</head>
 
-    <body>
-        [% content %]
+	<body>
+		<div id="header">
+			<h1>Charon</h1>
+			<h2>System rejestracji na studia podyplomowe</h2>
+		</div>
+		[% content %]
 
-        <div id="watermark">
-            <a href="http://www.uj.edu.pl/">
-                <img src="/images/uj.png" alt="..." />
-            </a>
-        </div>
-    </body>
+		<div id="watermark">
+			<a href="http://www.uj.edu.pl/">
+				<img src="/images/uj.png" alt="..." />
+			</a>
+		</div>
+	</body>
 
-    <!-- Bootstrap core JavaScript
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="[% request.uri_base %]/javascripts/jquery.js"></script>
-    <script src="[% request.uri_base %]/javascripts/bootstrap.min.js"></script>
+	<script src="[% request.uri_base %]/javascripts/jquery.js"></script>
+	<script src="[% request.uri_base %]/javascripts/bootstrap.min.js"></script>
 
 </html>

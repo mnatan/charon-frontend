@@ -12,8 +12,8 @@ our $VERSION = '0.1';
 my $BACKEND_SERVER_URL = "http://localhost:3000";
 
 get '/' => sub {
-    my $registrations = http_get( $BACKEND_SERVER_URL . "/registrations" );
-    $registrations = decode_json($registrations);
+    my $registrations
+        = decode_json http_get( $BACKEND_SERVER_URL . "/registrations" );
     template 'index', { registrations => $registrations };
 };
 
@@ -23,6 +23,11 @@ get '/hehe' => sub {
 };
 get '/hehe2' => sub {
     template 'index';
+};
+
+get '/register' => sub {
+    deferred info => "jakieś info";
+    template 'register';
 };
 
 post '/field_register/:fieldid' => needs login => sub {

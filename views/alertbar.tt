@@ -1,0 +1,23 @@
+[% IF deferred.error %]
+<div class="alert alert-danger">
+	[% deferred.error %] 
+</div>
+[% END %]
+
+[% IF deferred.info %]
+<div class="alert alert-info">
+	[% deferred.info %] 
+</div>
+[% END %]
+
+[% IF deferred.warning %]
+<div class="alert alert-warning">
+	[% deferred.warning %] 
+</div>
+[% END %]
+
+[% IF deferred.success %]
+<div class="alert alert-success">
+	[% deferred.success %] 
+</div>
+[% END %]

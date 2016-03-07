@@ -1,0 +1,34 @@
+<div class="col-md-3" role="complementary">
+	<div data-spy="affix" data-offset-top="150">
+		<div class="panel panel-default">
+			<div class="panel-heading">Logowanie</div>
+			<div class="panel-body">
+				<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+				<input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+				<div class="btn-group" role="group" aria-label="..." style="margin:auto;">
+					<button type="button" class="btn btn-default">Zaloguj</button>
+					<button type="button" class="btn btn-default">Zarejestruj</button>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<ul class="nav bs-docs-sidenav">
+					<li>
+					<a href="#hehe">
+						hehe</a>
+					</li>
+					<li>
+					<a href="#asdf">
+						asdf</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="footer" class="panel panel-default" style="margin-top:30px;">
+			<div class="panel-body">
+				Powered by <a href="http://perldancer.org/">Dancer2</a> + Bootstrap
+			</div>
+		</div>
+	</div>
+</div>
