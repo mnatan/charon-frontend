@@ -3,8 +3,7 @@ use Dancer2;
 use Dancer2::Plugin::Auth::Tiny;
 use Dancer2::Plugin::Deferred;
 
-use JSON::XS;
-use LWP::Simple::REST qw(http_post http_get);
+use LWP::Simple::REST qw(json_post json_get);
 
 use Data::Dumper;
 
@@ -13,7 +12,7 @@ my $BACKEND_SERVER_URL = "http://localhost:3000";
 
 get '/' => sub {
     my $registrations
-        = decode_json http_get( $BACKEND_SERVER_URL . "/registrations" );
+        = json_get( $BACKEND_SERVER_URL . "/registrations" );
     template 'index', { registrations => $registrations };
 };
 

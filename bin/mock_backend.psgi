@@ -12,7 +12,7 @@ use JSON::XS;
 my $BACKEND_SERVER_URL = "http://localhost:3000";
 
 my $Mocks = {
-    "/registrations" => [
+    "get:/registrations" => [
         {   name       => "Testowanie",
             due        => "20/04/2016",
             registered => 20,
@@ -24,16 +24,21 @@ my $Mocks = {
             limit      => 30,
         },
     ],
+    "post:/authorize" => {},
 };
 
 use Test::Mock::Simple;
-my $mock = Test::Mock::Simple->new( module => 'CharonFront::App' );
-$mock->add(
-    http_get => sub {
+
+sub mock_request {
+    my ($type) = @_;
+    return sub {
         my ($url) = @_;
-        $url =~ s/$BACKEND_SERVER_URL//;
-        return encode_json( $Mocks->{$url} );
-    }
-);
+        $url =~ s/$BACKEND_SERVER_URL/$type:/;
+        return $Mocks->{$url};
+        }
+}
+my $mock = Test::Mock::Simple->new( module => 'CharonFront::App' );
+$mock->add( json_get  => mock_request("get") );
+$mock->add( json_post => mock_request("post") );
 
 CharonFront::App->to_app;
