@@ -1,17 +1,29 @@
 <div class="col-md-3" role="complementary">
 	<div data-spy="affix" data-offset-top="150">
 		<div class="panel panel-default">
+			[% IF session.logged_in %]
+			<div class="panel-heading">Panel Użytkownika</div>
+			<div class="panel-body">
+				Zalogowany: [% session.user %]<br>
+				<a href="[% logout_url %]">
+					<button type="button" class="btn btn-default">Wyloguj</button>
+				</a>
+			</div>
+			[% ELSE %]
 			<div class="panel-heading">Logowanie</div>
 			<div class="panel-body">
-				<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-				<input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
 				<div class="btn-group" role="group" aria-label="..." style="margin:auto;">
-					<button type="button" class="btn btn-default">Zaloguj</button>
+					<form action="[% login_url %]" method="post">
+						<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+						<input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+						<button type="submit" class="btn btn-default">Zaloguj</button>
+					</form> 
 					<a href="[% register_url %]">
 						<button type="button" class="btn btn-default">Zarejestruj</button>
 					</a>
 				</div>
 			</div>
+			[% END %]
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-body">

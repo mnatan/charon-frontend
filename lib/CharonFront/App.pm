@@ -23,7 +23,7 @@ post '/login' => sub {
 
     unless (
         json_post( "$BACKEND_SERVER_URL/authorize",
-            { email => $email, password => $password } )->{ok} == 1;
+            { email => $email, password => $pass } )->{ok} == 1
         )
     {
         deferred error => "Niepoprawny użytkownik lub hasło!";
@@ -80,6 +80,8 @@ post '/register' => sub {
 hook before_template => sub {
     my $tokens = shift;
     $tokens->{'register_url'} = uri_for('/register');
+    $tokens->{'logout_url'} = uri_for('/logout');
+    $tokens->{'login_url'} = uri_for('/login');
 };
 
 true;
