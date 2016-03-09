@@ -11,68 +11,61 @@ our $VERSION = '0.1';
 my $BACKEND_SERVER_URL = "http://localhost:3000";
 
 get '/' => sub {
-    my $registrations
-        = json_get( $BACKEND_SERVER_URL . "/registrations" );
+    my $registrations = json_get( $BACKEND_SERVER_URL . "/registrations" );
     template 'index', { registrations => $registrations };
 };
 
-get '/hehe' => sub {
-    deferred error => "HIDDEN FEATURE YAY";
-    redirect '/hehe2';
-};
-get '/hehe2' => sub {
-    template 'index';
-};
-
-get '/register' => sub {
-    deferred info => "jakieś info";
-    template 'register';
-};
-
-post '/field_register/:fieldid' => needs login => sub {
-    my $email   = session('user');
-    my $fieldid = param('fieldid');
-    Charon::Registrations::add( { email => $email, fieldid => $fieldid } );
-    redirect '/';
-};
-
 get '/login' => sub { redirect '/' };
-
 post '/login' => sub {
     my $email      = param('usermail');
     my $pass       = param('password');
     my $return_url = param('return_url') // '/';
 
     unless (
-        Charon::Users::auth_user( { email => $email, password => $pass } ) )
+        json_post( "$BACKEND_SERVER_URL/authorize",
+            { email => $email, password => $password } )->{ok} == 1;
+        )
     {
+        deferred error => "Niepoprawny użytkownik lub hasło!";
         redirect '/login';
     }
 
-    my $user_data = Charon::Users::user_info( { email => $email } );
+    my $user_data = json_get("$BACKEND_SERVER_URL/user/$email");
 
     session user      => $email;
     session role      => $user_data->{role};
     session logged_in => 1;
+
+    deferred info => "Użytkownik $email został poprawnie zalogowany.";
     redirect $return_url;
 };
 
 get '/logout' => sub {
+    my $return_url = param('return_url') // '/';
     app->destroy_session;
-    redirect '/';
+    deferred info => "Pomyślnie wylogowano użytkownika: ";
+    redirect $return_url;
 };
 
 get '/register' => sub { template 'register' };
 
 post '/register' => sub {
-    my $email  = param('usermail');
-    my $pass   = param('password');
-    my $pass_c = param('password_confirm');
+    my $return_url = param('return_url') // '/';
+    my $email      = param('usermail');
+    my $pass       = param('password');
+    my $pass_c     = param('password_confirm');
 
-    return 'PASSWORD MISMATCH' if $pass ne $pass_c;
-    return 'USER EXISTS' if Charon::Users::user_exists( { email => $email } );
+    if ( $pass ne $pass_c ) {
+        deferred warning => "Hasła nie zgadzają się!";
+        redirect $return_url;
+    }
+    if ( keys %{ json_get("$BACKEND_SERVER_URL/user/$email") } ) {
+        deferred warning => "Użytkownik $email już istnieje!";
+        redirect $return_url;
+    }
 
-    Charon::Users::add_user(
+    json_post(
+        "$BACKEND_SERVER_URL/register",
         {   email    => $email,
             password => $pass,
             name     => param('user_name'),

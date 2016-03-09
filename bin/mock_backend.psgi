@@ -28,6 +28,7 @@ my $Mocks = {
         name   => "Marcin Natanek",
         email  => 'marcin.natanek@uj.edu.pl',
         active => 1,
+        role   => "admin",
     },
     "post:/authorize" => { ok => 1 },
 };
