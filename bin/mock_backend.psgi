@@ -24,7 +24,12 @@ my $Mocks = {
             limit      => 30,
         },
     ],
-    "post:/authorize" => {},
+    "get:/user/.*" => {
+        name   => "Marcin Natanek",
+        email  => 'marcin.natanek@uj.edu.pl',
+        active => 1,
+    },
+    "post:/authorize" => { ok => 1 },
 };
 
 use Test::Mock::Simple;
@@ -34,9 +39,14 @@ sub mock_request {
     return sub {
         my ($url) = @_;
         $url =~ s/$BACKEND_SERVER_URL/$type:/;
-        return $Mocks->{$url};
+        for my $key ( keys %$Mocks ) {
+            if ( $url =~ $key ) {
+                return $Mocks->{$key};
+            }
+        }
         }
 }
+
 my $mock = Test::Mock::Simple->new( module => 'CharonFront::App' );
 $mock->add( json_get  => mock_request("get") );
 $mock->add( json_post => mock_request("post") );
