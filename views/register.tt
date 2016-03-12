@@ -14,7 +14,7 @@
 									<div class="form-group" id="registration-form">
 										[% FOREACH field IN form %]
 										<div class="input-group">
-											<span class="input-group-addon" id="basic-addon1">[% field.name %]</span>
+											<span class="input-group-addon">[% field.name %]</span>
 											<input type="[% field.type %]" class="form-control" placeholder="[% field.name %]" aria-describedby="basic-addon1"
 											[% FOREACH add IN field.additional %]
 											[% add %]
@@ -30,11 +30,7 @@
 							</div>
 							<div class="col-md-4">
 								<div class="panel panel-default">
-									<pre>Wymagania:
-[X] Imię i Nazwisko
-[X] Hasło
-[ ] coś
-[X] coś</pre>
+									INFO
 								</div>
 							</div>
 						</div>
@@ -46,3 +42,4 @@
 		[% INCLUDE sidebar.tt %]
 	</div>
 </div> <!-- /container -->
+<script src="[% request.uri_base %]/javascripts/validations.js"></script>

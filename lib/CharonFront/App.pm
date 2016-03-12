@@ -55,24 +55,45 @@ get '/register' => sub {
         form => [
             {   name       => "Imię",
                 type       => "text",
-                additional => [],
+                additional => [
+                    'required',
+                    'pattern=".{5,}"',
+                    'title="Imię musi składać się z przynajmniej 5 znaków."',
+                ],
             },
-            {   name => "Nazwisko",
-                type => "text",
+            {   name       => "Nazwisko",
+                type       => "text",
+                additional => [
+                    'required',
+                    'pattern=".{5,}"',
+                    'title="Nazwisko musi składać się z przynajmniej 5 znaków."',
+                ],
             },
-            {   name => "Email",
-                type => "email",
+            {   name       => "Email",
+                type       => "email",
+                additional => [ 'required', ],
             },
-            {   name => "Hasło",
-                type => "password",
+            {   name       => "Hasło",
+                type       => "password",
+                additional => [
+					'id="password"',
+                    'required',
+                    'pattern="^\S{8,}$"',
+                    'title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."',
+                ],
             },
-            {   name => "Powtórz hasło",
-                type => "password",
+            {   name       => "Powtórz hasło",
+                type       => "password",
+                additional => [
+					'id="confirm_password"',
+                    'required',
+                    'pattern="^\S{8,}$"',
+                    'title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."',
+                ],
             },
         ],
         };
 };
-
 post '/register' => sub {
     my $return_url = param('return_url') // '/';
     my $email      = param('usermail');
@@ -103,9 +124,10 @@ post '/register' => sub {
 
 hook before_template => sub {
     my $tokens = shift;
-    $tokens->{'register_url'} = uri_for('/register');
-    $tokens->{'logout_url'}   = uri_for('/logout');
-    $tokens->{'login_url'}    = uri_for('/login');
+    $tokens->{'register_url'}   = uri_for('/register');
+    $tokens->{'logout_url'}     = uri_for('/logout');
+    $tokens->{'login_url'}      = uri_for('/login');
+    $tokens->{'validator_path'} = uri_for('/');
 };
 
 true;
