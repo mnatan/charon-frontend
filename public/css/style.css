@@ -219,3 +219,12 @@ code, tt {
 	padding: 0.5em;
 	border: 1px solid #AACBE2; 
 }
+
+#registration-form .input-group-addon {
+	min-width: 125px;
+	text-align: left;
+}
+
+.center {
+	margin: auto;
+}

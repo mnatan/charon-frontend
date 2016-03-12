@@ -5,10 +5,39 @@
 			<section id="rejestracje">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						dupa
+						Rejestracja nowego użytkownika
 					</div>
 					<div class="panel-body">
-						dupa
+						<div class="row"> 
+							<div class="col-md-8">
+								<form action="register" method="POST" role="form">
+									<div class="form-group" id="registration-form">
+										[% FOREACH field IN form %]
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1">[% field.name %]</span>
+											<input type="[% field.type %]" class="form-control" placeholder="[% field.name %]" aria-describedby="basic-addon1"
+											[% FOREACH add IN field.additional %]
+											[% add %]
+											[% END %]
+											>
+										</div>
+										[% END %]
+										<div class="text-center">
+											<button type="submit" class="btn btn-default">Zarejestruj mnie</button>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="panel panel-default">
+									<pre>Wymagania:
+[X] Imię i Nazwisko
+[X] Hasło
+[ ] coś
+[X] coś</pre>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
