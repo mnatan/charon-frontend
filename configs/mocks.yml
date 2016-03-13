@@ -1,0 +1,20 @@
+---
+get:/registrations:
+  - name: Testowanie
+    due: 20/04/2016
+    registered: 20
+    limit: 30
+  - name: Automatyzacja
+    due: 22/04/2016
+    registered: 27
+    limit: 30
+
+get:/user/*:
+    name: Marcin Natanek
+    email: marcin.natanek@uj.edu.pl
+    active: 1
+    role: admin
+
+post:/authorize:
+    ok: 1
+...

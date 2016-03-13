@@ -1,7 +1,6 @@
 package CharonFront::App;
 use Dancer2;
 use Dancer2::Core::Request;
-use Dancer2::Plugin::Auth::Tiny;
 use Dancer2::Plugin::Deferred;
 
 use LWP::Simple::REST qw(json_post json_get);

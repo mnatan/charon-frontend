@@ -7,31 +7,15 @@ use lib "$FindBin::Bin/../lib";
 
 use JSON::XS;
 
+use FindBin;
+use Cwd qw/realpath/;
+use YAML::XS qw/LoadFile/;
+
 #use CharonFront::App;
 
 my $BACKEND_SERVER_URL = "http://localhost:3000";
-
-my $Mocks = {
-    "get:/registrations" => [
-        {   name       => "Testowanie",
-            due        => "20/04/2016",
-            registered => 20,
-            limit      => 30,
-        },
-        {   name       => "Automatyzacja",
-            due        => "22/04/2016",
-            registered => 27,
-            limit      => 30,
-        },
-    ],
-    "get:/user/.*" => {
-        name   => "Marcin Natanek",
-        email  => 'marcin.natanek@uj.edu.pl',
-        active => 1,
-        role   => "admin",
-    },
-    "post:/authorize" => { ok => 1 },
-};
+my $appdir             = realpath("$FindBin::Bin/..");
+my $Mocks              = LoadFile("$appdir/configs/mocks.yml");
 
 use Test::Mock::Simple;
 
