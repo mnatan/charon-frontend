@@ -1,0 +1,38 @@
+---
+registration:
+  - name: name
+    text: Imię
+    type: text
+    additional:
+    - required
+    - pattern=".{5,}"
+    - title="Imię musi składać się z przynajmniej 5 znaków."
+  - name: surname
+    text: Nazwisko
+    type: text
+    additional:
+    - required
+    - pattern=".{5,}"
+    - title="Nazwisko musi składać się z przynajmniej 5 znaków."
+  - name: email
+    text: Email
+    type: email
+    additional:
+    - required
+  - name: password
+    text: Hasło
+    type: password
+    additional:
+    - id="password"
+    - required
+    - pattern="^\S{8,}$"
+    - title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."
+  - name: password_c
+    text: Powtórz hasło
+    type: password
+    additional:
+    - id="confirm_password"
+    - required
+    - pattern="^\S{8,}$"
+    - title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."
+...

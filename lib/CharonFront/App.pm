@@ -6,11 +6,18 @@ use Dancer2::Plugin::Deferred;
 
 use LWP::Simple::REST qw(json_post json_get);
 
+use FindBin;
+use Cwd qw/realpath/;
+use YAML::XS qw/LoadFile/;
+
 use Data::Dumper;
 use feature qw/say/;
 
 our $VERSION = '0.1';
 my $BACKEND_SERVER_URL = "http://localhost:3000";
+
+my $appdir = realpath("$FindBin::Bin/..");
+my $forms  = LoadFile("$appdir/configs/forms.yml");
 
 get '/' => sub {
     my $registrations = json_get( $BACKEND_SERVER_URL . "/registrations" );
@@ -52,58 +59,17 @@ get '/logout' => sub {
     redirect $return_url;
 };
 
-my $registration_form = [
-    {   name       => "name",
-        text       => "Imię",
-        type       => "text",
-        additional => [
-            'required', 'pattern=".{5,}"',
-            'title="Imię musi składać się z przynajmniej 5 znaków."',
-        ],
-    },
-    {   name       => "surname",
-        text       => "Nazwisko",
-        type       => "text",
-        additional => [
-            'required',
-            'pattern=".{5,}"',
-            'title="Nazwisko musi składać się z przynajmniej 5 znaków."',
-        ],
-    },
-    {   name       => "email",
-        text       => "Email",
-        type       => "email",
-        additional => [ 'required', ],
-    },
-    {   name       => "password",
-        text       => "Hasło",
-        type       => "password",
-        additional => [
-            'id="password"',
-            'required',
-            'pattern="^\S{8,}$"',
-            'title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."',
-        ],
-    },
-    {   text       => "Powtórz hasło",
-        name       => "password_c",
-        type       => "password",
-        additional => [
-            'id="confirm_password"',
-            'required',
-            'pattern="^\S{8,}$"',
-            'title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."',
-        ],
-    },
-];
-
 get '/register' => sub {
     my $submitted = session('submitted');
     template 'register',
-        { submitted => $submitted, form => $registration_form };
+        {
+        submitted => $submitted,
+        form      => $forms->{registration},
+        };
 };
 post '/register' => sub {
     my $return_url = param('return_url') // '/register';
+    my $email;
 
     if ( keys %{ json_get("$BACKEND_SERVER_URL/user/$email") } ) {
         deferred warning => "Użytkownik $email już istnieje!";
