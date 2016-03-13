@@ -14,8 +14,14 @@
 									<div class="form-group" id="registration-form">
 										[% FOREACH field IN form %]
 										<div class="input-group">
-											<span class="input-group-addon">[% field.name %]</span>
-											<input type="[% field.type %]" class="form-control" placeholder="[% field.name %]" aria-describedby="basic-addon1"
+											<span class="input-group-addon">[% field.text %]</span>
+											<input 
+											name="[% field.name %]"
+											value="[% submitted.${field.name} %]"
+											type="[% field.type %]"
+											class="form-control"
+											placeholder="[% field.text %]"
+											aria-describedby="basic-addon1"
 											[% FOREACH add IN field.additional %]
 											[% add %]
 											[% END %]

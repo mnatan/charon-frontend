@@ -1,11 +1,13 @@
 package CharonFront::App;
 use Dancer2;
+use Dancer2::Core::Request;
 use Dancer2::Plugin::Auth::Tiny;
 use Dancer2::Plugin::Deferred;
 
 use LWP::Simple::REST qw(json_post json_get);
 
 use Data::Dumper;
+use feature qw/say/;
 
 our $VERSION = '0.1';
 my $BACKEND_SERVER_URL = "http://localhost:3000";
@@ -20,6 +22,7 @@ post '/login' => sub {
     my $email      = param('usermail');
     my $pass       = param('password');
     my $return_url = param('return_url') // '/';
+    my $hehe       = params;
 
     unless (
         json_post(
@@ -49,77 +52,77 @@ get '/logout' => sub {
     redirect $return_url;
 };
 
-get '/register' => sub {
-    template 'register',
-        {
-        form => [
-            {   name       => "Imię",
-                type       => "text",
-                additional => [
-                    'required',
-                    'pattern=".{5,}"',
-                    'title="Imię musi składać się z przynajmniej 5 znaków."',
-                ],
-            },
-            {   name       => "Nazwisko",
-                type       => "text",
-                additional => [
-                    'required',
-                    'pattern=".{5,}"',
-                    'title="Nazwisko musi składać się z przynajmniej 5 znaków."',
-                ],
-            },
-            {   name       => "Email",
-                type       => "email",
-                additional => [ 'required', ],
-            },
-            {   name       => "Hasło",
-                type       => "password",
-                additional => [
-					'id="password"',
-                    'required',
-                    'pattern="^\S{8,}$"',
-                    'title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."',
-                ],
-            },
-            {   name       => "Powtórz hasło",
-                type       => "password",
-                additional => [
-					'id="confirm_password"',
-                    'required',
-                    'pattern="^\S{8,}$"',
-                    'title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."',
-                ],
-            },
+my $registration_form = [
+    {   name       => "name",
+        text       => "Imię",
+        type       => "text",
+        additional => [
+            'required', 'pattern=".{5,}"',
+            'title="Imię musi składać się z przynajmniej 5 znaków."',
         ],
-        };
+    },
+    {   name       => "surname",
+        text       => "Nazwisko",
+        type       => "text",
+        additional => [
+            'required',
+            'pattern=".{5,}"',
+            'title="Nazwisko musi składać się z przynajmniej 5 znaków."',
+        ],
+    },
+    {   name       => "email",
+        text       => "Email",
+        type       => "email",
+        additional => [ 'required', ],
+    },
+    {   name       => "password",
+        text       => "Hasło",
+        type       => "password",
+        additional => [
+            'id="password"',
+            'required',
+            'pattern="^\S{8,}$"',
+            'title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."',
+        ],
+    },
+    {   text       => "Powtórz hasło",
+        name       => "password_c",
+        type       => "password",
+        additional => [
+            'id="confirm_password"',
+            'required',
+            'pattern="^\S{8,}$"',
+            'title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."',
+        ],
+    },
+];
+
+get '/register' => sub {
+    my $submitted = session('submitted');
+    template 'register',
+        { submitted => $submitted, form => $registration_form };
 };
 post '/register' => sub {
-    my $return_url = param('return_url') // '/';
-    my $email      = param('usermail');
-    my $pass       = param('password');
-    my $pass_c     = param('password_confirm');
+    my $return_url = param('return_url') // '/register';
 
-    if ( $pass ne $pass_c ) {
-        deferred warning => "Hasła nie zgadzają się!";
-        redirect $return_url;
-    }
     if ( keys %{ json_get("$BACKEND_SERVER_URL/user/$email") } ) {
         deferred warning => "Użytkownik $email już istnieje!";
-        redirect $return_url;
+
+        my $submitted = params;
+        session 'submitted' => $submitted;
+
+        redirect '/register';
     }
 
-    json_post(
+    my $return = json_post(
         "$BACKEND_SERVER_URL/register",
-        {   email    => $email,
-            password => $pass,
-            name     => param('user_name'),
-            surname  => param('user_surname')
+        {   name    => param('user_name'),
+            surname => param('user_surname')
         }
     );
 
-    session user => $email;
-    redirect '/';
+    session user => "natan";
+    redirect $return_url;
 };
 
 hook before_template => sub {
