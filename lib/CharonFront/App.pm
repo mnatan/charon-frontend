@@ -2,6 +2,7 @@ package CharonFront::App;
 use Dancer2;
 use Dancer2::Core::Request;
 use Dancer2::Plugin::Deferred;
+use Dancer2::Core::Role::ConfigReader;
 
 use LWP::Simple::REST qw(json_post json_get);
 
@@ -13,13 +14,14 @@ use Data::Dumper;
 use feature qw/say/;
 
 our $VERSION = '0.1';
-my $BACKEND_SERVER_URL = "http://localhost:3000";
+my $BACKEND_SERVER_URL = setting("BACKEND_SERVER_URL");
 
 my $appdir = realpath("$FindBin::Bin/..");
 my $forms  = LoadFile("$appdir/configs/forms.yml");
 
 get '/' => sub {
     my $registrations = json_get( $BACKEND_SERVER_URL . "/registrations" );
+	print Dumper $registrations;
     template 'index', { registrations => $registrations };
 };
 

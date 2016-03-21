@@ -13,9 +13,10 @@ use YAML::XS qw/LoadFile/;
 
 #use CharonFront::App;
 
-my $BACKEND_SERVER_URL = "http://localhost:3000";
-my $appdir             = realpath("$FindBin::Bin/..");
-my $Mocks              = LoadFile("$appdir/configs/mocks.yml");
+my $appdir = realpath("$FindBin::Bin/..");
+my $config = LoadFile("$appdir/config.yml");
+my $Mocks  = LoadFile("$appdir/configs/mocks.yml");
+my $BACKEND_SERVER_URL = $config->{BACKEND_SERVER_URL};
 
 use Test::Mock::Simple;
 
