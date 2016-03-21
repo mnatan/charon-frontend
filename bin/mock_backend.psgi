@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use FindBin;
 use lib "$FindBin::Bin/../lib";
+use CharonFront::LESS qw(generate_css);
 
 use JSON::XS;
 
@@ -11,11 +12,11 @@ use FindBin;
 use Cwd qw/realpath/;
 use YAML::XS qw/LoadFile/;
 
-#use CharonFront::App;
+# use CharonFront::App;
 
-my $appdir = realpath("$FindBin::Bin/..");
-my $config = LoadFile("$appdir/config.yml");
-my $Mocks  = LoadFile("$appdir/configs/mocks.yml");
+my $appdir             = realpath("$FindBin::Bin/..");
+my $config             = LoadFile("$appdir/config.yml");
+my $Mocks              = LoadFile("$appdir/configs/mocks.yml");
 my $BACKEND_SERVER_URL = $config->{BACKEND_SERVER_URL};
 
 use Test::Mock::Simple;
@@ -36,5 +37,7 @@ sub mock_request {
 my $mock = Test::Mock::Simple->new( module => 'CharonFront::App' );
 $mock->add( json_get  => mock_request("get") );
 $mock->add( json_post => mock_request("post") );
+
+generate_css($appdir);
 
 CharonFront::App->to_app;
