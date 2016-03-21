@@ -21,7 +21,7 @@ my $forms  = LoadFile("$appdir/configs/forms.yml");
 
 get '/' => sub {
     my $registrations = json_get( $BACKEND_SERVER_URL . "/registrations" );
-	print Dumper $registrations;
+    print Dumper $registrations;
     template 'index', { registrations => $registrations };
 };
 
@@ -94,10 +94,13 @@ post '/register' => sub {
 
 hook before_template => sub {
     my $tokens = shift;
-    $tokens->{'register_url'}   = uri_for('/register');
-    $tokens->{'logout_url'}     = uri_for('/logout');
-    $tokens->{'login_url'}      = uri_for('/login');
-    $tokens->{'validator_path'} = uri_for('/');
+
+    # just use [% backend_url %] in tt files
+    $tokens->{backend_url}    = uri_for($BACKEND_SERVER_URL);
+    $tokens->{register_url}   = uri_for('/register');
+    $tokens->{logout_url}     = uri_for('/logout');
+    $tokens->{login_url}      = uri_for('/login');
+    $tokens->{validator_path} = uri_for('/');
 };
 
 true;
