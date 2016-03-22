@@ -17,7 +17,9 @@
 											<span class="input-group-addon">[% field.text %]</span>
 											<input 
 											name="[% field.name %]"
+											[% IF field.type != 'radio' %]
 											value="[% submitted.${field.name} %]"
+											[% END %]
 											type="[% field.type %]"
 											class="form-control"
 											placeholder="[% field.text %]"

@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use FindBin;
 use lib "$FindBin::Bin/../lib";
+use Cwd qw/realpath/;
+
 use CharonFront::LESS qw(generate_css);
 use CharonFront::App;
 

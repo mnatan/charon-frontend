@@ -1,38 +1,71 @@
 ---
+#name surname sex citizenship phone_number email password
 registration:
-  - name: name
-    text: Imię
-    type: text
-    additional:
-    - required
-    - pattern=".{5,}"
-    - title="Imię musi składać się z przynajmniej 5 znaków."
-  - name: surname
-    text: Nazwisko
-    type: text
-    additional:
-    - required
-    - pattern=".{5,}"
-    - title="Nazwisko musi składać się z przynajmniej 5 znaków."
-  - name: email
-    text: Email
-    type: email
-    additional:
-    - required
-  - name: password
-    text: Hasło
-    type: password
-    additional:
-    - id="password"
-    - required
-    - pattern="^\S{8,}$"
-    - title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."
-  - name: password_c
-    text: Powtórz hasło
-    type: password
-    additional:
-    - id="confirm_password"
-    - required
-    - pattern="^\S{8,}$"
-    - title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."
+    - name: name
+      text: Imię
+      type: text
+      additional:
+          - required
+          - pattern=".{5,}"
+          - title="Imię musi składać się z przynajmniej 5 znaków."
+    
+    - name: surname
+      text: Nazwisko
+      type: text
+      additional:
+          - required
+          - pattern=".{5,}"
+          - title="Nazwisko musi składać się z przynajmniej 5 znaków."
+    
+    # TODO FIXME sex radio buttons style
+    - name: sex
+      text: Mężczyzna
+      type: radio
+      additional:
+          - checked
+          - value="m"
+    
+    - name: sex
+      text: Kobieta
+      type: radio
+      additional:
+          - value="f"
+    
+    - name: citizenship
+      text: Obywatelstwo
+      type: text
+      additional:
+          - required
+    
+    - name: phone_number
+      text: Numer Telefonu
+      type: text
+      additional:
+          - required
+          - pattern="(\+\d\d)?\d{9}"
+          - title="Numer telefonu musi składać się z 9 cyfr ewentualnie poprzedzonym numerem kierunkowym w formacie: +44."
+    
+    - name: email
+      text: Email
+      type: email
+      additional:
+          - required
+    
+    - name: password
+      text: Hasło
+      type: password
+      additional:
+          - id="password"
+          - required
+          - pattern="^\S{8,}$"
+          - title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."
+    
+    - name: password_c
+      text: Powtórz hasło
+      type: password
+      additional:
+          - id="confirm_password"
+          - required
+          - pattern="^\S{8,}$"
+          - title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."
 ...

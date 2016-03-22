@@ -14,6 +14,7 @@ use Data::Dumper;
 use feature qw/say/;
 
 our $VERSION = '0.1';
+my $DEBUG              = 1;
 my $BACKEND_SERVER_URL = setting("BACKEND_SERVER_URL");
 
 my $appdir = realpath("$FindBin::Bin/..");
@@ -21,7 +22,7 @@ my $forms  = LoadFile("$appdir/configs/forms.yml");
 
 get '/' => sub {
     my $registrations = json_get( $BACKEND_SERVER_URL . "/registrations" );
-    print Dumper $registrations;
+    print Dumper $registrations if $DEBUG;
     template 'index', { registrations => $registrations };
 };
 
@@ -44,6 +45,7 @@ post '/login' => sub {
     }
 
     my $user_data = json_get("$BACKEND_SERVER_URL/user/$email");
+    print Dumper $user_data if $DEBUG;
 
     session user      => $user_data->{name};
     session role      => $user_data->{role};
@@ -69,26 +71,29 @@ get '/register' => sub {
         };
 };
 post '/register' => sub {
-    my $return_url = param('return_url') // '/register';
-    my $email;
+    my $return_url = param('return_url') // '/';
 
-    if ( keys %{ json_get("$BACKEND_SERVER_URL/user/$email") } ) {
-        deferred warning => "Użytkownik $email już istnieje!";
+    my $submitted = params;
+    session 'submitted' => $submitted;
+    print Dumper $submitted if $DEBUG;
 
-        my $submitted = params;
-        session 'submitted' => $submitted;
-
+    if ( param("password") ne param("password_c") ) {
+        deferred error => "Hasła nie zgadzają się!";
         redirect '/register';
     }
 
-    my $return = json_post(
-        "$BACKEND_SERVER_URL/register",
-        {   name    => param('user_name'),
-            surname => param('user_surname')
-        }
-    );
+	#FIXME json_post umiera z braku contentu w ramce http
+    my $backend_registration
+        = json_post( "$BACKEND_SERVER_URL/users/register", $submitted );
+    print Dumper $backend_registration if $DEBUG;
 
-    session user => "natan";
+	if ($backend_registration->{status} eq 500) {
+        deferred error => $backend_registration->{exception};
+        redirect '/register';
+	}
+
+	#TODO login user?
+	
     redirect $return_url;
 };
 

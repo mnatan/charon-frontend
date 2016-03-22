@@ -2,7 +2,7 @@
 # env-related settings should go to environments/$env.yml
 # all the settings in this file will be loaded at Dancer's startup.
 
-BACKEND_SERVER_URL: "http://localhost:3000/"
+BACKEND_SERVER_URL: "http://localhost:3000"
 
 # Your application's name
 appname: "CharonFront::App"
