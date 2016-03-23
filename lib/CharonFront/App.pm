@@ -4,7 +4,14 @@ use Dancer2::Core::Request;
 use Dancer2::Plugin::Deferred;
 use Dancer2::Core::Role::ConfigReader;
 
-use LWP::Simple::REST qw(json_post json_get);
+BEGIN {    # FIXME dirty hack for annoying include errors
+    use FindBin;
+    use Cwd qw/realpath/;
+    my $appdir = realpath("$FindBin::Bin/..");
+    unshift @INC, $appdir;
+}
+
+use CharonFront::RESTUser qw(json_post json_get);
 
 use FindBin;
 use Cwd qw/realpath/;
@@ -82,18 +89,23 @@ post '/register' => sub {
         redirect '/register';
     }
 
-	#FIXME json_post umiera z braku contentu w ramce http
+    #FIXME json_post umiera z braku contentu w ramce http
     my $backend_registration
         = json_post( "$BACKEND_SERVER_URL/users/register", $submitted );
     print Dumper $backend_registration if $DEBUG;
 
-	if ($backend_registration->{status} eq 500) {
+    if ( $backend_registration->{status} eq 500 ) {
         deferred error => $backend_registration->{exception};
         redirect '/register';
-	}
+    }
 
-	#TODO login user?
-	
+    deferred success => "Użytkownik "
+        . param("name") . " "
+        . param("surname")
+        . " został pomyślnie zarejestrowany.";
+
+    #TODO login user?
+
     redirect $return_url;
 };
 
