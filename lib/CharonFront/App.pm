@@ -29,43 +29,39 @@ my $forms  = LoadFile("$appdir/configs/forms.yml");
 
 get '/' => sub {
     my $registrations = json_get( $BACKEND_SERVER_URL . "/registrations" );
-    print Dumper $registrations if $DEBUG;
     template 'index', { registrations => $registrations };
 };
 
 get '/login' => sub { redirect '/' };
 post '/login' => sub {
-    my $email      = param('usermail');
+    my $login      = param('login');
     my $pass       = param('password');
     my $return_url = param('return_url') // '/';
-    my $hehe       = params;
 
-    unless (
-        json_post(
-            "$BACKEND_SERVER_URL/authorize",
-            { email => $email, password => $pass }
-        )->{ok} == 1
-        )
-    {
+    my $backend_auth
+        = json_post( "$BACKEND_SERVER_URL/authorize", scalar params );
+
+    unless ( defined $backend_auth->{token} ) {
         deferred error => "Niepoprawny użytkownik lub hasło!";
-        redirect '/login';
+        redirect $return_url;
     }
 
-    my $user_data = json_get("$BACKEND_SERVER_URL/user/$email");
-    print Dumper $user_data if $DEBUG;
+    my $user_data = json_get("$BACKEND_SERVER_URL/user/$login");
 
-    session user      => $user_data->{name};
+    session login     => $login;
+    session token     => $backend_auth->{token};
     session role      => $user_data->{role};
+    session name      => $user_data->{name} . " " . $user_data->{surname};
     session logged_in => 1;
 
-    deferred info => "Użytkownik $email został poprawnie zalogowany.";
+    deferred success => "Użytkownik $login został zalogowany.";
     redirect $return_url;
 };
 
 get '/logout' => sub {
     my $return_url = param('return_url') // '/';
-    app->destroy_session;
     deferred info => "Pomyślnie wylogowano użytkownika: " . session 'user';
+    app->destroy_session;
     redirect $return_url;
 };
 
@@ -77,7 +73,6 @@ post '/register' => sub {
 
     my $submitted = params;
     session 'submitted' => $submitted;
-    print Dumper $submitted if $DEBUG;
 
     if ( param("password") ne param("password_c") ) {
         deferred error => "Hasła nie zgadzają się!";
@@ -87,7 +82,6 @@ post '/register' => sub {
     #FIXME json_post umiera z braku contentu w ramce http
     my $backend_registration
         = json_post( "$BACKEND_SERVER_URL/users/register", $submitted );
-    print Dumper $backend_registration if $DEBUG;
 
     if ( $backend_registration->{status} eq 500 ) {
         deferred error => $backend_registration->{exception};
@@ -102,6 +96,16 @@ post '/register' => sub {
     #TODO login user?
 
     redirect $return_url;
+};
+
+get '/userlist' => sub {
+    my $return_url = param('return_url') // '/';
+    my $users;
+    if ( session "logged_in" ) {
+        $users = json_get( "$BACKEND_SERVER_URL/users",
+            { login => session("login"), token => session("token") } );
+    }
+    template "userlist", { users => $users };
 };
 
 hook before_template => sub {

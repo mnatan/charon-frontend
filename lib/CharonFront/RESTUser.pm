@@ -4,37 +4,51 @@ use warnings;
 
 use Exporter qw(import);
 our @EXPORT_OK = qw(
-json_post
-json_get
+    json_post
+    json_get
 );
 
 use LWP::UserAgent;
 use HTTP::Request;
 use JSON;
 
+use Data::Dumper;
+
+my $DEBUG = 1;
+
 my $user_agent = "Charon-Frontend";
 
 sub json_post {
     my ( $url, $arguments ) = @_;
+    my $out;
+
+	print "--------- POST -----------\n" if $DEBUG;
+    print Dumper $arguments if $DEBUG;
 
     my $ua = LWP::UserAgent->new;
     $ua->agent($user_agent);
 
-    my $response = $ua->post( $url, $arguments, );
+    my $response = $ua->post( $url, $arguments );
 
     if ( $response->content ) {
-        return decode_json $response->content;
+        $out = decode_json $response->content;
     }
     else {
-        return {
+        $out = {
             status  => $response->code,
             message => $response->message,
         };
     }
+    print Dumper $out if $DEBUG;
+	print "--------  /POST  ----------\n" if $DEBUG;
+    return $out;
 }
 
 sub json_get {
     my ( $url, $arguments ) = @_;
+    my $out;
+
+	print "--------- GET -----------\n" if $DEBUG;
 
     my $ua = LWP::UserAgent->new;
     $ua->agent($user_agent);
@@ -48,14 +62,17 @@ sub json_get {
     my $response = $ua->get( $url . "?$parameters_for_url" );
 
     if ( $response->content ) {
-        return decode_json $response->content;
+        $out = decode_json $response->content;
     }
     else {
-        return {
+        $out = {
             status  => $response->code,
             message => $response->message,
         };
     }
+    print Dumper $out if $DEBUG;
+	print "--------  /GET  ----------\n" if $DEBUG;
+    return $out;
 }
 
 1;

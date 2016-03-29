@@ -1,0 +1,48 @@
+<div class="container bs-docs-container"> 
+	<div class="row"> 
+		<div class="col-md-9" role="main">
+			[% INCLUDE alertbar.tt %]
+			<section id="rejestracje">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Lista użytkowników
+					</div>
+					<div class="panel-body">
+						[% IF session.logged_in %]
+						[% keys = users.0.keys %]
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									[% FOREACH key in keys %]
+									<th>
+										[% key %]
+									</th>
+									[% END %]
+								</tr>
+							</thead>
+							<tbody>
+							[% FOREACH user in users %]
+							<tr>
+								[% FOREACH key in keys %]
+								<td>
+									[% user.$key %]
+								</td>
+								[% END %]
+							</tr>
+							[% END %]
+							</tbody>
+						</table>
+						[% ELSE %]
+						Musisz być zalogowany aby oglądać listę użytkowników!
+						[% END %]
+					</div>
+				</div>
+			</section>
+
+		</div>
+		[% INCLUDE sidebar.tt %]
+	</div>
+</div> <!-- /container -->
+<script>
+	$("table tr").sortable({ axis: "x",  });
+</script>
