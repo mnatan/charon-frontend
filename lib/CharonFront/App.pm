@@ -70,12 +70,7 @@ get '/logout' => sub {
 };
 
 get '/register' => sub {
-    my $submitted = session('submitted');
-    template 'register',
-        {
-        submitted => $submitted,
-        form      => $forms->{registration},
-        };
+    template 'register', { form => $forms->{registration}, };
 };
 post '/register' => sub {
     my $return_url = param('return_url') // '/';
