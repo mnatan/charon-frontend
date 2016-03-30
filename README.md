@@ -13,7 +13,23 @@ Frontend systemu CHARON
 
    - Serwer z użyciem backendu
    
-   `plackup -R ./lib,./bin,./configs bin/app.psgi --port 5000`
+   Pierwszy terminal z logami backendowymi:
+   ```
+   cd charon/backend
+     # musimy używać basha
+   bash 
+   source bin/charon-paths.sh
+     # update do najnowszej wersji bazy
+   perl bin/migrate.pl -a update 
+  
+     # frontent obecnie spodziewa się backendu na localhost:3000. Można to zmienić w config.yml
+   plackup bin/charon.psgi --port 3000
+   ```
+   Drugi terminal z logami frontendowymi:
+   ```
+   cd charon/frontend
+   plackup -R ./lib,./bin,./configs bin/app.psgi --port 5000
+   ```
 
    - Serwer używający [pliku z mockami](https://github.com/PZCharon/charon-frontend/blob/develop/configs/mocks.yml) do symulacji backendu (ułatwia development)
    
