@@ -39,14 +39,14 @@ post '/login' => sub {
     my $return_url = param('return_url') // '/';
 
     my $backend_auth
-        = json_post( "$BACKEND_SERVER_URL/authorize", scalar params );
+        = json_post( $BACKEND_SERVER_URL . "/authorize", scalar params );
 
     unless ( defined $backend_auth->{token} ) {
         deferred error => "Niepoprawny użytkownik lub hasło!";
         redirect $return_url;
     }
 
-    my $user_data = json_get("$BACKEND_SERVER_URL/user/$login");
+    my $user_data = json_get($BACKEND_SERVER_URL . "/user/$login");
 
     session login     => $login;
     session token     => $backend_auth->{token};
@@ -60,6 +60,7 @@ post '/login' => sub {
 
 get '/logout' => sub {
     my $return_url = param('return_url') // '/';
+	
     deferred info => "Pomyślnie wylogowano użytkownika: " . session 'user';
     app->destroy_session;
     redirect $return_url;
