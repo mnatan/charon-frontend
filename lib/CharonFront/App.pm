@@ -53,9 +53,8 @@ post '/login' => sub {
 
 get '/logout' => sub {
     my $return_url = param('return_url') // '/';
-
-    deferred info => "Pomyślnie wylogowano użytkownika: " . session 'user';
     app->destroy_session;
+    deferred info => "Pomyślnie wylogowano użytkownika: " . session 'user';
     redirect $return_url;
 };
 
@@ -63,8 +62,6 @@ get '/register' => sub {
     template 'register', { form => $forms->{registration}, };
 };
 post '/register' => sub {
-    my $return_url = param('return_url') // '/';
-
     my $submitted = params;
     session 'submitted' => $submitted;
 
@@ -73,7 +70,6 @@ post '/register' => sub {
         redirect '/register';
     }
 
-    #FIXME backend_post umiera z braku contentu w ramce http
     my $backend_registration = backend_post( "/users/register", $submitted );
 
     if ( $backend_registration->{status} eq 500 ) {
@@ -88,7 +84,7 @@ post '/register' => sub {
 
     #TODO login user?
 
-    redirect $return_url;
+    redirect "/";
 };
 
 get '/userlist' => sub {

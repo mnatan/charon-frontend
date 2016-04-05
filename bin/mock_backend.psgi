@@ -12,6 +12,8 @@ use FindBin;
 use Cwd qw/realpath/;
 use YAML::XS qw/LoadFile/;
 
+use Data::Dumper;
+
 # use CharonFront::App;
 
 my $appdir             = realpath("$FindBin::Bin/..");
@@ -21,22 +23,38 @@ my $BACKEND_SERVER_URL = $config->{BACKEND_SERVER_URL};
 
 use Test::Mock::Simple;
 
+my $mock = Test::Mock::Simple->new( module => 'CharonFront::App' );
+
+my %originals = (
+    get  => \&CharonFront::App::backend_get,
+    post => \&CharonFront::App::backend_post,
+);
+
 sub mock_request {
     my ($type) = @_;
     return sub {
         my ($url) = @_;
-        $url =~ s/$BACKEND_SERVER_URL/$type:/;
+        $url =~ s/^/$type:/;
         for my $key ( keys %$Mocks ) {
             if ( $url =~ $key ) {
-                return $Mocks->{$key};
+                my $out = $Mocks->{$key};
+
+                print "--------- " . uc $type . " -----------\n";
+                print "$key\n";
+                print Dumper $out;
+                print "--------  /" . uc $type . "  ----------\n";
+
+                return $out;
             }
         }
+
+		# implemented, try to really ask backend
+		$originals{$type}->(@_);
         }
 }
 
-my $mock = Test::Mock::Simple->new( module => 'CharonFront::App' );
-$mock->add( json_get  => mock_request("get") );
-$mock->add( json_post => mock_request("post") );
+$mock->add( backend_get  => mock_request("get") );
+$mock->add( backend_post => mock_request("post") );
 
 generate_css($appdir);
 
