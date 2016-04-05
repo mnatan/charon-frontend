@@ -16,7 +16,6 @@ use YAML::XS qw/LoadFile/;
 use CharonFront::RESTUser qw(backend_post backend_get);
 
 our $VERSION = '0.1';
-my $DEBUG = 1;
 
 my $appdir = realpath("$FindBin::Bin/..");
 my $forms  = LoadFile("$appdir/configs/forms.yml");

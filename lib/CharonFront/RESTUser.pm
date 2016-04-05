@@ -16,7 +16,7 @@ our @EXPORT_OK = qw(
 
 use Data::Dumper;
 
-my $DEBUG = 1;
+use constant DEBUG => 1;
 
 my $user_agent         = "Charon-Frontend";
 my $BACKEND_SERVER_URL = setting("BACKEND_SERVER_URL");
@@ -25,7 +25,7 @@ sub backend_get {
     my ( $url, $arguments ) = @_;
     my $out;
 
-    print "--------- GET -----------\n" if $DEBUG;
+    print "--------- GET -----------\n" if DEBUG;
 
     my $ua = LWP::UserAgent->new;
     $ua->agent($user_agent);
@@ -48,8 +48,8 @@ sub backend_get {
             message => $response->message,
         };
     }
-    print Dumper $out if $DEBUG;
-    print "--------  /GET  ----------\n" if $DEBUG;
+    print Dumper $out if DEBUG;
+    print "--------  /GET  ----------\n" if DEBUG;
     return $out;
 }
 
@@ -57,8 +57,8 @@ sub backend_post {
     my ( $url, $arguments ) = @_;
     my $out;
 
-    print "--------- POST -----------\n" if $DEBUG;
-    print Dumper $arguments if $DEBUG;
+    print "--------- POST -----------\n" if DEBUG;
+    print Dumper $arguments if DEBUG;
 
     my $ua = LWP::UserAgent->new;
     $ua->agent($user_agent);
@@ -74,8 +74,8 @@ sub backend_post {
             message => $response->message,
         };
     }
-    print Dumper $out if $DEBUG;
-    print "--------  /POST  ----------\n" if $DEBUG;
+    print Dumper $out if DEBUG;
+    print "--------  /POST  ----------\n" if DEBUG;
     return $out;
 }
 
