@@ -1,0 +1,10 @@
+---
+registrations: 
+    /registrations
+authorize: 
+    /authorize
+users: 
+    /users
+register_user: 
+    /users/register
+...

@@ -19,9 +19,10 @@ our $VERSION = '0.1';
 
 my $appdir = realpath("$FindBin::Bin/..");
 my $forms  = LoadFile("$appdir/configs/forms.yml");
+my %API    = %{ LoadFile("$appdir/configs/api.yml") };
 
 get '/' => sub {
-    my $registrations = backend_get("/registrations");
+    my $registrations = backend_get( $API{registrations} );
     template 'index', { registrations => $registrations };
 };
 
@@ -31,14 +32,14 @@ post '/login' => sub {
     my $pass       = param('password');
     my $return_url = param('return_url') // '/';
 
-    my $backend_auth = backend_post( "/authorize", scalar params );
+    my $backend_auth = backend_post( $API{authorize}, scalar params );
 
     unless ( defined $backend_auth->{token} ) {
         deferred error => "Niepoprawny użytkownik lub hasło!";
         redirect $return_url;
     }
 
-    my $user_data = backend_get("/users/$login");
+    my $user_data = backend_get("$API{users}/$login");
 
     session login     => $login;
     session token     => $backend_auth->{token};
@@ -71,7 +72,8 @@ post '/register' => sub {
         redirect '/register';
     }
 
-    my $backend_registration = backend_post( "/users/register", $submitted );
+    my $backend_registration
+        = backend_post( $API{register_user}, $submitted );
 
     if ( $backend_registration->{status} eq 500 ) {
         deferred error => $backend_registration->{exception};
@@ -92,7 +94,7 @@ get '/userlist' => sub {
     my $return_url = param('return_url') // '/';
     my $users;
     if ( session "logged_in" ) {
-        $users = backend_get( "/users",
+        $users = backend_get( $API{users},
             { login => session("login"), token => session("token") } );
     }
     template "userlist", { users => $users };
