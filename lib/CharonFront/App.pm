@@ -39,7 +39,7 @@ post '/login' => sub {
         redirect $return_url;
     }
 
-    my $user_data = backend_get("/user/$login");
+    my $user_data = backend_get("/users/$login");
 
     session login     => $login;
     session token     => $backend_auth->{token};
@@ -47,7 +47,9 @@ post '/login' => sub {
     session name      => $user_data->{name} . " " . $user_data->{surname};
     session logged_in => 1;
 
-    deferred success => "Użytkownik $login został zalogowany.";
+    deferred success => "Użytkownik "
+        . session("name")
+        . " został zalogowany.";
     redirect $return_url;
 };
 
