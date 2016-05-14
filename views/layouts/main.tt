@@ -22,8 +22,22 @@
 				<h2>System rejestracji na studia podyplomowe</h2>
 			</div>
 		</a>
-
-		[% content %]	
+		
+		<div class="container bs-docs-container"> 
+			<div class="row">
+				<table class="table">
+					<tbody>
+						<td width=80%>
+							[% INCLUDE alertbar.tt %]
+							[% content %]
+						</td>
+						<td width=20%>
+							[% INCLUDE sidebar.tt %]
+						</td>
+					</tbody>
+				</table>
+			</div>
+		</div> <!-- /container -->
 
 		<div id="watermark">
 			<a href="http://www.uj.edu.pl/">
@@ -31,5 +45,4 @@
 			</a>
 		</div>
 	</body>
-
 </html>
