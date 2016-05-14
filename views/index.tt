@@ -1,34 +1,44 @@
 <div class="container bs-docs-container"> 
-	<div class="row"> 
-		<div class="col-md-9" role="main">
-			[% INCLUDE alertbar.tt %]
-			<section id="rejestracje">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Aktywne rejestracje
-					</div>
-					[% IF registrations %]
-					<div class="panel-body">
-						[% FOREACH registration in registrations %]
-						<div class="panel panel-default">
+	<div class="row">
+		<table class="table">
+			<tbody>
+				<td width=80%>
+					[% INCLUDE alertbar.tt %]
+					<section id="rejestracje">
+						<div class="panel panel-primary">
 							<div class="panel-heading">
-								Przedmiot: [% registration.name %] <br>
+								<h3 class="panel-title">Aktywne rejestracje</h3>
 							</div>
+							[% IF registrations %]
 							<div class="panel-body">
-								Data: [% registration.due %]<br>
-								Zarejestrowano: [% registration.registered %]/[% registration.limit %]
+								[% FOREACH registration in registrations %]
+								
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h3 class="panel-title">Przedmiot: [% registration.name %]</h3>
+									</div>
+									<div class="panel-body">
+										Data: [% registration.due %]<br>
+										Zarejestrowano: [% registration.registered %]/[% registration.limit %]
+									</div>
+								</div>
+
+								[% END %]
 							</div>
+							[% ELSE %]
+							<div class="panel-body">
+								Obecnie nie ma żadnych aktywnych rejestracji.
+							</div>
+							[% END %]					
 						</div>
-						[% END %]
-					</div>
-					[% ELSE %]
-					<div class="panel-body">
-						Obecnie nie ma żadnych aktywnych rejestracji.
-					</div>
-					[% END %]
-				</div>
-			</section>
-		</div>
-		[% INCLUDE sidebar.tt %]
+					</section>
+				</td>
+				<td width=20%>
+					[% INCLUDE sidebar.tt %]
+				</td>
+			</tbody>
+		</table>
 	</div>
 </div> <!-- /container -->
+
+

@@ -1,49 +1,69 @@
-<div class="col-md-3" role="complementary">
-	<div data-spy="affix" data-offset-top="150">
-		<div class="panel panel-default">
-			[% IF session.logged_in %]
-			<div class="panel-heading">Panel Użytkownika</div>
-			<div class="panel-body">
-				Zalogowany: [% session.name %]<br>
-				<a href="[% logout_url %]">
-					<button type="button" class="btn btn-default">Wyloguj</button>
-				</a>
-			</div>
-			[% ELSE %]
-			<div class="panel-heading">Logowanie</div>
-			<div class="panel-body">
-				<div class="btn-group" role="group" aria-label="..." style="margin:auto;">
-					<!-- FIXME STYL zjebany formularz -->
-					<form action="[% login_url %]" method="post">
-						<input type="text" name="login" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
-						<input type="password" name="password" class="form-control" placeholder="Hasło" aria-describedby="basic-addon1">
-						<!-- hidden value, zapewnia że zostaniemy przekierowani spowrotem na tę samą stronę po zalogowaniu -->
-						<input type="hidden" name="return_url" value="[% request.path %]" />
-						<button type="submit" class="btn btn-default">Zaloguj</button>
-					</form> 
-					<a href="[% register_url %]">
-						<button type="button" class="btn btn-default">Zarejestruj</button>
-					</a>
-				</div>
-			</div>
-			[% END %]
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<ul class="nav bs-docs-sidenav">
+<div role="complementary">
+	<table class="table">
+		<tbody>
+			<tr>
+				<!--<div data-spy="affix" data-offset-top="150">-->
 					[% IF session.logged_in %]
-					<li>
-					<a href="/userlist">
-						Lista użytkowników</a>
-					</li>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Panel Użytkownika</h3>
+						</div>
+						<div class="panel-body">
+							Zalogowany: [% session.name %]<br>
+							<a href="[% logout_url %]">
+								<button type="button" class="btn btn-lg btn-default">Wyloguj</button>
+							</a>
+						</div>
+					</div>
+					[% ELSE %]
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Logowanie</h3>
+						</div>
+						<div class="panel-body">
+							<form action="[% login_url %]" method="POST" role="form">
+								<div class="form-group">
+									<input type="text" name="userName" id="inputUserName" class="form-control" value="" required="required" pattern="" title="" style="margin-bottom: 1px" placeholder="Nazwa użytkownika">
+
+									<input type="password" name="password" id="inputPassword" class="form-control" required="required" title="" placeholder="Hasło">
+								</div>
+								<!-- hidden value, zapewnia że zostaniemy przekierowani spowrotem na tę samą stronę po zalogowaniu -->
+								<input type="hidden" name="return_url" value="[% request.path %]">
+								<button type="submit" class="btn btn-primary" style="display: block; width: 100%; margin-bottom: 1px">Zaloguj</button>
+							</form>
+							<a href="[% register_url %]">
+								<button type="submit" class="btn btn-primary" style="display: block; width: 100%">Zarejestruj</button>
+							</a>
+						</div>
+					</div>
 					[% END %]
-				</ul>
-			</div>
-		</div>
-		<div id="footer" class="panel panel-default" style="margin-top:30px;">
-			<div class="panel-body">
-				Powered by <a href="http://perldancer.org/">Dancer2</a> + Bootstrap
-			</div>
-		</div>
-	</div>
+				<!--</div>-->
+			</tr>
+			
+			<!--	TODO	-->
+			[% IF session.logged_in %]
+			<tr>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<ul class="nav bs-docs-sidenav">
+							<li>
+							<a href="/userlist">
+								Lista użytkowników</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			
+			</tr>
+			[% END %]
+			
+			<tr>
+				<div id="footer" class="panel panel-default">
+					<div class="panel-footer">
+						Powered by <a href="http://perldancer.org/">Dancer2</a> + Bootstrap
+					</div>
+				</div>
+			</tr>
+		</tbody>
+	</table>
 </div>

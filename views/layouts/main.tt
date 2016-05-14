@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="[% settings.charset %]">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<title>Charon</title>
 
 		<link rel="stylesheet" href="[% request.uri_base %]/css/bootstrap.css">
@@ -17,12 +17,13 @@
 
 	<body>
 		<a href="/">
-			<div id="header">
+			<div id="header" class="page-header">
 				<h1>Charon</h1>
 				<h2>System rejestracji na studia podyplomowe</h2>
 			</div>
 		</a>
-		[% content %]
+
+		[% content %]	
 
 		<div id="watermark">
 			<a href="http://www.uj.edu.pl/">
