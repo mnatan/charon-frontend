@@ -1,4 +1,18 @@
 ---
+get:/faq:
+  - category: "kategoria A"
+    questions:
+    - question: "Pytanie 1"
+      answer: "Odpowiedź 1"
+    - question: "Pytanie 2"
+      answer: "Odpowiedź 2"
+  - category: "kategoria B"
+    questions:
+    - question: "Pytanie 1"
+      answer: "Odpowiedź 1"
+    - question: "Pytanie 2"
+      answer: "Odpowiedź 2"
+
 get:/registrations:
   - name: Testowanie
     due: 20/04/2016

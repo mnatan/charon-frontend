@@ -31,7 +31,8 @@ get '/contact' => sub {
 };
 
 get '/faq' => sub {
-    template 'faq', { form => $forms->{questions}, };
+    my $questions = backend_get( $API{faq} );
+    template 'faq', { questions => $questions, };
 };
 
 get '/login' => sub { redirect '/' };
@@ -111,7 +112,7 @@ get '/userlist' => sub {
 hook before_template => sub {
     my $tokens = shift;
 
-    $tokens->{contact_url}        = uri_for('/contact');
+    $tokens->{contact_url}    = uri_for('/contact');
     $tokens->{faq_url}        = uri_for('/faq');
     $tokens->{register_url}   = uri_for('/register');
     $tokens->{logout_url}     = uri_for('/logout');
