@@ -5,27 +5,44 @@
 		</div>
 		<div class="panel-body">
 			<form action="register" method="POST" class="form-horizontal" role="form">
-				<!--	TODO	-->
+				<!--	TODO płci - radio/lista?			-->
+				<!--	TODO wymaganie podania peselu		-->
+				
 				<div class="form-group" id="registration-form">
-					[% FOREACH field IN form %]
-					<div class="input-group">
-						<span class="input-group-addon">[% field.text %]</span>
-						<input 
-						name="[% field.name %]"
-						[% IF field.type != 'radio' %]
-						value="[% session.submitted.${field.name} %]"
+					<table width=90% align="center">
+						<tbody>
+						[% FOREACH field IN form %]
+							<tr>
+								<th width=30%><label for="">[% field.text %]</label></th>
+								<th width=70%>
+									<input 
+										name="[% field.name %]"
+										[% IF field.type != 'radio' %]
+										value="[% session.submitted.${field.name} %]"
+										[% END %]
+										type="[% field.type %]"
+										class="form-control"
+										placeholder="[% field.text %]"
+										aria-describedby="basic-addon1"
+										[% FOREACH add IN field.additional %]
+										[% add %]
+										[% END %]
+										>
+								</th>
+							</tr>
 						[% END %]
-						type="[% field.type %]"
-						class="form-control"
-						placeholder="[% field.text %]"
-						aria-describedby="basic-addon1"
-						[% FOREACH add IN field.additional %]
-						[% add %]
-						[% END %]
-						>
+						</tbody>
+					</table>
+					<br>
+					<div width=90% align="center">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" value="" required="required">
+								Wyrażam zgodę na przetwarzanie moich danych przez...
+							</label>
+						</div>
 					</div>
-					[% END %]
-					</br>
+					<br>
 					<div class="text-center">
 						<button type="submit" class="btn btn-primary">Zarejestruj mnie</button>
 					</div>
