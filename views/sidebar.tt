@@ -39,7 +39,31 @@
 					[% END %]
 				<!--</div>-->
 			</tr>
-			
+			<tr>
+				<a href="/">
+					<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Katalog studiów</h3>
+							</div>
+					</div>
+				</a>
+			</tr>
+
+			<tr>
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Charon</h3>
+					</div>
+					<div class="panel-body">
+						<div class="list-group">
+							<a href="[% faq_url %]" class="list-group-item">FAQ</a>
+							<a href="[% contact_url %]" class="list-group-item">Kontakt</a>
+						</div>
+					</div>
+				</div>
+			</tr>
+
+
 			<!--	TODO	-->
 			[% IF session.logged_in %]
 			<tr>
