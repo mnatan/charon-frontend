@@ -10,6 +10,17 @@
 
 		<!-- TODO: rozpakować zmienną $questions -->
 		<!-- definicja struktury jest widoczna w configs/mocks.yml -->
+		[% IF questions %]
+			[% FOREACH category in questions %]
+				[% category.category %]<br>
+				[% FOREACH entry in category.questions %]
+					[% entry.question %]<br>
+					[% entry.answer %]<br>
+				[% END %]
+			[% END %]
+		[% ELSE %]
+
+		[% END %]					
 		<table class="table">
 			<p style="text-align: center;"><strong>TODO w kodzie</strong></a>
 			<tbody>
