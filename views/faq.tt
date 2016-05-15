@@ -1,0 +1,50 @@
+<section id="questions">
+	<div class="panel panel-primary"  id="qlist">
+		<div class="panel-heading">
+			<h3 class="panel-title">Najczęściej zadawane pytania</h3>
+		</div>
+		<div class="panel-body">
+
+			<p style="text-align: center;"><strong>Obecnie wszyscy wszystko wiedzą</strong></a>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							<form class="navbar-form pull-right">
+								<input type="text" style="width: 200px;">
+								<button type="submit" class="btn btn-default">Wyszukaj</button>
+							</form>
+						</th>
+					</tr>
+				</thead>
+
+				<!-- TODO yml-->
+				<tbody>
+					<div class="list-group">
+						<tr>
+							<td>
+									<a href="#odp1" class="list-group-item">1. Niezadane pytanie</a>
+									<a href="#odp2" class="list-group-item">2. Niezadane pytanie</a>
+							</td>
+						</tr>
+					</div>
+					<tr id="odp1">
+						<td>
+							1. Odpowiedź
+							<br>
+							<a href="#qlist" class="text" style="float: right">Wróć</a>
+						</td>
+
+					</tr>
+					<tr id="odp2">
+						<td>
+							2. Odpowiedź
+							<br>
+							<a href="#qlist" class="text" style="float: right">Wróć</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>

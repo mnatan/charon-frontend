@@ -26,6 +26,14 @@ get '/' => sub {
     template 'index', { registrations => $registrations };
 };
 
+get '/contact' => sub {
+    template 'contact', { form => $forms->{contact_details}, };
+};
+
+get '/faq' => sub {
+    template 'faq', { form => $forms->{questions}, };
+};
+
 get '/login' => sub { redirect '/' };
 post '/login' => sub {
     my $login      = param('login');
@@ -103,6 +111,8 @@ get '/userlist' => sub {
 hook before_template => sub {
     my $tokens = shift;
 
+    $tokens->{contact_url}        = uri_for('/contact');
+    $tokens->{faq_url}        = uri_for('/faq');
     $tokens->{register_url}   = uri_for('/register');
     $tokens->{logout_url}     = uri_for('/logout');
     $tokens->{login_url}      = uri_for('/login');
