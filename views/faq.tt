@@ -24,7 +24,7 @@
 							<tr>
 								<td>
 									[% FOREACH entry in category.questions %]
-										<a [% entry.q_href %] class="list-group-item">[% entry.question %]</a>
+										<a href="#[% entry.id %]" class="list-group-item">[% entry.question %]</a>
 									[% END %]
 								</td>
 							</tr>
@@ -41,7 +41,7 @@
 						</tr>
 						[% FOREACH entry in category.questions %]
 							<tr >
-								<td [% entry.q_id %]>
+								<td id="[% entry.id %]">
 									[% entry.answer %]
 									<br>
 									<!--	puste linie do demonstracji działania hiperłączy - zostaną usuniętę		-->
