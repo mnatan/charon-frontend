@@ -45,7 +45,7 @@ registration:
       additional:
           - required
           - pattern="\d{11}"
-          - title="Numer telefonu musi składać się z 11 cyfr."
+          - title="Numer pesel musi składać się z 11 cyfr."
     
     - name: phone_number
       text: Numer telefonu

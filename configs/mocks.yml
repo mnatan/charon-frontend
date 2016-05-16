@@ -2,16 +2,25 @@
 get:/faq:
   - category: "kategoria A"
     questions:
-    - question: "Pytanie 1"
-      answer: "Odpowiedź 1"
-    - question: "Pytanie 2"
-      answer: "Odpowiedź 2"
+    - question: "Pytanie 1A"
+      answer: "Odpowiedź 1A"
+          #@mnatan dodajcie pola do bazy (+autogenerowanie w takim formacie)
+      q_href: href="#1A"
+      q_id: id="1A" 
+    - question: "Pytanie 2A"
+      answer: "Odpowiedź 2A"
+      q_href: href="#2A"
+      q_id: id="2A"
   - category: "kategoria B"
     questions:
-    - question: "Pytanie 1"
-      answer: "Odpowiedź 1"
-    - question: "Pytanie 2"
-      answer: "Odpowiedź 2"
+    - question: "Pytanie 1B"
+      answer: "Odpowiedź 1B"
+      q_href: href="#2B"
+      q_id: id="1B"
+    - question: "Pytanie 2B"
+      answer: "Odpowiedź 2B"
+      q_href: href="#2B"
+      q_id: id="2B"
 
 get:/registrations:
   - name: Testowanie
