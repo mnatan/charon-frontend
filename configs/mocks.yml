@@ -4,19 +4,14 @@ get:/faq:
     questions:
     - question: "Pytanie 1A"
       answer: "Odpowiedź 1A"
-          #@mnatan dodajcie pola do bazy (+autogenerowanie w takim formacie)
-      id: 1A
     - question: "Pytanie 2A"
       answer: "Odpowiedź 2A"
-      id: 2A
   - category: "kategoria B"
     questions:
     - question: "Pytanie 1B"
       answer: "Odpowiedź 1B"
-      id: 1B
     - question: "Pytanie 2B"
       answer: "Odpowiedź 2B"
-      id: 2B
 
 get:/registrations:
   - name: Testowanie

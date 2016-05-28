@@ -31,8 +31,14 @@ get '/contact' => sub {
 };
 
 get '/faq' => sub {
-    my $questions = backend_get( $API{faq} );
-    template 'faq', { questions => $questions, };
+    my $faq = backend_get( $API{faq} );
+	foreach my $category (@{$faq}){
+		foreach my $question (@{$category->{questions}}){
+			$question->{id} = $question->{question} =~ s/\s//rg;
+		}
+	}
+	print Dumper($faq);
+    template 'faq', { questions => $faq, };
 };
 
 get '/login' => sub { redirect '/' };
