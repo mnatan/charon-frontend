@@ -1,0 +1,50 @@
+<section id="timeline">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Terminy</h3>
+        </div>
+        <div class="panel-body">
+        <ul id='line'>
+            <li class='work'>
+                <input class='radio' id='work5' name='works' type='radio'>
+                <div class="relative">
+                    <label for='work5'>Lorem ipsum dolor sit amet</label>
+                    <span class='date'>12 May 2013</span>
+                    <span class='circle'></span>
+                </div>
+                <div class='content'>
+                    <p>
+                        Content content 
+                    </p>
+                </div>
+            </li>
+            <li class='work'>
+                <input class='radio' id='work5' name='works' type='radio' checked>
+                <div class="relative">
+                    <label for='work5'>Lorem ipsum dolor sit amet</label>
+                    <span class='date'>12 May 2013</span>
+                    <span class='circle'></span>
+                </div>
+                <div class='content'>
+                    <p>
+                        Content content 
+                    </p>
+                </div>
+            </li>
+            <li class='work'>
+                <input class='radio' id='work5' name='works' type='radio'>
+                <div class="relative">
+                    <label for='work5'>Lorem ipsum dolor sit amet</label>
+                    <span class='date'>12 May 2013</span>
+                    <span class='circle'></span>
+                </div>
+                <div class='content'>
+                    <p>
+                        Content content 
+                    </p>
+                </div>
+            </li>
+        </ul>
+        </div>
+    </div>
+</section>

@@ -108,4 +108,7 @@ get:/cart:
     rank: 32
     limit: 30
     status: Lista rezerwowa
+
+get:/timeline:
+  - name: Name
 ...

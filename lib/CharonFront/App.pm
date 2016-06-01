@@ -46,6 +46,11 @@ get '/cart' => sub {
     template 'cart', { cart => $cart, };
 };
 
+get '/timeline' => sub {
+    my $timeline = backend_get( $API{timeline} );
+    template 'timeline', { timeline => $timeline, };
+};
+
 get '/login' => sub { redirect '/' };
 post '/login' => sub {
     my $login      = param('login');

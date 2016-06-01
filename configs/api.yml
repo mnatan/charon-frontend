@@ -11,4 +11,6 @@ faq:
     /faq
 cart:
     /cart
+timeline:
+    /timeline
 ...

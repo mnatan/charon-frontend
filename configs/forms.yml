@@ -78,4 +78,21 @@ registration:
           - required
           - pattern="^\S{8,}$"
           - title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."
+
+timeline:
+    - text: Otwarcie rejestracji
+      date: 01/06/2016
+      status: active
+    
+    - text: Koniec rejestracji 
+      date: 30/06/2016
+      status: inactive
+
+    - text: Potwierdzenie rejestracji - 1 nabór 
+      date: 3/07/2016 
+      status: inactive
+
+    - text: Potwierdzenie rejestracji - 2 nabór 
+      date: 7/07/2016 
+      status: inactive
 ...

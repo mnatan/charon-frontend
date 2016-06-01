@@ -4,7 +4,7 @@
                        <h3 class="panel-title">Koszyk</h3>
                </div>
                [% IF cart %]
-               <div class="panel-body">
+               <div class="panel-body cart">
                        [% FOREACH item in cart %]
 
                        <div class="panel panel-info">
@@ -35,7 +35,7 @@
                </div>
                [% ELSE %]
                <div class="panel-body">
-                       Obecnie nie ma żadnych aktywnych rejestracji.
+                    Obecnie nie jesteś zarejestrowany na żaden kierunek
                </div>
                [% END %]
        </div>
