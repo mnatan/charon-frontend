@@ -9,4 +9,6 @@ register_user:
     /users/register
 faq: 
     /faq
+cart:
+    /cart
 ...

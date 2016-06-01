@@ -91,4 +91,21 @@ get:/forms/register:
         - required
         - pattern="^\S{8,}$"
         - title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."
+
+get:/cart:
+  - name: Testowanie
+    due: 30/04/2016
+    rank: 20
+    limit: 30
+    status: Rejestracja trwa
+  - name: Automatyzacja
+    due: 30/04/2016
+    rank: 27
+    limit: 30
+    status: Przyjęty
+  - name: Cokolwiek
+    due: 30/04/2016
+    rank: 32
+    limit: 30
+    status: Lista rezerwowa
 ...

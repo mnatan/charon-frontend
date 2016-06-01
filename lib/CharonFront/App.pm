@@ -41,6 +41,11 @@ get '/faq' => sub {
     template 'faq', { questions => $faq, };
 };
 
+get '/cart' => sub {
+    my $cart = backend_get( $API{cart} );
+    template 'cart', { cart => $cart, };
+};
+
 get '/login' => sub { redirect '/' };
 post '/login' => sub {
     my $login      = param('login');
