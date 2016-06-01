@@ -110,5 +110,19 @@ get:/cart:
     status: Lista rezerwowa
 
 get:/timeline:
-  - name: Name
+    - text: Otwarcie rejestracji
+      date: 1 czerwca 2016
+      status: inactive
+
+    - text: Koniec rejestracji
+      date: 30 czerwca 2016
+      status: active
+
+    - text: Potwierdzenie rejestracji - 1 nabór
+      date: 3 lipca 2016
+      status: inactive
+
+    - text: Potwierdzenie rejestracji - 2 nabór
+      date: 7 lipca 2016
+      status: inactive
 ...

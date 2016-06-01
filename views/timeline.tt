@@ -4,47 +4,31 @@
             <h3 class="panel-title">Terminy</h3>
         </div>
         <div class="panel-body">
+        [% IF timeline %]
         <ul id='line'>
+            [% FOREACH entry IN timeline %]
             <li class='work'>
-                <input class='radio' id='work5' name='works' type='radio'>
+                <input class='radio' id='time-entry'
+                       name='works' type='radio'
+                       [% IF entry.status == 'active' %]checked[% END %] >
                 <div class="relative">
-                    <label for='work5'>Lorem ipsum dolor sit amet</label>
-                    <span class='date'>12 May 2013</span>
+                    <label for='time-entry'>[% entry.text %]</label>
+                    <span class='date'>[% entry.date %]</span>
                     <span class='circle'></span>
                 </div>
                 <div class='content'>
                     <p>
-                        Content content 
+                        Content content
                     </p>
                 </div>
             </li>
-            <li class='work'>
-                <input class='radio' id='work5' name='works' type='radio' checked>
-                <div class="relative">
-                    <label for='work5'>Lorem ipsum dolor sit amet</label>
-                    <span class='date'>12 May 2013</span>
-                    <span class='circle'></span>
-                </div>
-                <div class='content'>
-                    <p>
-                        Content content 
-                    </p>
-                </div>
-            </li>
-            <li class='work'>
-                <input class='radio' id='work5' name='works' type='radio'>
-                <div class="relative">
-                    <label for='work5'>Lorem ipsum dolor sit amet</label>
-                    <span class='date'>12 May 2013</span>
-                    <span class='circle'></span>
-                </div>
-                <div class='content'>
-                    <p>
-                        Content content 
-                    </p>
-                </div>
-            </li>
+            [% END %]
         </ul>
+        [% ELSE %]
+        <div class="panel-body">
+            Obecnie nie masz żadnych zapisów
+        </div>
+        [% END %]
         </div>
     </div>
 </section>
