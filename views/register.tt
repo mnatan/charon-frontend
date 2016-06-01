@@ -15,19 +15,31 @@
 							<tr>
 								<th width=30%><label for="">[% field.text %]</label></th>
 								<th width=70%>
-									<input 
-										name="[% field.name %]"
-										[% IF field.type != 'radio' %]
-										value="[% session.submitted.${field.name} %]"
-										[% END %]
-										type="[% field.type %]"
-										class="form-control"
-										placeholder="[% field.text %]"
-										aria-describedby="basic-addon1"
-										[% FOREACH add IN field.additional %]
-										[% add %]
-										[% END %]
-										>
+									[% IF field.type != 'radio' %]
+                                        <input 
+                                            name="[% field.name %]"
+                                            value="[% session.submitted.${field.name} %]"
+                                            type="[% field.type %]"
+                                            class="form-control"
+                                            placeholder="[% field.text %]"
+                                            aria-describedby="basic-addon1"
+                                            [% FOREACH add IN field.additional %]
+                                            [% add %]
+                                            [% END %]
+                                        >
+                                    [% END %]
+                                    [% IF field.type == 'radio' %]
+                                        <div>
+                                            [% FOREACH choice IN field.choices %]
+                                                <input 
+                                                name="[% field.name %]"
+                                                type="radio" 
+                                                class="form-radio"
+                                                aria-describedby="basic-addon1"
+                                                > [% choice.text %]
+                                            [% END %]                                                                                     
+                                        </div>
+                                        [% END %]
 								</th>
 							</tr>
 						[% END %]

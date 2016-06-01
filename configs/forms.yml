@@ -7,7 +7,6 @@ registration:
       type: text
       additional:
           - required
-          - pattern=".{3,}"
           - title="Imię musi składać się z przynajmniej 3 znaków."
     
     - name: surname
@@ -15,22 +14,22 @@ registration:
       type: text
       additional:
           - required
-          - pattern=".{3,}"
           - title="Nazwisko musi składać się z przynajmniej 3 znaków."
     
-    # TODO FIXME sex radio buttons style
     - name: sex
-      text: Mężczyzna
+      text: Pleć
       type: radio
-      additional:
-          - checked
-          - value="m"
+      choices:
+          - sex: male
+            text: Mężczyzna
+            additional:
+                - checked
+                - value="m"
+          - sex: female
+            text: Kobieta
+            additional:
+                - value="f"
     
-    - name: sex
-      text: Kobieta
-      type: radio
-      additional:
-          - value="f"
     
     - name: citizenship
       text: Obywatelstwo
@@ -39,8 +38,8 @@ registration:
           - required
 
     # TODO pesel nie zawsze jest wymagany
-    - name: pesel_number
-      text: Numer PESEL
+    - name: number
+      text: PESEL
       type: text
       additional:
           - required
