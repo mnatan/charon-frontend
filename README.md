@@ -17,9 +17,7 @@ Frontend systemu CHARON
    Pierwszy terminal z logami backendowymi:
    ```
    cd charon/backend
-     # musimy używać basha
-   bash 
-   source bin/charon-paths.sh
+   
      # update do najnowszej wersji bazy
    perl bin/migrate.pl -a update 
   
