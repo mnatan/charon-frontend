@@ -26,6 +26,31 @@ get '/' => sub {
     template 'index', { registrations => $registrations };
 };
 
+get '/contact' => sub {
+    template 'contact', { form => $forms->{contact_details}, };
+};
+
+get '/faq' => sub {
+    my $faq = backend_get( $API{faq} );
+	foreach my $category (@{$faq}){
+		foreach my $question (@{$category->{questions}}){
+			$question->{id} = $question->{question} =~ s/\s//rg;
+		}
+	}
+	print Dumper($faq);
+    template 'faq', { questions => $faq, };
+};
+
+get '/cart' => sub {
+    my $cart = backend_get( $API{cart} );
+    template 'cart', { cart => $cart, };
+};
+
+get '/timeline' => sub {
+    my $timeline = backend_get( $API{timeline} );
+    template 'timeline', { timeline => $timeline, };
+};
+
 get '/login' => sub { redirect '/' };
 post '/login' => sub {
     my $login      = param('login');
@@ -103,6 +128,8 @@ get '/userlist' => sub {
 hook before_template => sub {
     my $tokens = shift;
 
+    $tokens->{contact_url}    = uri_for('/contact');
+    $tokens->{faq_url}        = uri_for('/faq');
     $tokens->{register_url}   = uri_for('/register');
     $tokens->{logout_url}     = uri_for('/logout');
     $tokens->{login_url}      = uri_for('/login');

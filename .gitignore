@@ -18,6 +18,3 @@ hs_err_pid*
 
 # ctags file
 tags
-
-# we use less
-*.css

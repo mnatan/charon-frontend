@@ -7,4 +7,10 @@ users:
     /users
 register_user: 
     /users/register
+faq: 
+    /faq
+cart:
+    /cart
+timeline:
+    /timeline
 ...

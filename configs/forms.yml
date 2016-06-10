@@ -1,50 +1,60 @@
 ---
-#name surname sex citizenship phone_number email password
+#name surname sex citizenship pesel_number phone_number email password
 registration:
+    # TODO ograniczenie znaków specjalnych w imieniu i nazwisku
     - name: name
       text: Imię
       type: text
       additional:
           - required
-          - pattern=".{5,}"
-          - title="Imię musi składać się z przynajmniej 5 znaków."
+          - title="Imię musi składać się z przynajmniej 3 znaków."
     
     - name: surname
       text: Nazwisko
       type: text
       additional:
           - required
-          - pattern=".{5,}"
-          - title="Nazwisko musi składać się z przynajmniej 5 znaków."
-    
-    # TODO FIXME sex radio buttons style
-    - name: sex
-      text: Mężczyzna
-      type: radio
-      additional:
-          - checked
-          - value="m"
+          - title="Nazwisko musi składać się z przynajmniej 3 znaków."
     
     - name: sex
-      text: Kobieta
+      text: Pleć
       type: radio
-      additional:
-          - value="f"
+      choices:
+          - sex: male
+            text: Mężczyzna
+            additional:
+                - checked
+                - value="m"
+          - sex: female
+            text: Kobieta
+            additional:
+                - value="f"
+    
     
     - name: citizenship
       text: Obywatelstwo
       type: text
       additional:
           - required
+
+    # TODO pesel nie zawsze jest wymagany
+    - name: number
+      text: PESEL
+      type: text
+      additional:
+          - required
+          - pattern="\d{11}"
+          - title="Numer pesel musi składać się z 11 cyfr."
     
     - name: phone_number
-      text: Numer Telefonu
+      text: Numer telefonu
       type: text
       additional:
           - required
           - pattern="(\+\d\d)?\d{9}"
           - title="Numer telefonu musi składać się z 9 cyfr ewentualnie poprzedzonym numerem kierunkowym w formacie: +44."
     
+    # TODO zawarcie kropki w adresie email
     - name: email
       text: Email
       type: email
@@ -68,4 +78,5 @@ registration:
           - required
           - pattern="^\S{8,}$"
           - title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."
+
 ...

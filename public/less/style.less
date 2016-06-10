@@ -225,6 +225,185 @@ code, tt {
 	text-align: right;
 }
 
+.cart table {
+    width: 100%;
+}
+
+.cart th, .cart td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
 .center {
 	margin: auto;
+}
+
+/* -------------------------------------
+ * timeline
+ * ------------------------------------- */
+#line {
+  list-style: none;
+  margin: 50px 0 30px 120px;
+  padding-left: 30px;
+  border-left: 8px solid #1874CD;
+}
+#line li {
+  margin: 40px 0;
+  position: relative;
+}
+#line p {
+  margin: 0 0 15px;
+}
+
+.date {
+  margin-top: -10px;
+  text-align: right;
+  top: 50%;
+  left: -158px;
+  font-size: 0.95em;
+  line-height: 20px;
+  position: absolute;
+}
+
+.circle {
+  margin-top: -10px;
+  top: 50%;
+  left: -44px;
+  width: 20px;
+  height: 20px;
+  border: 3px dotted #1874CD;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+}
+
+.content {
+  max-height: 20px;
+  padding: 50px 20px 0;
+  border-color: transparent;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 0.5em;
+  position: relative;
+}
+.content:before, .content:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: solid transparent;
+  position: absolute;
+  pointer-events: none;
+  right: 100%;
+}
+.content:before {
+  border-right-color: inherit;
+  border-width: 13px;
+  top: 50%;
+  margin-top: -13px;
+}
+.content:after {
+  border-right-color: #FFFFFF;
+  border-width: 10px;
+  top: 50%;
+  margin-top: -10px;
+}
+.content p {
+  max-height: 0;
+  color: transparent;
+  text-align: justify;
+  word-break: break-word;
+  hyphens: auto;
+  overflow: hidden;
+}
+
+.relative label {
+  font-size: 1.3em;
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
+  top: 20px;
+  transition: transform 0.2s linear;
+}
+
+.radio, .radio:checked, .rad {
+  display: none;
+}
+.radio + .relative label, .radio:checked + .relative label, .rad + .relative label {
+  cursor: auto;
+  transform: translateX(42px);
+}
+.radio + .relative .circle, .radio:checked + .relative .circle, .rad + .relative .circle {
+  background: #FFFFFF;
+}
+.radio ~ .content, .radio:checked ~ .content, .rad ~ .content {
+  max-height: 180px;
+  border-color: #1874CD;
+  margin-right: 20px;
+  transform: translateX(20px);
+  transition: max-height 0.4s linear, border-color 0.5s linear, transform 0.2s linear;
+}
+.radio ~ .content p, .radio:checked ~ .content p, .rad ~ .content p {
+  max-height: 200px;
+  color: #1874CD;
+  transition: color 0.3s linear 0.3s;
+}
+
+.radio:checked + .relative .circle {
+  background: #FFD700;
+}
+
+/* -------------------------------------
+ * mobile phones (vertical version only)
+ * ------------------------------------- */
+@media screen and (max-width: 767px) {
+  #line {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+  }
+  #line li {
+    margin: 50px 0;
+  }
+
+  .relative label {
+    width: 85%;
+    font-size: 1.1em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    transform: translateX(18px);
+  }
+
+  .content {
+    padding-top: 45px;
+    border-color: #1874CD;
+  }
+  .content:before, .content:after {
+    border: solid transparent;
+    bottom: 100%;
+  }
+  .content:before {
+    border-bottom-color: inherit;
+    border-width: 17px;
+    top: -16px;
+    left: 50px;
+    margin-left: -17px;
+  }
+  .content:after {
+    border-bottom-color: #1874CD;
+    border-width: 20px;
+    top: -20px;
+    left: 50px;
+    margin-left: -20px;
+  }
+  .content p {
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+
+  .circle, .date {
+    display: none;
+  }
 }
