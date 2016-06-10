@@ -39,15 +39,6 @@
 					[% END %]
 				<!--</div>-->
 			</tr>
-			<tr>
-				<a href="/">
-					<div class="panel panel-info">
-							<div class="panel-heading">
-								<h3 class="panel-title">Katalog studiów</h3>
-							</div>
-					</div>
-				</a>
-			</tr>
 
 			<tr>
 				<div class="panel panel-info">
@@ -56,38 +47,18 @@
 					</div>
 					<div class="panel-body">
 						<div class="list-group">
+							<a href="/" class="list-group-item">Katalog studiów</a>
 							<a href="[% faq_url %]" class="list-group-item">FAQ</a>
 							<a href="[% contact_url %]" class="list-group-item">Kontakt</a>
+                            [% IF session.logged_in %]
+                                <a href="/userlist" class="list-group-item">
+                                    Lista użytkowników</a>
+                            [% END %]
 						</div>
 					</div>
 				</div>
 			</tr>
 
-
-			<!--	TODO	-->
-			[% IF session.logged_in %]
-			<tr>
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<ul class="nav bs-docs-sidenav">
-							<li>
-							<a href="/userlist">
-								Lista użytkowników</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			
-			</tr>
-			[% END %]
-			
-			<tr>
-				<div id="footer" class="panel panel-default">
-					<div class="panel-footer">
-						Powered by <a href="http://perldancer.org/">Dancer2</a> + Bootstrap
-					</div>
-				</div>
-			</tr>
 		</tbody>
 	</table>
 </div>

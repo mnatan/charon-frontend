@@ -6,13 +6,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<title>Charon</title>
 
-		<link rel="stylesheet" href="[% request.uri_base %]/css/bootstrap.css">
-		<link rel="stylesheet" href="[% request.uri_base %]/css/style.css">
-		<link rel="stylesheet" href="[% request.uri_base %]/libs/jqueryui/jquery-ui.min.css">
+        <link rel="stylesheet" href="[% request.uri_base %]/css/panels.css">
+        <link rel="stylesheet" href="[% request.uri_base %]/css/style.css">
 
-		<script src="[% request.uri_base %]/javascripts/jquery.js"></script>
-		<script src="[% request.uri_base %]/libs/jqueryui/jquery-ui.min.js"></script>
-		<script src="[% request.uri_base %]/javascripts/bootstrap.min.js"></script>
 	</head>
 
 	<body>

@@ -12,22 +12,22 @@
                                        <h3 class="panel-title">[% item.name %]</h3>
                                </div>
                                <div class="panel-body">
-                    <table>
-                    <tr>
-                        <th width=15%>Ranking</th>
-                        <th width=15%>Limit miejsc</th>
-                        <th width=25%>Data zakończenia<br> rejestracji</th>
-                        <th width=35%>Status</th>
-                        <th width=10%>Anuluj<br> rejestrację</th>
-                    </tr>
-                    <tr>
-                        <td>[% item.rank %]</td>
-                        <td>[% item.limit %]</td>
-                        <td>[% item.due %]</td>
-                        <td>[% item.status %]</td>
-                        <td><img src="/images/button-delete.png" alt="Usuń" style="width:30px;height:30px;"></td>
-                    </tr>
-                    </table>
+                                    <table>
+                                    <tr>
+                                        <th width=15%>Ranking</th>
+                                        <th width=15%>Limit miejsc</th>
+                                        <th width=25%>Data zakończenia<br> rejestracji</th>
+                                        <th width=35%>Status</th>
+                                        <th width=10%>Anuluj<br> rejestrację</th>
+                                    </tr>
+                                    <tr>
+                                        <td>[% item.rank %]</td>
+                                        <td>[% item.limit %]</td>
+                                        <td>[% item.due %]</td>
+                                        <td>[% item.status %]</td>
+                                        <td><img src="/images/button-delete.png" alt="Usuń" style="width:30px;height:30px;"></td>
+                                    </tr>
+                                    </table>
                                </div>
                        </div>
 

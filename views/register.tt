@@ -5,7 +5,6 @@
 		</div>
 		<div class="panel-body">
 			<form action="register" method="POST" class="form-horizontal" role="form">
-				<!--	TODO płci - radio/lista?			-->
 				<!--	TODO wymaganie podania peselu		-->
 				
 				<div class="form-group" id="registration-form">
@@ -32,10 +31,13 @@
                                         <div>
                                             [% FOREACH choice IN field.choices %]
                                                 <input 
-                                                name="[% field.name %]"
-                                                type="radio" 
-                                                class="form-radio"
-                                                aria-describedby="basic-addon1"
+                                                    name="[% field.name %]"
+                                                    type="radio"
+                                                    class="form-radio"
+                                                    aria-describedby="basic-addon1"
+                                                    [% FOREACH add IN choice.additional %]
+                                                    [% add %]
+                                                    [% END %]
                                                 > [% choice.text %]
                                             [% END %]                                                                                     
                                         </div>
@@ -63,5 +65,3 @@
 		</div>
 	</div>
 </section>
-
-<script src="[% request.uri_base %]/javascripts/validations.js"></script>
