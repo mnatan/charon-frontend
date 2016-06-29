@@ -43,11 +43,24 @@ get '/faq' => sub {
 
 get '/cart' => sub {
     my $cart = backend_get( $API{cart} );
+
+    # TODO: add cart to backend
+    #my $cart;
+    #if ( session "logged_in" ) {
+        #$cart = backend_get( $API{cart},
+            #{ userid => session("userid"), token => session("token") } );
+    #}
     template 'cart', { cart => $cart, };
 };
 
 get '/timeline' => sub {
     my $timeline = backend_get( $API{timeline} );
+    # TODO: add timeline to backend
+    #my $timeline;
+    #if ( session "logged_in" ) {
+        #$timeline = backend_get( $API{timeline},
+            #{ userid => session("userid"), token => session("token") } );
+    #}
     template 'timeline', { timeline => $timeline, };
 };
 
@@ -66,7 +79,7 @@ post '/login' => sub {
 
     my $user_data = backend_get("$API{users}/$login");
 
-    session login     => $login;
+    session userid    => $backend_auth->{userid};
     session token     => $backend_auth->{token};
     session role      => $user_data->{role};
     session name      => $user_data->{name} . " " . $user_data->{surname};
@@ -120,7 +133,7 @@ get '/userlist' => sub {
     my $users;
     if ( session "logged_in" ) {
         $users = backend_get( $API{users},
-            { login => session("login"), token => session("token") } );
+            { userid => session("userid"), token => session("token") } );
     }
     template "userlist", { users => $users };
 };
