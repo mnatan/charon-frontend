@@ -4,6 +4,8 @@ use Dancer2::Core::Request;
 use Dancer2::Core::Role::ConfigReader;
 use Dancer2::Plugin::Deferred;
 
+use Log::Log4perl;
+
 use Data::Dumper;
 use feature qw/say/;
 
@@ -21,6 +23,9 @@ my $appdir = realpath("$FindBin::Bin/..");
 my $forms  = LoadFile("$appdir/configs/forms.yml");
 my %API    = %{ LoadFile("$appdir/configs/api.yml") };
 
+Log::Log4perl::init("$appdir/configs/logger.conf");
+my $logger = Log::Log4perl->get_logger();
+
 get '/' => sub {
     my $registrations = backend_get( $API{registrations} );
     template 'index', { registrations => $registrations };
@@ -37,7 +42,7 @@ get '/faq' => sub {
 			$question->{id} = $question->{question} =~ s/\s//rg;
 		}
 	}
-	print Dumper($faq);
+	$logger->debug(Dumper($faq));
     template 'faq', { questions => $faq, };
 };
 
@@ -72,6 +77,7 @@ post '/login' => sub {
     session name      => $user_data->{name} . " " . $user_data->{surname};
     session logged_in => 1;
 
+	$logger->info( "User login: " . session("name") );
     deferred success => "Użytkownik "
         . session("name")
         . " został zalogowany.";
@@ -101,6 +107,7 @@ post '/register' => sub {
         = backend_post( $API{register_user}, $submitted );
 
     if ( $backend_registration->{status} eq 500 ) {
+		$logger->info( "Niepoprawne logowanie: " );
         deferred error => $backend_registration->{exception};
         redirect '/register';
     }
@@ -135,5 +142,7 @@ hook before_template => sub {
     $tokens->{login_url}      = uri_for('/login');
     $tokens->{validator_path} = uri_for('/');
 };
+
+$logger->info( "App started" );
 
 true;

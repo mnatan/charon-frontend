@@ -2,14 +2,15 @@ Frontend systemu CHARON
 =======================
 
 1. Lista potrzebnych modułów:
+   - CSS::LESSp
    - Dancer2
    - Dancer2::Plugin::Deferred
-   - LWP::Simple::REST
-   - JSON::XS
-   - YAML::XS
-   - CSS::LESSp
    - Dancer2::Session::Cookie
+   - JSON::XS
+   - LWP::Simple::REST
+   - Log::Log4perl
    - Template
+   - YAML::XS
 
 2. Uruchamianie:
 
