@@ -9,6 +9,7 @@ Frontend systemu CHARON
    - YAML::XS
    - CSS::LESSp
    - Dancer2::Session::Cookie
+   - Template
 
 2. Uruchamianie:
 
