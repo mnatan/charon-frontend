@@ -1,0 +1,43 @@
+<section id="create_field">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">Tworzenie nowego kierunku</h3>
+		</div>
+		<div class="panel-body">
+			<form action="create_field" method="POST" class="form-horizontal" role="form">
+				<div class="form-group" id="registration-form">
+                    <!-- hidden value, zapewnia że zostaniemy przekierowani spowrotem na tę samą stronę po zalogowaniu -->
+                    <input type="hidden" name="return_url" value="[% request.path %]">
+					<table width=90% align="center">
+						<tbody>
+						[% FOREACH field IN form %]
+							<tr>
+								<th width=30%><label for="">[% field.text %]</label></th>
+								<th width=70%>
+                                    <input 
+                                        name="[% field.name %]"
+                                        value=""
+                                        type="[% field.type %]"
+                                        class="form-control"
+                                        placeholder="[% field.text %]"
+                                        aria-describedby="basic-addon1"
+                                        multiple
+                                        rows="5"
+                                        [% FOREACH add IN field.additional %]
+                                        [% add %]
+                                        [% END %]
+                                    >
+								</th>
+							</tr>
+						[% END %]
+						</tbody>
+					</table>
+					<br>
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary">Dodaj kierunek</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>

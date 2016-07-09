@@ -21,47 +21,11 @@ my $appdir = realpath("$FindBin::Bin/..");
 my $forms  = LoadFile("$appdir/configs/forms.yml");
 my %API    = %{ LoadFile("$appdir/configs/api.yml") };
 
+# ========= Common pages ========= #
+
 get '/' => sub {
     my $registrations = backend_get( $API{registrations} );
     template 'index', { registrations => $registrations };
-};
-
-get '/contact' => sub {
-    template 'contact', { form => $forms->{contact_details}, };
-};
-
-get '/faq' => sub {
-    my $faq = backend_get( $API{faq} );
-	foreach my $category (@{$faq}){
-		foreach my $question (@{$category->{questions}}){
-			$question->{id} = $question->{question} =~ s/\s//rg;
-		}
-	}
-	print Dumper($faq);
-    template 'faq', { questions => $faq, };
-};
-
-get '/cart' => sub {
-    my $cart = backend_get( $API{cart} );
-
-    # TODO: add cart to backend
-    #my $cart;
-    #if ( session "logged_in" ) {
-        #$cart = backend_get( $API{cart},
-            #{ userid => session("userid"), token => session("token") } );
-    #}
-    template 'cart', { cart => $cart, };
-};
-
-get '/timeline' => sub {
-    my $timeline = backend_get( $API{timeline} );
-    # TODO: add timeline to backend
-    #my $timeline;
-    #if ( session "logged_in" ) {
-        #$timeline = backend_get( $API{timeline},
-            #{ userid => session("userid"), token => session("token") } );
-    #}
-    template 'timeline', { timeline => $timeline, };
 };
 
 get '/login' => sub { redirect '/' };
@@ -101,6 +65,7 @@ get '/logout' => sub {
 get '/register' => sub {
     template 'register', { form => $forms->{registration}, };
 };
+
 post '/register' => sub {
     my $submitted = params;
     session 'submitted' => $submitted;
@@ -128,8 +93,51 @@ post '/register' => sub {
     redirect "/";
 };
 
+get '/contact' => sub {
+    template 'contact', { form => $forms->{contact_details}, };
+};
+
+get '/faq' => sub {
+    my $faq = backend_get( $API{faq} );
+	foreach my $category (@{$faq}){
+		foreach my $question (@{$category->{questions}}){
+			$question->{id} = $question->{question} =~ s/\s//rg;
+		}
+	}
+	print Dumper($faq);
+    template 'faq', { questions => $faq, };
+};
+
+
+# ========= Applicant pages ========= #
+
+get '/cart' => sub {
+    my $cart = backend_get( $API{cart} );
+
+    # TODO: add cart to backend
+    #my $cart;
+    #if ( session "logged_in" ) {
+        #$cart = backend_get( $API{cart},
+            #{ userid => session("userid"), token => session("token") } );
+    #}
+    template 'cart', { cart => $cart, };
+};
+
+get '/timeline' => sub {
+    my $timeline = backend_get( $API{timeline} );
+    # TODO: add timeline to backend
+    #my $timeline;
+    #if ( session "logged_in" ) {
+        #$timeline = backend_get( $API{timeline},
+            #{ userid => session("userid"), token => session("token") } );
+    #}
+    template 'timeline', { timeline => $timeline, };
+};
+
+
+# ========= Director pages ========= #
+
 get '/userlist' => sub {
-    my $return_url = param('return_url') // '/';
     my $users;
     if ( session "logged_in" ) {
         $users = backend_get( $API{users},
@@ -148,6 +156,48 @@ get '/directors/my_fields' => sub {
             #{ userid => session("userid"), token => session("token") } );
     #}
     template 'my_fields', { fields => $fields, };
+};
+
+get '/create_field' => sub {
+    template 'create_field', { form => $forms->{field}, };
+};
+
+post '/create_field' => sub {
+    my $return_url = param('return_url') // '/';
+    #my $create_field
+        #= backend_post( $API{create_field}, params);
+
+    #if ( $create_field->{status} eq 500 ) {
+        #deferred error => $create_field->{exception};
+        #redirect '/field';
+    #}
+
+    #deferred success => "Kierunek"
+        #. param("field_name") . " "
+        #. " został stworzony.";
+
+    redirect $return_url;
+};
+
+get '/create_instance' => sub {
+    template 'create_instance', { form => $forms->{instance}, };
+};
+
+post '/create_instance' => sub {
+    my $return_url = param('return_url') // '/';
+    #my $create_instance
+        #= backend_post( $API{create_instance}, params);
+
+    #if ( $create_instance->{status} eq 500 ) {
+        #deferred error => $create_instance->{exception};
+        #redirect '/instance';
+    #}
+
+    #deferred success => "Kierunek"
+        #. param("instance_name") . " "
+        #. " został stworzony.";
+
+    redirect $return_url;
 };
 
 hook before_template => sub {

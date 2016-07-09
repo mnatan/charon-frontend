@@ -79,4 +79,71 @@ registration:
           - pattern="^\S{8,}$"
           - title="Hasło musi zawierać przynajmniej 8 niebiałych znaków."
 
+field:
+    - name: field_name
+      text: Nazwa kierunku
+      type: text
+      additional:
+          - required
+
+    - name: info
+      text: Krótki opis
+      type: text
+      additional:
+          - required
+
+instance:
+    - name: instance
+      text: Nazwa rocznika
+      type: text
+      additional:
+          - required
+
+    - name: info
+      text: Opis kierunku
+      type: textarea
+      additional:
+          - rows="5"
+
+    - name: mode
+      text: Tryb studiów
+      type: select
+      mode:
+          - stacjonarne
+          - niestacjonarne
+      additional:
+          - required
+
+    - name: limit
+      text: Liczba miejsc
+      type: number
+      additional:
+          - min="0"  
+          - required
+
+    - name: date_start
+      text: Data rozpoczęcia rejestracji
+      type: date
+      additional:
+          - required
+
+    - name: date_end
+      text: Data zakończenia rejestracji
+      type: date
+      additional:
+          - required
+
+    - name: round_length
+      text: Długość tury (liczba dni na podjęcie decyzji)
+      type: number
+      additional:
+          - min="0"  
+          - required
+
+    - name: round_number
+      text: Ilość tur
+      type: number
+      additional:
+          - min="0"  
+          - required
 ...
