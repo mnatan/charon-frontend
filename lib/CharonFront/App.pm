@@ -164,8 +164,8 @@ get '/create_field' => sub {
 
 post '/create_field' => sub {
     my $return_url = param('return_url') // '/';
-    #my $create_field
-        #= backend_post( $API{create_field}, params);
+    my $create_field
+        = backend_post( $API{create_field} . session("userid"), params);
 
     #if ( $create_field->{status} eq 500 ) {
         #deferred error => $create_field->{exception};
@@ -185,8 +185,8 @@ get '/create_instance' => sub {
 
 post '/create_instance' => sub {
     my $return_url = param('return_url') // '/';
-    #my $create_instance
-        #= backend_post( $api{create_instance}, { userid => session("userid"), token => session("token"), params => params});
+    my $create_instance
+        = backend_post( $API{create_instance} . session("userid"), params);
 
     #if ( $create_instance->{status} eq 500 ) {
         #deferred error => $create_instance->{exception};

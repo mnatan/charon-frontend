@@ -15,13 +15,11 @@
 								<th width=30%><label for="">[% field.text %]</label></th>
 								<th width=70%>
                                     [% IF field.type == 'select' %]
-                                        <div>
-                                            <select id="mode" class="form-control-sm form-control">
-                                                [% FOREACH mode IN field.mode %]
-                                                    <option>[% mode %]</option>
-                                                [% END %]
-                                            </select>
-                                        </div>
+                                        <select id="mode" class="form-control-sm form-control">
+                                            [% FOREACH mode IN field.mode %]
+                                                <option>[% mode %]</option>
+                                            [% END %]
+                                        </select>
                                     [% ELSIF field.type == 'textarea' %]
                                         <textarea name="field.name"
                                             value=""
@@ -35,14 +33,15 @@
                                             name="[% field.name %]"
                                             value=""
                                             type="[% field.type %]"
+                                            class="[% IF field.type != 'text' %] form-control-sm [% END %]
+                                                    form-control"
 
-                                            [% IF field.type != 'text' %]
-                                                class="form-control-sm form-control"
+                                            [% IF field.type == 'date' %]
+                                                placeholder="[% field.format %]"
                                             [% ELSE %]
-                                                class="form-control"
+                                                placeholder="[% field.text %]"
                                             [% END %]
 
-                                            placeholder="[% field.text %]"
                                             aria-describedby="basic-addon1"
                                             [% FOREACH add IN field.additional %]
                                             [% add %]

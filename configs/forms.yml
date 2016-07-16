@@ -102,8 +102,6 @@ instance:
     - name: info
       text: Opis kierunku
       type: textarea
-      additional:
-          - rows="5"
 
     - name: mode
       text: Tryb studiów
@@ -124,17 +122,21 @@ instance:
     - name: date_start
       text: Data rozpoczęcia rejestracji
       type: date
+      format: DD-MM-YYYY
       additional:
+          - pattern="\d{1,2}-\d{1,2}-\d{4}"
           - required
 
     - name: date_end
       text: Data zakończenia rejestracji
       type: date
+      format: DD-MM-YYYY
       additional:
+          - pattern="\d{1,2}-\d{1,2}-\d{4}"
           - required
 
     - name: round_length
-      text: Długość tury (liczba dni na podjęcie decyzji)
+      text: Długość tury
       type: number
       additional:
           - min="0"  

@@ -200,6 +200,15 @@ textarea {
   margin-bottom: 15px;
 }
 
+.form-group table{
+    color: #555;
+}
+.form-group th, .form-group td {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-align: left;
+}
+
 .form-horizontal .radio,
 .form-horizontal .checkbox,
 .form-horizontal .radio-inline,
