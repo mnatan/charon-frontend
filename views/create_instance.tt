@@ -25,6 +25,7 @@
                                     [% ELSIF field.type == 'textarea' %]
                                         <textarea name="field.name"
                                             value=""
+                                            placeholder="[% field.text %]"
                                             [% FOREACH add IN field.additional %]
                                             [% add %]
                                             [% END %]

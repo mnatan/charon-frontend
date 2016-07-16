@@ -88,7 +88,7 @@ field:
 
     - name: info
       text: Krótki opis
-      type: text
+      type: textarea
       additional:
           - required
 

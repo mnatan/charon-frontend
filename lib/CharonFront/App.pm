@@ -186,11 +186,11 @@ get '/create_instance' => sub {
 post '/create_instance' => sub {
     my $return_url = param('return_url') // '/';
     #my $create_instance
-        #= backend_post( $API{create_instance}, params);
+        #= backend_post( $api{create_instance}, { userid => session("userid"), token => session("token"), params => params});
 
     #if ( $create_instance->{status} eq 500 ) {
         #deferred error => $create_instance->{exception};
-        #redirect '/instance';
+        #redirect '/create_instance';
     #}
 
     #deferred success => "Kierunek"

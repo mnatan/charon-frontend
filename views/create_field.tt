@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <section id="create_field">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
@@ -14,19 +15,27 @@
 							<tr>
 								<th width=30%><label for="">[% field.text %]</label></th>
 								<th width=70%>
-                                    <input 
-                                        name="[% field.name %]"
-                                        value=""
-                                        type="[% field.type %]"
-                                        class="form-control"
-                                        placeholder="[% field.text %]"
-                                        aria-describedby="basic-addon1"
-                                        multiple
-                                        rows="5"
-                                        [% FOREACH add IN field.additional %]
-                                        [% add %]
-                                        [% END %]
-                                    >
+                                    [% IF field.type == 'textarea' %]
+                                        <textarea name="field.name"
+                                            value=""
+                                            placeholder="[% field.text %]"
+                                            [% FOREACH add IN field.additional %]
+                                            [% add %]
+                                            [% END %]
+                                        ></textarea>
+									[% ELSE %]
+                                        <input
+                                            name="[% field.name %]"
+                                            value=""
+                                            type="[% field.type %]"
+                                            class="form-control"
+                                            placeholder="[% field.text %]"
+                                            aria-describedby="basic-addon1"
+                                            [% FOREACH add IN field.additional %]
+                                            [% add %]
+                                            [% END %]
+                                        >
+                                    [% END %]
 								</th>
 							</tr>
 						[% END %]
