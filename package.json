@@ -5,11 +5,16 @@
     "grunt": "*",
     "grunt-karma": "*",
     "grunt-contrib-uglify": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-protractor-runner": "*",
     "protractor": "*",
     "jasmine-core": "*",
     "karma": "*",
     "karma-jasmine": "*",
     "karma-chrome-launcher": "*",
     "karma-phantomjs-launcher": "*"
+  },
+  "scripts": {
+    "install": "node node_modules/protractor/bin/webdriver-manager update"
   }
 }

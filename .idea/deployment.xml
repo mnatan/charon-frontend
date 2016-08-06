@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="mnatan.pl" promptOnLocalOverwrite="false">
+  <component name="PublishConfigData" autoUpload="Always" deleteMissingItems="true" promptOnLocalOverwrite="false" autoUploadExternalChanges="true">
     <serverData>
-      <paths name="Copy of project-level server 'mnatan.pl'">
+      <paths name="cde.mnatanek.cde.dev.onet">
         <serverdata>
           <mappings>
-            <mapping deploy="/charon/charon_frontend" local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
@@ -14,6 +14,9 @@
           <mappings>
             <mapping deploy="/charon/charon_frontend" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/../../../mnatanek/PycharmProjects/charon_frontend/node_modules" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

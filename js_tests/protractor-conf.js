@@ -1,20 +1,12 @@
 // An example configuration file.
 exports.config = {
-    directConnect: true,
-
-    // Capabilities to be passed to the webdriver instance.
+    specs: ['e2e/**/*.js'],
+    seleniumAddress: 'http://localhost:6969/wd/hub',
     capabilities: {
         'browserName': 'chrome'
     },
-
-    // Framework to use. Jasmine is recommended.
+    directConnect: true,
     framework: 'jasmine',
-
-    // Spec patterns are relative to the current working directory when
-    // protractor is called.
-    specs: ['e2e/**/*.js'],
-
-    // Options to be passed to Jasmine.
     jasmineNodeOpts: {
         defaultTimeoutInterval: 30000
     }
