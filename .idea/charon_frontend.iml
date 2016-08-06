@@ -19,6 +19,11 @@
     <orderEntry type="library" name="karma-jasmine-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="karma-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="charon_frontend node_modules" level="project" />
+    <orderEntry type="library" name="jquery-3.1.0" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="angular" level="application" />
+    <orderEntry type="library" name="ui-bootstrap" level="application" />
+    <orderEntry type="library" name="angular-ui-router" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Charon</title>
+
+    {% load staticfiles %}
+    {# stylesheets #}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static "styles/charon.css" %}">
+    {# /stylesheets #}
+
+</head>
+<body>
+
+
+<header class="row">
+    <div navigation-menu></div>
+</header>
+
+<div messages></div>
+
+
+<div id="wrapper">
+    <ui-view></ui-view>
+</div>
+
+
+<footer class="row">
+    <div class="col-md-10 col-md-offset-1">STOPKA, CREDITS</div>
+</footer>
+
+
+{# scripts #}
+{# Vendor CDN part to ensure faster loading #}
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+
+{# project sources #}
+<script type="text/javascript" src="{% static "app/components/navigation/navigation-menu.js" %}"></script>
+<script type="text/javascript" src="{% static "app/app.js" %}"></script>
+{# /scripts #}
+
+</body>
+</html>

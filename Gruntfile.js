@@ -1,10 +1,6 @@
 module.exports = function (grunt) {
-
-    // Project configuration.
     grunt.initConfig({
-
         pkg: grunt.file.readJSON('package.json'),
-
         uglify: {
             options: {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
@@ -14,14 +10,17 @@ module.exports = function (grunt) {
                 dest: 'build/<%= pkg.name %>.min.js'
             }
         },
-
         karma: {
+            options: {
+                configFile: 'js_tests/karma.conf.js'
+            },
             unit: {
-                configFile: 'js_tests/karma.conf.js',
                 singleRun: true
+            },
+            continuous: {
+                singleRun: false
             }
         },
-
         connect: {
             options: {
                 port: 4444,
@@ -33,37 +32,39 @@ module.exports = function (grunt) {
                 }
             }
         },
-
         protractor: {
             options: {
                 configFile: "js_tests/protractor-conf.js", // Default config file 
                 noColor: false,
-                args: {}
-            }
-            ,
+                args: {
+                    params: {
+                        front_url: 'http://localhost:4444',
+                        back_url: 'http://mnatan.pl:3000'
+                    }
+                }
+            },
             e2e: {
+                keepAlive: false
+            },
+            continuous: {
                 keepAlive: true
             }
         }
+    });
 
-    })
-    ;
-
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-protractor-runner');
 
     grunt.registerTask('tests', [
-        // 'karma:unit',
         'connect:test',
+        'karma:unit',
         'protractor:e2e'
     ]);
 
     grunt.registerTask('default', [
-        'uglify',
-        'karma',
-        'protractor'
+        'tests',
+        'uglify'
     ]);
-
 };

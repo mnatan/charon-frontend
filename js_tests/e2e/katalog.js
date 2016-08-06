@@ -4,28 +4,48 @@
 
 "use strict";
 
-describe("Widok katalogu", function () {
+var mockModule = require('./mocks/mocked-backend');
 
-    // start at root before every test is run
-    beforeEach(function () {
-        browser().navigateTo('/');
+function httpGet(siteUrl) {
+    var http = require('http');
+    var defer = protractor.promise.defer();
+
+    http.get(siteUrl, function (response) {
+
+        var bodyString = '';
+
+        response.setEncoding('utf8');
+
+        response.on("data", function (chunk) {
+            bodyString += chunk;
+        });
+
+        response.on('end', function () {
+            defer.fulfill({
+                statusCode: response.statusCode,
+                bodyString: bodyString
+            });
+        });
+
+    }).on('error', function (e) {
+        defer.reject("Got http.get error: " + e.message);
     });
 
+    return defer.promise;
+}
 
-    it("Wyświetla menu", function () {
-        // Arrange
+describe("Widok katalogu", function () {
 
-        // Act
-
-        // Assert
+    beforeEach(function () {
+        browser.get(browser.params.front_url);
     });
 
     it("Wyświetla listę rejestracji", function () {
-        // Arrange
+        ptor.addMockModule('httpBackendMock', mockModule.httpBackendMock);
 
-        // Act
-
-        // Assert
+        httpGet("/events/").then(function (result) {
+            expect(result.statusCode).toBe(200);
+            expect(result.bodyString).toBe(JSON.serialize(mockModule.httpMocks.sample));
+        });
     });
-
 });
