@@ -1,0 +1,15 @@
+{
+  "name": "charon-frontend-angular",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-karma": "*",
+    "grunt-contrib-uglify": "*",
+    "protractor": "*",
+    "jasmine-core": "*",
+    "karma": "*",
+    "karma-jasmine": "*",
+    "karma-chrome-launcher": "*",
+    "karma-phantomjs-launcher": "*"
+  }
+}
