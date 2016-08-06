@@ -21,24 +21,24 @@ module.exports = function (grunt) {
                 singleRun: false
             }
         },
-        connect: {
-            options: {
-                port: 4444,
-                hostname: 'localhost'
-            },
-            test: {
-                options: {
-                    base: ['front/static/app']
-                }
-            }
-        },
+        // connect: {
+        //     options: {
+        //         port: 4444,
+        //         hostname: 'localhost'
+        //     },
+        //     test: {
+        //         options: {
+        //             base: ['front/static/app']
+        //         }
+        //     }
+        // },
         protractor: {
             options: {
                 configFile: "js_tests/protractor-conf.js", // Default config file 
                 noColor: false,
                 args: {
                     params: {
-                        front_url: 'http://localhost:4444',
+                        front_url: 'http://mnatan.pl:8001',
                         back_url: 'http://mnatan.pl:3000'
                     }
                 }
@@ -58,7 +58,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-protractor-runner');
 
     grunt.registerTask('tests', [
-        'connect:test',
+        // 'connect:test',
         'karma:unit',
         'protractor:e2e'
     ]);

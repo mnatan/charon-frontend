@@ -4,13 +4,13 @@
 
 var mocks = require('./mocks.json');
 
-exports.httpBackendMock = function () {
-    angular.module('httpBackendMock', ['mainApp', 'ngMockE2E']).run(function ($httpBackend) {
-
-        $httpBackend.whenGET('/events').respond([mocks.sample]);
-        $httpBackend.whenGET('/events/' + sampleEventId).respond(mocks.sample);
-
-    });
-};
+// exports.httpBackendMock = function () {
+//     angular.module('httpBackendMock', ['charonFront', 'ngMockE2E']).run(function ($httpBackend) {
+//
+//         $httpBackend.whenGET('/events').respond([mocks.sample]);
+//         $httpBackend.whenGET('/events/' + sampleEventId).respond(mocks.sample);
+//
+//     });
+// };
 
 exports.httpMocks = mocks;

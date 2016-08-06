@@ -11,7 +11,6 @@ angular.module('charonFront.navigation', [])
             replace: true,
             templateUrl: '/front/static/app/components/navigation/navigation-menu.html',
             controller: function ($rootScope, $scope, navigation) {
-                console.log("dupsztal");
                 $scope.navigation = navigation;
             }
             // link: function (scope, element, attrs) {
@@ -27,20 +26,19 @@ angular.module('charonFront.navigation', [])
         };
     })
     .factory('navigation', function ($rootScope) {
-        var timer;
-        debugger;
-        return {
-            status: 'ready',
-            isLoading: function () {
-                return this.status == 'loading';
-            },
-            loading: function () {
-                clearTimeout(timer);
-                this.status = 'loading';
-            },
-            ready: function () {
-                clearTimeout(timer);
-                this.status = 'ready';
-            }
-        };
+        // var timer;
+        // return {
+        //     status: 'ready',
+        //     isLoading: function () {
+        //         return this.status == 'loading';
+        //     },
+        //     loading: function () {
+        //         clearTimeout(timer);
+        //         this.status = 'loading';
+        //     },
+        //     ready: function () {
+        //         clearTimeout(timer);
+        //         this.status = 'ready';
+        //     }
+        // };
     });
