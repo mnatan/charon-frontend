@@ -1,12 +1,15 @@
-from django.conf.urls import url
-from django.conf import settings
-from django.conf.urls.static import static
+from django.conf.urls import url, patterns
 
-from front.views import IndexView
-from . import views
+from charon_frontend import settings
+
+# from front.views import IndexView
+from front import views
 
 urlpatterns = [
-    url('^.*$', IndexView.as_view(), name='index'),
+    # url('^.*$', IndexView.as_view(), name='index'),
+    url(r'^$', views.homepage, name='index'),
 ]
 
-# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += patterns('django.contrib.staticfiles.views',
+                        url(r'', 'serve', {'document_root': settings.STATIC_ROOT,
+                                           'path': '/base.html'}))

@@ -4,29 +4,15 @@
 
 "use strict";
 
-angular.module('charon-front', [
-    'ui.bootstrap',
-    'ui.router',
-    'charon-front.navigation'
-]).config(function () {
-    debugger;
-});
-
-angular.module('charon-front').config(function (uiSelectConfig) {
-    uiSelectConfig.theme = 'bootstrap';
-});
-
-angular.module('charon-front').value('$strap.config', {
+angular.module('charonFront', [
+    // 'ui.bootstrap',
+    // 'ui.router',
+    'charonFront.navigation'
+]).value('$strap.config', {
     datepicker: {
         language: 'pl'
     }
-});
-
-angular.module('charon-front').run(function ($rootScope, $location, $state, $stateParams, navigation, $window, Utility, messagesService, OAuth) {
-
-    var path = function () {
-        return $location.path();
-    };
+}).run(function ($rootScope, $window) {
 
     $rootScope.$on('$stateChangeStart', function () {
         navigation.loading();

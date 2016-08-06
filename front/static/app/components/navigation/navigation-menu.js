@@ -4,14 +4,13 @@
 
 "use strict";
 
-angular.module('charon-front.navigation', [])
+angular.module('charonFront.navigation', [])
     .directive('navigationMenu', function () {
         return {
-            restrict: 'A',
+            restrict: 'AE',
             replace: true,
-            templateUrl: 'app/components/navigation/navigation-menu.html',
+            templateUrl: '/front/static/app/components/navigation/navigation-menu.html',
             controller: function ($rootScope, $scope, navigation) {
-                debugger;
                 console.log("dupsztal");
                 $scope.navigation = navigation;
             }
