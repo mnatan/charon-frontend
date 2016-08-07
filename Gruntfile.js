@@ -38,8 +38,8 @@ module.exports = function (grunt) {
                 noColor: false,
                 args: {
                     params: {
-                        front_url: 'http://mnatan.pl:8001',
-                        back_url: 'http://mnatan.pl:3000'
+                        front_url: 'http://mnatan.pl:8001/',
+                        back_url: 'http://mnatan.pl:3000/'
                     }
                 }
             },
@@ -56,6 +56,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-protractor-runner');
+    
+    grunt.registerTask('e2e-tests', [
+        'protractor:e2e'
+    ]);
 
     grunt.registerTask('tests', [
         // 'connect:test',
