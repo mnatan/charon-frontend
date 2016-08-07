@@ -8,5 +8,17 @@
 }
 
 #wrapper {
-    margin-top: 100px;
+    margin-top: 80px;
+}
+
+#loading-image {
+    width: 50px;
+    min-width: 50px;
+    display: inline-block;
+}
+
+#loading-image > img {
+    margin: auto;
+    height: 100%;
+    width: 100%;
 }

@@ -6,8 +6,13 @@
                 <img src="/front/static/images/charon-logo.png" alt="Charon Logo">Charon
             </a>
         </div>
+        <div id="loading-image" class="nav navbar-nav">
+            <img ng-show="navigation.isLoading()" src="/front/static/images/hourglass.svg" />
+        </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a ui-sref="katalog">Katalog</a></li>
+            <li ng-class="{active: $state.includes('katalog')}">
+                <a ui-sref="katalog">Katalog</a>
+            </li>
         </ul>
 
         <!-- right -->
@@ -17,7 +22,12 @@
             </a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Konto</a></li>
+            <li ng-class="{active: $state.includes('login.signin')}">
+                <a ui-sref="login.signin">Sign in</a>
+            </li>
+            <li ng-class="{active: $state.includes('login.signup')}">
+                <a ui-sref="login.signup">Sign up</a>
+            </li>
         </ul>
     </div>
 </nav>

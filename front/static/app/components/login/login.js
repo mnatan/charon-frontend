@@ -7,7 +7,7 @@ angular.module('charonFront.login', [])
         $stateProvider.state('login', {
             url: '/login',
             abstract: true,
-            template: '<div ui-view></div>',
+            template: "<div ui-view></div>",
             controller: function ($scope) {
             }
         });

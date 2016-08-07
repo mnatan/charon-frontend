@@ -6,8 +6,7 @@ angular.module('charonFront.login.signup', [])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider.state('login.signup', {
             url: '/register',
-            abstract: true,
-            templateUrl: '',
+            templateUrl: '/front/static/app/components/login/login-signup.html',
             controller: function ($scope) {
                 $scope.title = 'Załóż nowe konto';
             }
