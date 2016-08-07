@@ -19,7 +19,7 @@ describe("Widok menu", function () {
         var logo = element(by.id("main_logo"));
         expect(logo.isPresent).toBeTruthy();
         logo.click();
-        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url);
+        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/katalog");
     });
 
     it("UJ Logo odsyła na stronę UJ", function () {
@@ -30,9 +30,25 @@ describe("Widok menu", function () {
 
     it("Guzik Katalog odsyła na główną", function () {
         element(by.partialLinkText("Katalog")).click();
-        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url);
+        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/katalog");
     });
-    
+
+
     // TODO reszta menu
+
+});
+
+describe("Stopka", function () {
+
+    it("Zawiera ceditsy dla uj", function () {
+        var footer = element(by.tagName('footer'));
+        var accepted_strings = [
+            'Jagiellonian University',
+            'Uniwersytet Jagielloński',
+            'UJ'
+        ];
+        expect(footer.getInnerHtml())
+            .toMatch(new RegExp(accepted_strings.join('|')));
+    });
 
 });

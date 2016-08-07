@@ -87,3 +87,5 @@ STATICFILES_DIRS = [
 TEMPLATE_DIRS = [
     BASE_DIR + '/front/templates/',
 ]
+
+BACKEND_API = 'http://mnatan.pl:3000/'

@@ -13,19 +13,23 @@
 </head>
 <body>
 
-
-<header navigation-menu></header>
+<header>
+    <div navigation-menu></div>
+</header>
 
 {#<div messages></div>#}
 
 <div id="wrapper">
-    <ui-view></ui-view>
+    <div ui-view></div>
+
+    <footer>
+        <div class="panel panel-default">
+            <div class="panel-footer text-right">
+                CHARON © Jagiellonian University 2016
+            </div>
+        </div>
+    </footer>
 </div>
-
-
-<footer class="row">
-    <div class="col-md-10 col-md-offset-1">STOPKA, CREDITS</div>
-</footer>
 
 
 {# scripts #}
@@ -34,13 +38,26 @@
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
 <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+<script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap.min.js"></script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
 
 {# project sources #}
-<script type="text/javascript" src="{% static "app/components/navigation/navigation-menu.js" %}"></script>
 <script type="text/javascript" src="{% static "app/app.js" %}"></script>
+<script type="text/javascript" src="{% static "app/components/navigation/navigation-menu.js" %}"></script>
+
+<script type="text/javascript" src="{% static "app/components/katalog/katalog.js" %}"></script>
+<script type="text/javascript" src="{% static "app/components/katalog/katalog-service.js" %}"></script>
+
+<script type="text/javascript" src="{% static "app/components/login/login.js" %}"></script>
+<script type="text/javascript" src="{% static "app/components/login/login-service.js" %}"></script>
+<script type="text/javascript" src="{% static "app/components/login/login-signin.js" %}"></script>
+<script type="text/javascript" src="{% static "app/components/login/login-signup.js" %}"></script>
+
+<script type="text/javascript" src="{% static "app/components/forms/form.js" %}"></script>
+<script type="text/javascript" src="{% static "app/components/forms/partials/string.js" %}"></script>
 {# /scripts #}
 
 </body>

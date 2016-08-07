@@ -9,5 +9,10 @@ exports.config = {
     framework: 'jasmine',
     jasmineNodeOpts: {
         defaultTimeoutInterval: 30000
-    }
+    },
+    params: {
+        front_url: 'http://mnatan.pl:8001/',
+        back_url: 'http://mnatan.pl:3000/'
+    },
+    noColor: false
 };

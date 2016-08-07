@@ -2,7 +2,11 @@
     height: 300%;
 }
 
-#wrapper {
-    background-color: #3A3A3A;
+#wrapper, #main-nav-wrapper {
+    width: 1000px;
+    margin: auto;
 }
 
+#wrapper {
+    margin-top: 100px;
+}

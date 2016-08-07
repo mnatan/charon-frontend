@@ -5,14 +5,24 @@
 "use strict";
 
 angular.module('charonFront', [
-    // 'ui.bootstrap',
-    // 'ui.router',
-    'charonFront.navigation'
-]).value('$strap.config', {
+    'ui.router',
+    'ui.bootstrap',
+    'charonFront.navigation',
+    'charonFront.katalog',
+    'charonFront.login',
+    'charonFront.login.signup',
+    'charonFront.login.signin',
+    'charonFront.form'
+]).config(function ($stateProvider, $urlRouterProvider, $interpolateProvider) {
+    $urlRouterProvider.otherwise("/katalog"); // Katalog to nasz home page
+
+    $interpolateProvider.startSymbol('{$');
+    $interpolateProvider.endSymbol('$}');
+}).value('$strap.config', {
     datepicker: {
         language: 'pl'
     }
-}).run(function ($rootScope, $window) {
+}).run(function ($rootScope, $window, $state, navigation) {
 
     $rootScope.$on('$stateChangeStart', function () {
         navigation.loading();
@@ -30,6 +40,8 @@ angular.module('charonFront', [
     $rootScope.goBack = function () {
         $window.history.back();
     };
+
+    $rootScope.$state = $state;
 
 });
 

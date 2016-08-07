@@ -7,7 +7,7 @@
 angular.module('charonFront.navigation', [])
     .directive('navigationMenu', function () {
         return {
-            restrict: 'AE',
+            restrict: 'A',
             replace: true,
             templateUrl: '/front/static/app/components/navigation/navigation-menu.html',
             controller: function ($rootScope, $scope, navigation) {
@@ -26,19 +26,19 @@ angular.module('charonFront.navigation', [])
         };
     })
     .factory('navigation', function ($rootScope) {
-        // var timer;
-        // return {
-        //     status: 'ready',
-        //     isLoading: function () {
-        //         return this.status == 'loading';
-        //     },
-        //     loading: function () {
-        //         clearTimeout(timer);
-        //         this.status = 'loading';
-        //     },
-        //     ready: function () {
-        //         clearTimeout(timer);
-        //         this.status = 'ready';
-        //     }
-        // };
+        var timer;
+        return {
+            status: 'ready',
+            isLoading: function () {
+                return this.status == 'loading';
+            },
+            loading: function () {
+                clearTimeout(timer);
+                this.status = 'loading';
+            },
+            ready: function () {
+                clearTimeout(timer);
+                this.status = 'ready';
+            }
+        };
     });
