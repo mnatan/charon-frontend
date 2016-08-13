@@ -9,6 +9,12 @@ describe("Widok menu", function () {
 
     beforeEach(function () {
         browser.get(browser.params.front_url);
+        
+        var logo = element(by.id("main_logo"));
+
+        browser.wait(function () {
+            return browser.isElementPresent(logo);
+        }, 1000);
     });
 
     it("Ma tytuł", function () {
