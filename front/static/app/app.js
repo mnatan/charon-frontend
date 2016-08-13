@@ -13,7 +13,7 @@ angular.module('charonFront', [
     'charonFront.login.signup',
     'charonFront.login.signin',
     'charonFront.form'
-]).config(function ($stateProvider, $urlRouterProvider, $interpolateProvider) {
+]).config(function ($stateProvider, $urlRouterProvider, $interpolateProvider, $locationProvider) {
     $urlRouterProvider.otherwise("/katalog"); // Katalog to nasz home page
 
     $interpolateProvider.startSymbol('{$');
@@ -44,4 +44,3 @@ angular.module('charonFront', [
     $rootScope.$state = $state;
 
 });
-

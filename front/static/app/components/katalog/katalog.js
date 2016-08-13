@@ -7,8 +7,11 @@ angular.module('charonFront.katalog', [])
         $stateProvider.state('katalog', {
             url: '/katalog',
             templateUrl: '/front/static/app/components/katalog/katalog.html',
-            controller: function ($scope) {
+            controller: function ($scope, KatalogService) {
                 $scope.title = 'Katalog Rekrutacji';
+                KatalogService.getRegistrations().then(function (data) {
+                    $scope.activeRegistrations = data;
+                });
             }
         });
     }]);
