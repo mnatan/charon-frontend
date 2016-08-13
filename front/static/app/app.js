@@ -12,7 +12,8 @@ angular.module('charonFront', [
     'charonFront.login',
     'charonFront.login.signup',
     'charonFront.login.signin',
-    'charonFront.form'
+    'charonFront.form',
+    'httpBackendMock'
 ]).config(function ($stateProvider, $urlRouterProvider, $interpolateProvider, $locationProvider) {
     $urlRouterProvider.otherwise("/katalog"); // Katalog to nasz home page
 

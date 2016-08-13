@@ -4,16 +4,17 @@
 
 "use strict";
 
-var mockModule = require("mocks/mocked-backend.js");
+// var mockModule = require("./mocks/mocked-backend.js");
+// var angularMocks = require("../../node_modules/angular-mocks/angular-mocks");
 
 describe("Widok katalogu", function () {
 
     beforeEach(function () {
-        ptor.addMockModule('httpBackendMock', mockModule.httpBackendMock);
-        browser.get(browser.params.front_url + '/#/katalog');
+        browser.get(browser.params.front_url + '#/katalog');
     });
 
     it("Wyświetla listę rejestracji", function () {
+        element.all(by.css("dupa"));
     });
 
 });

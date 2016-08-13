@@ -1,9 +1,17 @@
 // An example configuration file.
 exports.config = {
-    specs: ['e2e/**/*.js'],
+    specs: [
+        'e2e/**/*.js'
+    ],
     seleniumAddress: 'http://localhost:6969/wd/hub',
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'chrome',
+        'chromeOptions': {
+            'args': ['incognito', 'disable-extensions', 'start-maximized', 'enable-crash-reporter-for-testing']
+        },
+        'loggingPrefs': {
+            'browser': 'ALL'
+        }
     },
     directConnect: true,
     framework: 'jasmine',

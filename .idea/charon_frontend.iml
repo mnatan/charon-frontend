@@ -24,6 +24,7 @@
     <orderEntry type="library" name="angular" level="application" />
     <orderEntry type="library" name="ui-bootstrap" level="application" />
     <orderEntry type="library" name="angular-ui-router" level="application" />
+    <orderEntry type="library" name="angular-mocks" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
