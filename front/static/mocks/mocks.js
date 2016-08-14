@@ -1,6 +1,6 @@
-(function () {
-    var link = "#/login/registrations";
-    return {
+(function (global) {
+    var link = "#/login/registration";
+    global.charon_global_mocks = {
         registrations: [
             {
                 name: "Rejestracja 1",
@@ -26,5 +26,5 @@
                 ]
             }
         ]
-    };
-})();
+    }
+})(window);

@@ -12,6 +12,9 @@ angular.module('charonFront.navigation', [])
             templateUrl: '/front/static/app/components/navigation/navigation-menu.html',
             controller: function ($rootScope, $scope, navigation) {
                 $scope.navigation = navigation;
+                $scope.debug = function () {
+                    debugger;
+                }
             }
             // link: function (scope, element, attrs) {
             //     $(element).find(".dropdown").hover(

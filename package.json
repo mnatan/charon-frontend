@@ -9,6 +9,8 @@
     "grunt-protractor-runner": "*",
     "jasmine-core": "*",
     "protractor": "*",
+    "protractor-console": "*",
+    "jasmine-spec-reporter": "*",
     "karma": "*",
     "karma-jasmine": "*",
     "karma-chrome-launcher": "*",

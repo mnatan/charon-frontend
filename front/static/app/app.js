@@ -5,6 +5,7 @@
 "use strict";
 
 angular.module('charonFront', [
+    'httpBackendMock',
     'ui.router',
     'ui.bootstrap',
     'charonFront.navigation',
@@ -12,8 +13,7 @@ angular.module('charonFront', [
     'charonFront.login',
     'charonFront.login.signup',
     'charonFront.login.signin',
-    'charonFront.form',
-    'httpBackendMock'
+    'charonFront.form'
 ]).config(function ($stateProvider, $urlRouterProvider, $interpolateProvider, $locationProvider) {
     $urlRouterProvider.otherwise("/katalog"); // Katalog to nasz home page
 
