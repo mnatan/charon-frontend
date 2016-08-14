@@ -8,8 +8,11 @@ angular.module('charonFront.form', [])
             restrict: 'A',
             replace: true,
             templateUrl: '/front/static/app/components/forms/form.html',
-            controller: function ($rootScope, $scope, navigation) {
-                $scope.navigation = navigation;
+            scope: {
+                form: '=',
+                ngModel: '='
+            },
+            controller: function ($rootScope, $scope) {
             }
         };
     });

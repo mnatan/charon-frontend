@@ -7,7 +7,13 @@ angular.module('charonFront.login.signin', [])
         $stateProvider.state('login.signin', {
             url: '',
             templateUrl: '/front/static/app/components/login/login-signin.html',
-            controller: function ($scope) {
+            resolve: {
+                loginForm: function (LoginService) {
+                    return LoginService.getLoginForm();
+                }
+            },
+            controller: function ($scope, loginForm) {
+                $scope.loginForm = loginForm;
                 $scope.title = 'Zaloguj się';
             }
         });

@@ -25,6 +25,23 @@
                     {date: 1497692036, description: "Ogłoszenie wyników", link: link}
                 ]
             }
-        ]
+        ],
+        forms: {
+            login: [
+                {
+                    label: "e-mail",
+                    type: "STRING",
+                    valid: "email",
+                    name: "email"
+                },
+                {
+                    label: "hasło",
+                    type: "STRING",
+                    valid: "password",
+                    mods: "hidden",
+                    name: "e-mail"
+                }
+            ]
+        }
     }
 })(window);

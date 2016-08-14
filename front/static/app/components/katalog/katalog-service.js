@@ -8,7 +8,7 @@ angular.module('charonFront.katalog')
     .factory('KatalogService', function ($http) {
         return {
             getRegistrations: function () {
-                return $http.get("/registrations").then(function (response) {
+                return $http.get("/api/registrations").then(function (response) {
                     return response.data;
                 });
             }
