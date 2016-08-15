@@ -9,6 +9,7 @@ angular.module('charonFront', [
     'ui.router',
     'ui.bootstrap',
     'schemaForm',
+    'charonFront.forms',
     'charonFront.navigation',
     'charonFront.katalog',
     'charonFront.login',
@@ -17,12 +18,8 @@ angular.module('charonFront', [
 ]).config(function ($stateProvider, $urlRouterProvider, $interpolateProvider, $locationProvider) {
     $urlRouterProvider.otherwise("/katalog"); // Katalog to nasz home page
 
-    $interpolateProvider.startSymbol('{$');
-    $interpolateProvider.endSymbol('$}');
-}).value('$strap.config', {
-    datepicker: {
-        language: 'pl'
-    }
+    // $interpolateProvider.startSymbol('{$');
+    // $interpolateProvider.endSymbol('$}');
 }).run(function ($rootScope, $window, $state, navigation) {
 
     $rootScope.$on('$stateChangeStart', function () {

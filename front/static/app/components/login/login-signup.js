@@ -8,20 +8,24 @@ angular.module('charonFront.login.signup', [])
             url: '/register',
             templateUrl: '/front/static/app/components/login/login-signup.html',
             resolve: {
-                signinForm: function (LoginService) {
-                    return LoginService.getSigninForm();
+                form: function (FormService) {
+                    return FormService.getForm("register");
+                },
+                formSchema: function (FormService) {
+                    return FormService.getSchema();
                 }
             },
-            controller: function ($scope, signinForm) {
+            controller: function ($scope, form, formSchema) {
                 $scope.title = 'Załóż nowe konto';
 
-                $scope.schema = signinForm.schema;
-                $scope.form = signinForm.form;
+                $scope.schema = formSchema;
+                $scope.form = form.form;
                 $scope.model = {};
                 $scope.onSubmit = function (form) {
                     $scope.$broadcast('schemaFormValidate');
                     if (form.$valid) {
                         console.log(form);
+                        console.log($scope.model);
                     }
                 }
             }

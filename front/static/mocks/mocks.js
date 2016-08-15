@@ -27,42 +27,38 @@
             }
         ],
         forms: {
-            login: [
-                {
-                    label: "e-mail",
-                    type: "STRING",
-                    valid: "email",
-                    name: "email"
-                },
-                {
-                    label: "hasło",
-                    type: "STRING",
-                    valid: "password",
-                    mods: "hidden",
-                    name: "password"
-                }
-            ],
-            register: {
-                schema: {
-                    type: "object",
-                    properties: {
-                        name: {
-                            type: "string",
-                            minLength: 2,
-                            title: "Name",
-                            description: "Name or alias"
-                        },
-                        title: {
-                            type: "string",
-                            enum: ['dr', 'jr', 'sir', 'mrs', 'mr', 'NaN', 'dj']
-                        }
+            schema: {
+                type: "object",
+                properties: {
+                    email: {
+                        type: "string",
+                        placeholder: "Podaj adres email",
+                        title: "Email"
+                    },
+                    password: {
+                        type: "string",
+                        placeholder: "Podaj hasło",
+                        title: "Hasło"
                     }
-                },
+                }
+            },
+            register: {
                 form: [
-                    "*",
+                    "email",
+                    "password",
                     {
                         type: "submit",
-                        title: "Save"
+                        title: "Zarejestruj"
+                    }
+                ]
+            },
+            login: {
+                form: [
+                    "email",
+                    "password",
+                    {
+                        type: "submit",
+                        title: "Zaloguj"
                     }
                 ]
             }

@@ -1,10 +1,14 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            {$ title $}
+            {{ title }}
         </h3>
     </div>
     <div class="panel-body">
-        <div dynamic-form form="loginForm"></div>
+        <form name="myForm"
+              sf-schema="schema"
+              sf-form="form"
+              sf-model="model"
+              ng-submit="onSubmit(myForm)"></form>
     </div>
 </div>
