@@ -2,6 +2,7 @@
   "name": "charon-frontend-angular",
   "version": "0.0.1",
   "devDependencies": {
+    "bower": "*",
     "grunt": "*",
     "grunt-karma": "*",
     "grunt-contrib-uglify": "*",
@@ -10,13 +11,10 @@
     "jasmine-core": "*",
     "protractor": "*",
     "protractor-console": "*",
-    "jasmine-spec-reporter": "*",
-    "karma": "*",
-    "karma-jasmine": "*",
-    "karma-chrome-launcher": "*",
-    "karma-phantomjs-launcher": "*"
+    "jasmine-spec-reporter": "*"
   },
   "scripts": {
-    "install": "node node_modules/protractor/bin/webdriver-manager update"
+    "install": "node node_modules/protractor/bin/webdriver-manager update",
+    "postinstall": "bower install"
   }
 }

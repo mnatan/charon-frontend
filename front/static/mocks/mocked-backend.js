@@ -8,6 +8,7 @@ angular.module('httpBackendMock', ['ngMockE2E'])
 
         $httpBackend.whenGET('/api/registrations').respond(charon_global_mocks.registrations);
         $httpBackend.whenGET('/api/forms/login').respond(charon_global_mocks.forms.login);
+        $httpBackend.whenGET('/api/forms/register').respond(charon_global_mocks.forms.register);
 
         $httpBackend.whenGET(/.*/).passThrough();
     });

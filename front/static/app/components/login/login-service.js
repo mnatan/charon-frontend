@@ -10,6 +10,11 @@ angular.module('charonFront.login')
                 return $http.get("/api/forms/login").then(function (response) {
                     return response.data;
                 });
+            },
+            getSigninForm: function () {
+                return $http.get("/api/forms/register").then(function (response) {
+                    return response.data;
+                });
             }
         }
     });
