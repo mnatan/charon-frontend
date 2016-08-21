@@ -24,8 +24,12 @@ angular.module('charonFront.login.signin', [])
                 $scope.onSubmit = function (form) {
                     $scope.$broadcast('schemaFormValidate');
                     if (form.$valid) {
-                        console.log(form);
-                        console.log($scope.model);
+                        if ($scope.model.password != $scope.model.password_check) {
+                            $scope.$broadcast('schemaForm.error.password_check', 'passwordsDontMatch', 'Wpisane hasła nie zgadzają się');
+                        } else {
+                            console.log(form);
+                            console.log($scope.model);
+                        }
                     }
                 };
             }

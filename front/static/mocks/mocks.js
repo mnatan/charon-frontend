@@ -28,17 +28,50 @@
         ],
         forms: {
             schema: {
-                type: "object",
-                properties: {
-                    email: {
-                        type: "string",
-                        placeholder: "Podaj adres email",
-                        title: "Email"
+                'type': 'object',
+                'properties': {
+                    'email': {
+                        'title': 'Email',
+                        'type': 'string',
+                        'required': true,
+                        "x-schema-form": {
+                            "type": "email",
+                            "placeholder": "Podaj swój adres email"
+                        }
                     },
-                    password: {
-                        type: "string",
-                        placeholder: "Podaj hasło",
-                        title: "Hasło"
+                    'password': {
+                        'title': 'Hasło',
+                        'type': 'string',
+                        'required': true,
+                        "x-schema-form": {
+                            "type": "password",
+                            "placeholder": "Wpisz hasło, którego chcesz używać"
+                        }
+                    },
+                    'password_check': {
+                        'title': 'Potwierdź hasło',
+                        'type': 'string',
+                        'required': true,
+                        "x-schema-form": {
+                            "type": "password",
+                            "placeholder": "Wpisz raz jeszcze hasło podane powyżej"
+                        }
+                    },
+                    'name': {
+                        'title': 'Imię',
+                        'type': 'string'
+                    },
+                    'lastname': {
+                        'title': 'Nazwisko',
+                        'type': 'string'
+                    },
+                    'gender': {
+                        'title': 'Płeć',
+                        'type': 'string',
+                        'enum': [
+                            'Mężczyzna',
+                            'Kobieta'
+                        ]
                     }
                 }
             },
@@ -46,6 +79,10 @@
                 form: [
                     "email",
                     "password",
+                    "password_check",
+                    'name',
+                    'lastname',
+                    'gender',
                     {
                         type: "submit",
                         title: "Zarejestruj"
@@ -62,6 +99,16 @@
                     }
                 ]
             }
+        },
+        login: {
+            login_response: {
+                result: "OK",
+                token: "dupadupa"
+            },
+            register_response: {
+                result: "OK"
+            }
         }
     }
-})(window);
+})
+(window);

@@ -9,7 +9,6 @@ var NavigationMenu = require("./navigation.page.js");
 describe("Public Menu", function () {
 
     var menu;
-    var EC = protractor.ExpectedConditions;
 
     beforeEach(function () {
         menu = new NavigationMenu();
@@ -55,14 +54,14 @@ describe("Public Menu", function () {
     it("Guzik Konto otwiera submenu przy najechaniu i Logowanie odsyła do logowania", function () {
         browser.actions().mouseMove(menu.konto_btn).perform().then(function () {
             menu.login_btn.click();
-            browser.wait(EC.urlContains("/login"), 1000);
+            menu.wait_for_url("login");
         });
     });
 
     it("Guzik Konto otwiera submenu przy najechaniu i Rejestracja odsyła do rejstracji", function () {
         browser.actions().mouseMove(menu.konto_btn).perform().then(function () {
             menu.register_btn.click();
-            browser.wait(EC.urlContains("/login/register"), 1000);
+            menu.wait_for_url("login/register");
         });
     });
 

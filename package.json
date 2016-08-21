@@ -9,12 +9,11 @@
     "grunt-contrib-connect": "*",
     "grunt-protractor-runner": "*",
     "jasmine-core": "*",
-    "protractor": "*",
     "protractor-console": "*",
     "jasmine-spec-reporter": "*"
   },
   "scripts": {
-    "install": "node node_modules/protractor/bin/webdriver-manager update",
+    "install": "node node_modules/grunt-protractor-runner/scripts/webdriver-manager-update",
     "postinstall": "bower install"
   }
 }

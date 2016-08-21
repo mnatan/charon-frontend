@@ -51,6 +51,16 @@ NavigationMenu.prototype = Object.create({}, {
         value: function () {
             return browser.wait(EC.invisibilityOf(this.loading), 1000);
         }
+    },
+    wait_for_url: {
+        value: function (url, timeout) {
+            timeout = typeof timeout !== 'undefined' ? timeout : 1000;
+            browser.wait(function () {
+                return browser.getCurrentUrl().then(function (url) {
+                    return url.match(/login/);
+                })
+            }, timeout);
+        }
     }
 });
 
