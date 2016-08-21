@@ -39,6 +39,12 @@ var NavigationMenu = function () {
         })
     };
 
+    this.isCssActive = function (menu_btn_element) {
+        return menu_btn_element.element(by.xpath("..")).getAttribute("class").then(parent_classes => {
+            return !!parent_classes.indexOf('active');
+        });
+    };
+
     this.wait_for_loaidng = function () {
         return browser.wait(EC.invisibilityOf(this.loading), 1000);
     };

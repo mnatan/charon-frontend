@@ -5,6 +5,7 @@ Dockerfile
 *.sqlite3
 node_modules
 .idea/
+build/
 
 vendors/
 
