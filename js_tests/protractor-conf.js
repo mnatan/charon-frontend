@@ -30,6 +30,12 @@ exports.config = {
         logLevels: ['severe']
     }],
     onPrepare: function () {
+        var fs = require('fs');
+        browser.params.build_dir = __dirname + '/build/';
+        if (!fs.existsSync(browser.params.build_dir)) {
+            fs.mkdirSync(browser.params.build_dir);
+        }
+
         var SpecReporter = require('jasmine-spec-reporter');
         jasmine.getEnv().addReporter(new SpecReporter({
             displayStacktrace: 'summary',    // display stacktrace for each failed assertion, values: (all|specs|summary|none)

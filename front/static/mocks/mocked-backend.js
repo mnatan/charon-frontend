@@ -15,6 +15,7 @@ angular.module('httpBackendMock', ['ngMockE2E'])
         $httpBackend.whenPOST('/api/users/register').respond(charon_global_mocks.login.register_response);
 
         $httpBackend.whenGET('/api/faq').respond(charon_global_mocks.faq);
+        $httpBackend.whenGET('/api/kontakt').respond(charon_global_mocks.kontakt);
 
         $httpBackend.whenGET(/.*/).passThrough();
     });

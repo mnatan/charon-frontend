@@ -5,6 +5,7 @@
 "use strict";
 
 var EC = protractor.ExpectedConditions;
+var fs = require('fs');
 
 var NavigationMenu = function () {
     this.get_main_page = function () {
@@ -21,13 +22,27 @@ var NavigationMenu = function () {
     this.katalog_btn = element(by.id('katalog-btn'));
     this.konto_btn = element(by.id('konto-btn'));
     this.faq_btn = element(by.id('faq-btn'));
+    this.kontakt_btn = element(by.id('kontakt-btn'));
     this.login_btn = element(by.id('signin-btn'));
     this.register_btn = element(by.id('signup-btn'));
     this.loading = element(by.id('loading-image'));
 
+    this.takeScreenshot = function (name) {
+        var dir = browser.params.build_dir + 'screenshots/';
+        browser.takeScreenshot().then(function (png) {
+            if (!fs.existsSync(dir)) {
+                fs.mkdirSync(dir);
+            }
+            var stream = fs.createWriteStream(dir + name + '.png');
+            stream.write(new Buffer(png, 'base64'));
+            stream.end();
+        })
+    };
+
     this.wait_for_loaidng = function () {
         return browser.wait(EC.invisibilityOf(this.loading), 1000);
     };
+
     this.wait_for_url = function (url, timeout) {
         timeout = typeof timeout !== 'undefined' ? timeout : 1000;
         browser.wait(function () {

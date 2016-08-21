@@ -13,6 +13,7 @@ angular.module('charonFront', [
     'charonFront.navigation',
     'charonFront.katalog',
     'charonFront.faq',
+    'charonFront.kontakt',
     'charonFront.login',
     'charonFront.login.signup',
     'charonFront.login.signin'

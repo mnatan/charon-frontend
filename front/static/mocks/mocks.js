@@ -111,6 +111,22 @@
         },
         faq: [
             1, 2, 3
+        ],
+        kontakt: [
+            {
+                Description: "W sprawie dramy",
+                name: "Wydział Matematyki i Informatyki UJ, sekretariat",
+                addres: "Gdzieśtam",
+                phone: "123 123 123",
+                mail: "poczta@uj.com"
+            },
+            {
+                Description: "W sprawie awarii",
+                name: "Wydział Matematyki i Informatyki UJ, sekretariat",
+                addres: "Gdzieśtam",
+                phone: "123 123 123",
+                mail: "poczta@uj.com"
+            }
         ]
     }
 })

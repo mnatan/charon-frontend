@@ -27,10 +27,10 @@ describe("Public Menu", function () {
         expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/katalog");
     });
 
-
     it("Guzik Katalog odsyła na główną", function () {
         menu.katalog_btn.click();
         expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/katalog");
+        menu.takeScreenshot("home");
     });
 
     it("Guzik Konto odsyła do /login", function () {
@@ -43,18 +43,21 @@ describe("Public Menu", function () {
         menu.kontakt_btn.click();
         menu.wait_for_loaidng();
         expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/kontakt");
+        menu.takeScreenshot("kontakt");
     });
 
     it("Guzik FAQ odsyła do /faq", function () {
         menu.faq_btn.click();
         menu.wait_for_loaidng();
         expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/faq");
+        menu.takeScreenshot("faq");
     });
 
     it("Guzik Konto otwiera submenu przy najechaniu i Logowanie odsyła do logowania", function () {
         browser.actions().mouseMove(menu.konto_btn).perform().then(function () {
             menu.login_btn.click();
             menu.wait_for_url("login");
+            menu.takeScreenshot("login");
         });
     });
 
@@ -62,6 +65,7 @@ describe("Public Menu", function () {
         browser.actions().mouseMove(menu.konto_btn).perform().then(function () {
             menu.register_btn.click();
             menu.wait_for_url("login/register");
+            menu.takeScreenshot("register");
         });
     });
 
