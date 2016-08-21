@@ -4,14 +4,12 @@
 
 "use strict";
 
-var NavigationMenu = require("./navigation.page.js");
+var menu = require("./navigation.page.js");
 
 describe("Public Menu", function () {
 
-    var menu;
-
     beforeEach(function () {
-        menu = new NavigationMenu();
+        menu.get_main_page();
     });
 
     it("Ma tytuł", function () {
@@ -35,20 +33,22 @@ describe("Public Menu", function () {
         expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/katalog");
     });
 
-    xit("Guzik FAQ odsyła do /faq", function () {
-        element(by.partialLinkText("FAQ")).click();
-        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/faq");
-    });
-
-    xit("Guzik Kontakt odsyła do /kontakt", function () {
-        element(by.partialLinkText("Kontakt")).click();
-        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/kontakt");
-    });
-
     it("Guzik Konto odsyła do /login", function () {
         menu.konto_btn.click();
         menu.wait_for_loaidng();
         expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/login");
+    });
+
+    it("Guzik Kontakt odsyła do /kontakt", function () {
+        menu.kontakt_btn.click();
+        menu.wait_for_loaidng();
+        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/kontakt");
+    });
+
+    it("Guzik FAQ odsyła do /faq", function () {
+        menu.faq_btn.click();
+        menu.wait_for_loaidng();
+        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/faq");
     });
 
     it("Guzik Konto otwiera submenu przy najechaniu i Logowanie odsyła do logowania", function () {

@@ -7,15 +7,14 @@
 // var mockModule = require("./mocks/mocked-backend.js");
 // var angularMocks = require("../../node_modules/angular-mocks/angular-mocks");
 
-var NavigationMenu = require("./navigation.page.js");
+var menu = require("./navigation.page.js");
 
 describe("Widok katalogu", function () {
 
-    var menu;
     var EC = protractor.ExpectedConditions;
 
     beforeEach(function () {
-        menu = new NavigationMenu();
+        menu.get_main_page();
         browser.get(browser.params.front_url + '#/katalog');
         browser.wait(function () {
             return browser.isElementPresent(element(by.id("main-logo")));

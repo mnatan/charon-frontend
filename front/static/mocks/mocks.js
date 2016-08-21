@@ -108,7 +108,10 @@
             register_response: {
                 result: "OK"
             }
-        }
+        },
+        faq: [
+            1, 2, 3
+        ]
     }
 })
 (window);

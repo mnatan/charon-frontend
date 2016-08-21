@@ -7,61 +7,35 @@
 var EC = protractor.ExpectedConditions;
 
 var NavigationMenu = function () {
-    browser.get(browser.params.front_url);
+    this.get_main_page = function () {
+        browser.get(browser.params.front_url);
 
-    var logo = element(by.id("main-logo"));
+        var logo = element(by.id("main-logo"));
 
-    browser.wait(function () {
-        return browser.isElementPresent(logo);
-    }, 1000);
+        browser.wait(function () {
+            return browser.isElementPresent(logo);
+        }, 1000);
+    };
+
+    this.site_logo = element(by.id('main-logo'));
+    this.katalog_btn = element(by.id('katalog-btn'));
+    this.konto_btn = element(by.id('konto-btn'));
+    this.faq_btn = element(by.id('faq-btn'));
+    this.login_btn = element(by.id('signin-btn'));
+    this.register_btn = element(by.id('signup-btn'));
+    this.loading = element(by.id('loading-image'));
+
+    this.wait_for_loaidng = function () {
+        return browser.wait(EC.invisibilityOf(this.loading), 1000);
+    };
+    this.wait_for_url = function (url, timeout) {
+        timeout = typeof timeout !== 'undefined' ? timeout : 1000;
+        browser.wait(function () {
+            return browser.getCurrentUrl().then(function (url) {
+                return url.match(/login/);
+            })
+        }, timeout);
+    };
 };
 
-NavigationMenu.prototype = Object.create({}, {
-    site_logo: {
-        get: function () {
-            return element(by.id('main-logo'));
-        }
-    },
-    katalog_btn: {
-        get: function () {
-            return element(by.id('katalog-btn'));
-        }
-    },
-    konto_btn: {
-        get: function () {
-            return element(by.id('konto-btn'));
-        }
-    },
-    login_btn: {
-        get: function () {
-            return element(by.id('signin-btn'));
-        }
-    },
-    register_btn: {
-        get: function () {
-            return element(by.id('signup-btn'));
-        }
-    },
-    loading: {
-        get: function () {
-            return element(by.id('loading-image'));
-        }
-    },
-    wait_for_loaidng: {
-        value: function () {
-            return browser.wait(EC.invisibilityOf(this.loading), 1000);
-        }
-    },
-    wait_for_url: {
-        value: function (url, timeout) {
-            timeout = typeof timeout !== 'undefined' ? timeout : 1000;
-            browser.wait(function () {
-                return browser.getCurrentUrl().then(function (url) {
-                    return url.match(/login/);
-                })
-            }, timeout);
-        }
-    }
-});
-
-module.exports = NavigationMenu;
+module.exports = new NavigationMenu();
