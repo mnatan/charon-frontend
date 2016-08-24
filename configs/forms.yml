@@ -103,10 +103,16 @@ instance:
       text: Opis kierunku
       type: textarea
 
+    - name: field
+      text: Kierunek studiów
+      type: select
+      additional:
+          - required
+
     - name: mode
       text: Tryb studiów
       type: select
-      mode:
+      options:
           - stacjonarne
           - niestacjonarne
       additional:

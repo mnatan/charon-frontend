@@ -180,7 +180,11 @@ post '/create_field' => sub {
 };
 
 get '/create_instance' => sub {
-    template 'create_instance', { form => $forms->{instance}, };
+    my $my_fields;
+    if ( session "logged_in" ) {
+        $my_fields = backend_get( $API{my_fields} );
+    }
+    template 'create_instance', { form => $forms->{instance}, my_fields => $my_fields};
 };
 
 post '/create_instance' => sub {

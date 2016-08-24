@@ -1,0 +1,33 @@
+<section id="documents">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Wymagane dokumenty</h3>
+        </div>
+        [% IF documents %]
+            <div class="panel-body cart">
+                [% FOREACH item in documents %]
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Dokumenty wymagane przy rejestracji</h3>
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Dokumenty wymagane przy wpisie</h3>
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                [% END %]
+            </div>
+        [% ELSE %]
+            <div class="panel-body">
+                Wymagane dokumenty nie zdefinowano
+            </div>
+        [% END %]
+    </div>
+</section>

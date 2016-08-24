@@ -15,13 +15,21 @@
 								<th width=30%><label for="">[% field.text %]</label></th>
 								<th width=70%>
                                     [% IF field.type == 'select' %]
-                                        <select id="mode" class="form-control-sm form-control">
-                                            [% FOREACH mode IN field.mode %]
-                                                <option>[% mode %]</option>
+                                        [% IF field.name == 'mode' %]
+                                        <select name="[% field.name %]" class="form-control-sm form-control">
+                                            [% FOREACH option IN field.options %]
+                                                <option>[% option %]</option>
                                             [% END %]
                                         </select>
+                                        [% ELSE %]
+                                        <select name="[% field.name %]" class="form-control-sm form-control">
+                                            [% FOREACH option IN my_fields %]
+                                                <option>[% option %]</option>
+                                            [% END %]
+                                        </select>
+                                        [% END %]
                                     [% ELSIF field.type == 'textarea' %]
-                                        <textarea name="field.name"
+                                        <textarea name="[% field.name %]"
                                             value=""
                                             placeholder="[% field.text %]"
                                             [% FOREACH add IN field.additional %]
