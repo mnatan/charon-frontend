@@ -13,4 +13,6 @@ cart:
     /cart
 timeline:
     /timeline
+my_fields:
+    /directors/my_fields
 ...

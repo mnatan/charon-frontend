@@ -138,6 +138,18 @@ get '/userlist' => sub {
     template "userlist", { users => $users };
 };
 
+get '/directors/my_fields' => sub {
+    my $fields = backend_get( $API{my_fields} );
+
+    # TODO: add my_fields to backend
+    #my $cart;
+    #if ( session "logged_in" ) {
+        #$cart = backend_get( $API{cart},
+            #{ userid => session("userid"), token => session("token") } );
+    #}
+    template 'my_fields', { fields => $fields, };
+};
+
 hook before_template => sub {
     my $tokens = shift;
 

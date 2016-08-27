@@ -125,4 +125,12 @@ get:/timeline:
     - text: Potwierdzenie rejestracji - 2 nabór
       date: 7 lipca 2016
       status: inactive
+
+get:/directors/my_fields:
+  - name: Testowanie
+    status: Aktywna rejestracja
+  - name: Automatyzacja
+    status: Nieaktywny
+  - name: Cokolwiek
+    status: Rejestracja zakończona
 ...
