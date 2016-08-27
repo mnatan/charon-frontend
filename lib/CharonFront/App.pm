@@ -158,11 +158,13 @@ get '/directors/my_fields' => sub {
     template 'my_fields', { fields => $fields, };
 };
 
-get '/create_field' => sub {
+# TODO: add director's id
+# must be available only if director logged in
+get '/directors/create_field' => sub {
     template 'create_field', { form => $forms->{field}, };
 };
 
-post '/create_field' => sub {
+post '/directors/create_field' => sub {
     my $return_url = param('return_url') // '/';
     my $create_field
         = backend_post( $API{create_field} . session("userid"), params);
@@ -179,15 +181,15 @@ post '/create_field' => sub {
     redirect $return_url;
 };
 
-get '/create_instance' => sub {
+get '/directors/create_instance' => sub {
     my $my_fields;
-    if ( session "logged_in" ) {
+    #if ( session "logged_in" ) {
         $my_fields = backend_get( $API{my_fields} );
-    }
+    #}
     template 'create_instance', { form => $forms->{instance}, my_fields => $my_fields};
 };
 
-post '/create_instance' => sub {
+post '/directors/create_instance' => sub {
     my $return_url = param('return_url') // '/';
     my $create_instance
         = backend_post( $API{create_instance} . session("userid"), params);
