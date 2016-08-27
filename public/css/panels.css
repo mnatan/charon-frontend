@@ -468,3 +468,11 @@ fieldset[disabled] .btn-primary.focus {
 .hidden {
   display: none !important;
 }
+
+.img-control {
+    width:30px;height:30px;
+}
+
+.fields, .fields th, .fields td {
+  border: 1px solid #ddd;
+}
