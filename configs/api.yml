@@ -19,6 +19,4 @@ create_field:
     /directors/create_field/
 create_instance:
     /directors/create_instance/
-my_fields:
-    /directors/my_fields
 ...

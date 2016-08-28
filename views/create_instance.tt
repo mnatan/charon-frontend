@@ -24,7 +24,7 @@
                                         [% ELSE %]
                                         <select name="[% field.name %]" class="form-control-sm form-control">
                                             [% FOREACH option IN my_fields %]
-                                                <option>[% option %]</option>
+                                                <option>[% option.name %]</option>
                                             [% END %]
                                         </select>
                                         [% END %]

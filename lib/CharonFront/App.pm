@@ -146,6 +146,8 @@ get '/userlist' => sub {
     template "userlist", { users => $users };
 };
 
+# TODO: add director's id
+# must be available only if director logged in
 get '/directors/my_fields' => sub {
     my $fields = backend_get( $API{my_fields} );
 
@@ -158,8 +160,6 @@ get '/directors/my_fields' => sub {
     template 'my_fields', { fields => $fields, };
 };
 
-# TODO: add director's id
-# must be available only if director logged in
 get '/directors/create_field' => sub {
     template 'create_field', { form => $forms->{field}, };
 };
