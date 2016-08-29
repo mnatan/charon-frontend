@@ -1,0 +1,6 @@
+{
+  "name": "charon-front",
+  "dependencies": {
+    "angular-schema-form": "latest"
+  }
+}

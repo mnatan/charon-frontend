@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            {{ title }}
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div ng-repeat="registration in activeRegistrations" class="panel panel-default registration-card">
+            <h1>{{ registration.name }}</h1>
+            <h2>Limit: {{ registration.limit }}</h2>
+            <p>{{ registration.description }}</p>
+            <ul ng-repeat="term in registration.terms">
+                <li>
+                    <a href="{{ term.link }}">
+                        {{ term.date | date }} - {{ term.description }}
+                    </a>
+                </li>
+            </ul>
+            <button class="pull-right">
+                Więcej
+            </button>
+        </div>
+    </div>
+</div>
