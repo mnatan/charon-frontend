@@ -93,6 +93,12 @@ post '/register' => sub {
     redirect "/";
 };
 
+get '/registration_info' => sub {
+    #my $info = backend_get( $API{registration_info} );
+
+    template 'registration_info'; #, { registration_info => $info, };
+};
+
 get '/contact' => sub {
     template 'contact', { form => $forms->{contact_details}, };
 };

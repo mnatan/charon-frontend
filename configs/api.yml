@@ -19,4 +19,6 @@ create_field:
     /directors/create_field/
 create_instance:
     /directors/create_instance/
+registration_info:
+    /registration_info
 ...
