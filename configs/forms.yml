@@ -154,4 +154,25 @@ instance:
       additional:
           - min="0"  
           - required
+
+registration_info:
+    - la: llalal
+    - main:
+          - item: field
+            label: Kierunek
+          - item: mode
+            label: Tryb
+      tabs:
+          - item: info
+            label: Opis<br>studiów
+          - item: rules
+            label: Zasady<br>kwalifikacji
+          - item: dates
+            label: Terminy
+          - item: limit
+            label: Limit<br>przyjęć
+          - item: documents
+            label: Wymagane<br>dokumenty
+          - item: payments
+            label: Opłaty
 ...

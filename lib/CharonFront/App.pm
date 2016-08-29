@@ -96,7 +96,7 @@ post '/register' => sub {
 get '/registration_info' => sub {
     #my $info = backend_get( $API{registration_info} );
 
-    template 'registration_info'; #, { registration_info => $info, };
+    template 'registration_info', { info => $forms->{registration_info}, };
 };
 
 get '/contact' => sub {
