@@ -172,6 +172,7 @@ input[type="checkbox"]:focus {
 
 .form-control-sm {
   width: 200px;
+  display: inline;
 }
 
 .form-control label {

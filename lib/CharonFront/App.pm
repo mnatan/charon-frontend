@@ -157,11 +157,12 @@ get '/directors/my_fields' => sub {
         #$cart = backend_get( $API{cart},
             #{ userid => session("userid"), token => session("token") } );
     #}
-    template 'my_fields', { fields => $fields, };
+    template 'my_fields', { fields => $fields };
 };
 
 get '/directors/create_field' => sub {
-    template 'create_field', { form => $forms->{field}, };
+    my $directors = backend_get( $API{directors_list} );
+    template 'create_field', { form => $forms->{field}, directors => $directors };
 };
 
 post '/directors/create_field' => sub {
