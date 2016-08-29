@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <section id="add_directors">
-    <form>
     <div>
-        <input type="text" placeholder="Type something..." /><button id="mybtn" type="button">+</button>
+        <input type="text" class="form-control form-control-sm" 
+            placeholder="Start typing..." /><button id="mybtn" type="button">+</button>
     </div>
-    <input type="submit" value="Get values" />
-    </form>
 
 </section>
 
@@ -13,22 +11,24 @@
 
 var example = function(form) {
     var remove = function() {
-        form.removeChild(this.parentNode);
+        this.parentNode.parentNode.removeChild(this.parentNode);
     };
 
     var add = function() {
         this.innerHTML = '-';
         var input = document.createElement('input');
         input.setAttribute('type', 'text');
-        input.setAttribute('placeholder', 'Type something...')
+        input.setAttribute('placeholder', 'Start typing...')
+        input.setAttribute('class', 'form-control form-control-sm')
         var button = document.createElement('button');
         button.innerHTML = '+';
+        button.setAttribute('type', 'button');
         button.onclick = add;
         var div = document.createElement('div');
         div.appendChild(input);
         div.appendChild(button);
-        form.insertBefore(div, this.parentNode.nextSibling);
         this.onclick = remove;
+        this.parentNode.parentNode.insertBefore(div, this.parentNode.nextSibling);
         return false; // to disable default submit action (refresh page prevention)
     };
 
@@ -38,7 +38,7 @@ var example = function(form) {
 
     this.getValues = function() {
         var divs = form.getElementsByTagName('div');
-        for (i = 0; i < divs.length-1; ++i) {
+        for (i = 1; i < divs.length-2; ++i) {
             console.log('value ' + i + ': ' + divs[i].getElementsByTagName('input')[0].value);
         }
     }
@@ -50,7 +50,7 @@ var example = function(form) {
     this.init();
 };
 
-var t1 = new example(document.getElementsByTagName('form')[1]);
+var t1 = new example(document.getElementsByTagName('form')[0]);
 
 t1.getForm().onsubmit = function() {
     t1.getValues();
