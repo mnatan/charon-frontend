@@ -1,34 +1,22 @@
+<!DOCTYPE html>
 <section id="timeline">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Terminy</h3>
-        </div>
-        <div class="panel-body">
-        [% IF timeline %]
-        <ul id='line'>
-            [% FOREACH entry IN timeline %]
-            <li class='work'>
-                <input class='radio' id='time-entry'
-                       name='works' type='radio'
-                       [% IF entry.status == 'active' %]checked[% END %] >
-                <div class="relative">
-                    <label for='time-entry'>[% entry.text %]</label>
-                    <span class='date'>[% entry.date %]</span>
-                    <span class='circle'></span>
-                </div>
-                <div class='content'>
-                    <p>
-                        Content content
-                    </p>
-                </div>
-            </li>
-            [% END %]
-        </ul>
-        [% ELSE %]
-        <div class="panel-body">
-            Obecnie nie masz żadnych zapisów
-        </div>
+    <ul id='line'>
+        [% FOREACH entry IN timeline %]
+        <li class='work'>
+            <input class='radio' id='time-entry'
+                   name='works' type='radio'
+                   [% IF entry.status == 'active' %]checked[% END %] >
+            <div class="relative">
+                <label for='time-entry'>[% entry.text %]</label>
+                <span class='date'>[% entry.date %]</span>
+                <span class='circle'></span>
+            </div>
+            <div class='content'>
+                <p>
+                    Content content
+                </p>
+            </div>
+        </li>
         [% END %]
-        </div>
-    </div>
+    </ul>
 </section>

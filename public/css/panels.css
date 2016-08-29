@@ -523,6 +523,7 @@ fieldset[disabled] .btn-primary.focus {
 .tab-painel {
     display:inline-block;
     min-height:150px;
+    overflow:hidden;
 }
 .tab-painel
 .tab-open {
@@ -559,7 +560,8 @@ fieldset[disabled] .btn-primary.focus {
     position:absolute;
     left:0;
     transition:opacity .1s;
-    visibility:hidden
+    visibility:hidden;
+    width:100%;
 }
 .tab-open:focus:checked ~ .tab-nav {
     outline:thin

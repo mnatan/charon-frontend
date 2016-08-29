@@ -94,9 +94,9 @@ post '/register' => sub {
 };
 
 get '/registration_info' => sub {
-    #my $info = backend_get( $API{registration_info} );
-
-    template 'registration_info', { info => $forms->{registration_info}, };
+    my $info = backend_get( $API{registration_info} );
+    my $timeline = backend_get( $API{timeline} );
+    template 'registration_info', { form => $forms->{registration_info}, info => $info, timeline => $timeline };
 };
 
 get '/contact' => sub {
@@ -129,7 +129,7 @@ get '/cart' => sub {
     template 'cart', { cart => $cart, };
 };
 
-get '/timeline' => sub {
+get '/deadlines' => sub {
     my $timeline = backend_get( $API{timeline} );
     # TODO: add timeline to backend
     #my $timeline;
@@ -137,7 +137,7 @@ get '/timeline' => sub {
         #$timeline = backend_get( $API{timeline},
             #{ userid => session("userid"), token => session("token") } );
     #}
-    template 'timeline', { timeline => $timeline, };
+    template 'deadlines', { timeline => $timeline, };
 };
 
 

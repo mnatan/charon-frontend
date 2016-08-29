@@ -6,30 +6,39 @@
         </div>
         <div class="panel-body">
 
-        [% FOREACH info1 IN info %]
             <table width=100% align="center">
-                [% FOREACH field IN info1.main %]
+            [% FOREACH field IN form.0.main %]
+                [% item = field.item %]
                 <tr>
-                    <td width=25%>[% field.label %]</td>
-                    <td>[% field.item %]</td>
+                    <td width=25%><b>[% field.label %]</b></td>
+                    <td>[% info.0.$item %]</td>
                 </tr>
-                [% END %]
+            [% END %]
             </table>
             <br>
 
             <!-- Tab -->
             <div class="tab">
-            [% FOREACH field IN info1.tabs %]
+            [% FOREACH field IN form.0.tabs %]
+                [% item = field.item %]
                 <div class="tab-painel">
                     <input class="tab-open" id="[% field.item %]" name="tab-wrap-1" type="radio" checked>
-                    <label class="tab-nav" for="[% field.item %]">[% field.label %]</label>
+                    <label class="tab-nav" for="[% field.item %]"><b>[% field.label %]</b></label>
                     <div class="tab-inner">
-                        [% field.item %] [% field.item %] [% field.item %]
+                        [% IF item != "dates" %]
+                            [% info.0.$item %]
+                        [% ELSE %]
+                            [% IF timeline %]
+                                [% INCLUDE timeline.tt %]
+                            [% ELSE %]
+                                Terminy nie zdefiniowano
+                            [% END %]
+                        [% END %]
                     </div>
                 </div>
             [% END %]
-        [% END %]
-
+            </div>
+            <div style="clear:left">
         </div>
     </div>
 </section>

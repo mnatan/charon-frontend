@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<section id="deadlines">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Terminy</h3>
+        </div>
+        <div class="panel-body">
+        [% IF timeline %]
+            [% INCLUDE timeline.tt %]
+        [% ELSE %]
+            Obecnie nie masz żadnych zapisów
+        [% END %]
+        </div>
+    </div>
+</section>
