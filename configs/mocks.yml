@@ -64,4 +64,11 @@ get:/directors/my_fields:
     status: Nieaktywny
   - name: Cokolwiek
     status: Rejestracja zakończona
+
+get:/directors/directors_list:
+  - name: Lolek
+    mail: mail@mail.com
+  - name: Bolek
+    mail: mail1@mail.com
+
 ...

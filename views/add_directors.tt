@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <section id="add_directors">
     <div>
-        <input type="text" class="form-control form-control-sm" 
+        <input list="directors" type="text" class="form-control form-control-sm" 
             placeholder="Start typing..." /><button id="mybtn" type="button">+</button>
+        <datalist id="directors">
+            [% FOREACH dir IN directors %]
+                <option value="[% dir.name %]">
+            [% END %]
+        </datalist>
     </div>
 
 </section>
@@ -16,10 +21,12 @@ var example = function(form) {
 
     var add = function() {
         this.innerHTML = '-';
+        this.parentNode.getElementsByTagName('input')[0].disabled = true;
         var input = document.createElement('input');
         input.setAttribute('type', 'text');
-        input.setAttribute('placeholder', 'Start typing...')
-        input.setAttribute('class', 'form-control form-control-sm')
+        input.setAttribute('placeholder', 'Start typing...');
+        input.setAttribute('class', 'form-control form-control-sm');
+        input.setAttribute('list', 'directors');
         var button = document.createElement('button');
         button.innerHTML = '+';
         button.setAttribute('type', 'button');
