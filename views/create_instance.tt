@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<section id="create_instance">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">Tworzenie nowego rocznika</h3>
+		</div>
+		<div class="panel-body">
+			<form action="create_field" method="POST" class="form-horizontal" role="form">
+				<div class="form-group" id="registration-form">
+                    <input type="hidden" name="return_url" value="[% request.path %]">
+					<table width=90% align="center">
+						<tbody>
+						[% FOREACH field IN form %]
+							<tr>
+								<th width=30%><label for="">[% field.text %]</label></th>
+								<th width=70%>
+                                    [% IF field.type == 'select' %]
+                                        [% IF field.name == 'mode' %]
+                                        <select name="[% field.name %]" class="form-control-sm form-control">
+                                            [% FOREACH option IN field.options %]
+                                                <option>[% option %]</option>
+                                            [% END %]
+                                        </select>
+                                        [% ELSE %]
+                                        <select name="[% field.name %]" class="form-control-sm form-control">
+                                            [% FOREACH option IN my_fields %]
+                                                <option>[% option.name %]</option>
+                                            [% END %]
+                                        </select>
+                                        [% END %]
+                                    [% ELSIF field.type == 'textarea' %]
+                                        <textarea name="[% field.name %]"
+                                            value=""
+                                            placeholder="[% field.text %]"
+                                            [% FOREACH add IN field.additional %]
+                                            [% add %]
+                                            [% END %]
+                                        ></textarea>
+									[% ELSE %]
+                                        <input 
+                                            name="[% field.name %]"
+                                            value=""
+                                            type="[% field.type %]"
+                                            class="[% IF field.type != 'text' %] form-control-sm [% END %]
+                                                    form-control"
+
+                                            [% IF field.type == 'date' %]
+                                                placeholder="[% field.format %]"
+                                            [% ELSE %]
+                                                placeholder="[% field.text %]"
+                                            [% END %]
+
+                                            aria-describedby="basic-addon1"
+                                            [% FOREACH add IN field.additional %]
+                                            [% add %]
+                                            [% END %]
+                                        >
+                                    [% END %]
+								</th>
+							</tr>
+						[% END %]
+						</tbody>
+					</table>
+					<br>
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary">Dodaj kierunek</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
