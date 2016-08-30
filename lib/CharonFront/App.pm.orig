@@ -115,15 +115,14 @@ get '/faq' => sub {
 
 # ========= Applicant pages ========= #
 
+<<<<<<< HEAD
 get '/students/cart' => sub {
     my $cart;
     if ( session "logged_in" ) {
         my $cart_url = '/students/' . session("userid") . '/cart';
         $cart = backend_get( $cart_url );
     }
-    template 'cart', { cart => $cart, };
-};
-
+=======
 post '/register_on_field' => sub {
     my $return_url = param('return_url') // '/';
     my $cart_url= '/students/' . session("userid") . '/cart';
@@ -136,16 +135,36 @@ post '/register_on_field' => sub {
     redirect $return_url;
 };
 
+get '/cart' => sub {
+    my $cart = backend_get( $API{cart} );
+>>>>>>> registration-info
 
+    template 'cart', { cart => $cart, };
+};
+
+<<<<<<< HEAD
 get '/students/timeline' => sub {
+    my $timeline = backend_get( $API{timeline} );
     my $timeline;
     if ( session "logged_in" ) {
         my $timeline_url = '/students/' . session("userid") . '/timeline';
         $timeline = backend_get( $timeline_url );
     }
 
+    template 'timeline', { timeline => $timeline, };
+=======
+get '/deadlines' => sub {
+    my $timeline = backend_get( $API{timeline} );
+    # TODO: add timeline to backend
+    #my $timeline;
+    #if ( session "logged_in" ) {
+        #$timeline = backend_get( $API{timeline},
+            #{ userid => session("userid"), token => session("token") } );
+    #}
     template 'deadlines', { timeline => $timeline, };
+>>>>>>> registration-info
 };
+
 
 # ========= Director pages ========= #
 

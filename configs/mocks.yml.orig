@@ -65,12 +65,14 @@ get:/directors/my_fields:
   - name: Cokolwiek
     status: Rejestracja zakończona
 
+<<<<<<< HEAD
 get:/directors/directors_list:
   - name: Lolek
     mail: mail@mail.com
   - name: Bolek
     mail: mail1@mail.com
 
+=======
 get:/registration_info:
   - field_id: 1
     field: field1
@@ -81,4 +83,5 @@ get:/registration_info:
     limit: limit1
     documents: documents32
     payments: payments12
+>>>>>>> registration-info
 ...

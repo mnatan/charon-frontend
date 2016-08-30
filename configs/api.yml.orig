@@ -19,10 +19,13 @@ create_field:
     /directors/create_field/
 create_instance:
     /directors/create_instance/
+<<<<<<< HEAD
 directors_list:
     /directors/directors_list
+=======
 registration_info:
     /registration_info
 register_on_field:
     /register_on_field
+>>>>>>> registration-info
 ...
