@@ -21,4 +21,6 @@ create_instance:
     /directors/create_instance/
 registration_info:
     /registration_info
+register_on_field:
+    /register_on_field
 ...

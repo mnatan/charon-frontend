@@ -66,7 +66,8 @@ get:/directors/my_fields:
     status: Rejestracja zakończona
 
 get:/registration_info:
-  - field: field1
+  - field_id: 1
+    field: field1
     mode: mode1
     info: info1
     rules: rules1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>

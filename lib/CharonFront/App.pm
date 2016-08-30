@@ -117,6 +117,18 @@ get '/faq' => sub {
 
 # ========= Applicant pages ========= #
 
+post '/register_on_field' => sub {
+    my $return_url = param('return_url') // '/';
+    my $cart_url= '/students/' . session("userid") . '/cart';
+
+    my $register
+        = backend_post( $cart_url, param('field_id') );
+
+    deferred success => "Zostałeś pomyślnie zapisany!";
+
+    redirect $return_url;
+};
+
 get '/cart' => sub {
     my $cart = backend_get( $API{cart} );
 
