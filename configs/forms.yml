@@ -24,11 +24,11 @@ registration:
             text: Mężczyzna
             additional:
                 - checked
-                - value="m"
+                - value="male"
           - sex: female
             text: Kobieta
             additional:
-                - value="f"
+                - value="female"
     
     
     - name: citizenship

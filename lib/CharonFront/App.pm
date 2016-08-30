@@ -58,7 +58,7 @@ post '/login' => sub {
 get '/logout' => sub {
     my $return_url = param('return_url') // '/';
     app->destroy_session;
-    deferred info => "Pomyślnie wylogowano użytkownika: " . session 'user';
+    deferred info => "Pomyślnie wylogowanoi.";
     redirect $return_url;
 };
 
@@ -76,17 +76,18 @@ post '/register' => sub {
     }
 
     my $backend_registration
-        = backend_post( $API{register_user}, $submitted );
+        = backend_post( $API{register}, $submitted );
 
-    if ( $backend_registration->{status} eq 500 ) {
+    if ( $backend_registration->{status} =~ /2\d\d/ ) {
+        deferred success => "Użytkownik "
+            . param("name") . " "
+            . param("surname")
+            . " został pomyślnie zarejestrowany.";
+    } else {
         deferred error => $backend_registration->{exception};
         redirect '/register';
     }
 
-    deferred success => "Użytkownik "
-        . param("name") . " "
-        . param("surname")
-        . " został pomyślnie zarejestrowany.";
 
     #TODO login user?
 
@@ -111,19 +112,17 @@ get '/faq' => sub {
 
 # ========= Applicant pages ========= #
 
-get '/cart' => sub {
-    my $cart = backend_get( $API{cart} );
+get '/students/cart' => sub {
+    my $cart;
+    if ( session "logged_in" ) {
+        my $cart_url = '/students/' . session("userid") . '/cart';
+        $cart = backend_get( $cart_url );
+    }
 
-    # TODO: add cart to backend
-    #my $cart;
-    #if ( session "logged_in" ) {
-        #$cart = backend_get( $API{cart},
-            #{ userid => session("userid"), token => session("token") } );
-    #}
     template 'cart', { cart => $cart, };
 };
 
-get '/timeline' => sub {
+get '/students/timeline' => sub {
     my $timeline = backend_get( $API{timeline} );
     # TODO: add timeline to backend
     #my $timeline;

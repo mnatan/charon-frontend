@@ -2,11 +2,11 @@
 registrations: 
     /registrations
 authorize: 
-    /authorize
+    /auth
 users: 
     /users
-register_user: 
-    /users/register
+register: 
+    /register
 faq: 
     /faq
 cart:
