@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <section id="rejestracje">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
@@ -9,11 +10,16 @@
 			
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<h3 class="panel-title">Przedmiot: [% registration.name %]</h3>
+					<h3 class="panel-title" style="display:inline-block">
+                        <a href="">[% registration.name %]</a></h3>
+                    <a href=""><img src="/images/button-buy.png" align="right"
+                            alt="Rejestracja" style="width:30px;height:30px;"></a>
+                    <a href=""><img src="/images/button-info.png" align="right"
+                            alt="Informacja" style="width:30px;height:30px;margin-right:10px;"></a>
 				</div>
 				<div class="panel-body">
-					Data: [% registration.due %]<br>
-					Zarejestrowano: [% registration.registered %]/[% registration.limit %]
+					Data: [% registration.end_date %]<br>
+					Limit miejsc: [% registration.limit %]
 				</div>
 			</div>
 

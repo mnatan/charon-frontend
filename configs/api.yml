@@ -1,6 +1,6 @@
 ---
 registrations: 
-    /registrations
+    /fields
 authorize: 
     /auth
 users: 
