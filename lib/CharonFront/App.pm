@@ -41,12 +41,12 @@ post '/login' => sub {
         redirect $return_url;
     }
 
-    my $user_data = backend_get("$API{users}/$login");
+    #my $user_data = backend_get("$API{users}/$login");
 
     session userid    => $backend_auth->{userid};
     session token     => $backend_auth->{token};
-    session role      => $user_data->{role};
-    session name      => $user_data->{name} . " " . $user_data->{surname};
+    session role      => $backend_auth->{role};
+    #session name      => $user_data->{name} . " " . $user_data->{surname};
     session logged_in => 1;
 
     deferred success => "Użytkownik "
@@ -58,7 +58,7 @@ post '/login' => sub {
 get '/logout' => sub {
     my $return_url = param('return_url') // '/';
     app->destroy_session;
-    deferred info => "Pomyślnie wylogowanoi.";
+    deferred info => "Pomyślnie wylogowano.";
     redirect $return_url;
 };
 
@@ -87,9 +87,6 @@ post '/register' => sub {
         deferred error => $backend_registration->{exception};
         redirect '/register';
     }
-
-
-    #TODO login user?
 
     redirect "/";
 };
@@ -124,12 +121,12 @@ get '/students/cart' => sub {
 
 get '/students/timeline' => sub {
     my $timeline = backend_get( $API{timeline} );
-    # TODO: add timeline to backend
-    #my $timeline;
-    #if ( session "logged_in" ) {
-        #$timeline = backend_get( $API{timeline},
-            #{ userid => session("userid"), token => session("token") } );
-    #}
+    my $timeline;
+    if ( session "logged_in" ) {
+        my $timeline_url = '/students/' . session("userid") . '/timeline';
+        $timeline = backend_get( $timeline_url );
+    }
+
     template 'timeline', { timeline => $timeline, };
 };
 
@@ -147,16 +144,14 @@ get '/userlist' => sub {
 
 # TODO: add director's id
 # must be available only if director logged in
-get '/directors/my_fields' => sub {
-    my $fields = backend_get( $API{my_fields} );
+get '/directors/fields' => sub {
+    my $fields;
+    if ( session "logged_in" ) {
+        my $fields_url = '/students/' . session("userid") . '/fields';
+        $fields = backend_get( $fields_url );
+    }
 
-    # TODO: add my_fields to backend
-    #my $cart;
-    #if ( session "logged_in" ) {
-        #$cart = backend_get( $API{cart},
-            #{ userid => session("userid"), token => session("token") } );
-    #}
-    template 'my_fields', { fields => $fields };
+    template 'my_fields', { fields => $fields, };
 };
 
 get '/directors/create_field' => sub {
@@ -166,17 +161,9 @@ get '/directors/create_field' => sub {
 
 post '/directors/create_field' => sub {
     my $return_url = param('return_url') // '/';
+    my $field_url = '/directors/' . session("userid") . '/fields';
     my $create_field
-        = backend_post( $API{create_field} . session("userid"), params);
-
-    #if ( $create_field->{status} eq 500 ) {
-        #deferred error => $create_field->{exception};
-        #redirect '/field';
-    #}
-
-    #deferred success => "Kierunek"
-        #. param("field_name") . " "
-        #. " został stworzony.";
+        = backend_post( $field_url, params);
 
     redirect $return_url;
 };
