@@ -6,11 +6,13 @@
         </div>
         <div class="panel-body">
 
-            <form action = "register_on_field" method = "POST">
-                <input type="hidden" name="return_url" value="[% request.path %]">
-                <input type="hidden" name="field_id" value="[% info.0.field_id %]">
-                <button type="submit" class="btn btn-primary">Zarejestruj mnie</button>
-            </form>
+            [% IF session.role == 'student' %]
+                <form action = "register_on_field" method = "POST">
+                    <input type="hidden" name="return_url" value="[% request.path %]">
+                    <input type="hidden" name="field_id" value="[% info.0.field_id %]">
+                    <button type="submit" class="btn btn-primary">Zarejestruj mnie</button>
+                </form>
+            [% END %]
             <br>
 
             <table width=100% align="center">

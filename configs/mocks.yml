@@ -72,7 +72,7 @@ get:/directors/directors_list:
     mail: mail1@mail.com
 
 get:/registration_info:
-  - field_id: 1
+  - fieldid: 1
     field: field1
     mode: mode1
     info: info1

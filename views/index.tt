@@ -7,19 +7,27 @@
 		[% IF registrations %]
 		<div class="panel-body">
 			[% FOREACH registration in registrations %]
-			
+
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h3 class="panel-title" style="display:inline-block">
-                        <a href="">[% registration.name %]</a></h3>
-                    <a href=""><img src="/images/button-buy.png" align="right"
-                            alt="Rejestracja" style="width:30px;height:30px;"></a>
-                    <a href=""><img src="/images/button-info.png" align="right"
+                        <a href="/registration_info/[% registration.fieldid %]">[% registration.name %]</a></h3>
+                        
+                        <a href="/registration_info/[% registration.fieldid %]">
+                            <img src="/images/button-info.png" align="right"
                             alt="Informacja" style="width:30px;height:30px;margin-right:10px;"></a>
 				</div>
+
 				<div class="panel-body">
 					Data: [% registration.end_date %]<br>
 					Limit miejsc: [% registration.limit %]
+                    [% IF session.role == 'student' %]
+                        <form action = "register_on_field" method = "POST">
+                            <input type="hidden" name="return_url" value="[% request.path %]">
+                            <input type="hidden" name="fieldid" value="[% registration.fieldid %]">
+                            <button type="submit" class="btn btn-primary">Zarejestruj mnie</button>
+                        </form>
+                    [% END %]
 				</div>
 			</div>
 

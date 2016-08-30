@@ -91,10 +91,11 @@ post '/register' => sub {
     redirect "/";
 };
 
-get '/registration_info' => sub {
-    my $info = backend_get( $API{registration_info} );
+get '/registration_info/:fieldid' => sub {
+    my $info = backend_get( $API{registration_info} . param('fieldid') );
     my $timeline = backend_get( $API{timeline} );
-    template 'registration_info', { form => $forms->{registration_info}, info => $info, timeline => $timeline };
+    template 'registration_info', { form => $forms->{registration_info}, 
+                                    info => $info, timeline => $timeline };
 };
 
 get '/contact' => sub {
@@ -129,7 +130,7 @@ post '/register_on_field' => sub {
     my $cart_url= '/students/' . session("userid") . '/cart';
 
     my $register
-        = backend_post( $cart_url, param('field_id') );
+        = backend_post( $cart_url, param('fieldid') );
 
     deferred success => "Zostałeś pomyślnie zapisany!";
 
