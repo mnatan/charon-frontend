@@ -79,4 +79,30 @@ sub backend_post {
     return $out;
 }
 
+sub backend_delete {
+    my ( $url, $arguments ) = @_;
+    my $out;
+
+    print "--------- POST -----------\n" if DEBUG;
+    print Dumper $arguments if DEBUG;
+
+    my $ua = LWP::UserAgent->new;
+    $ua->agent($user_agent);
+
+    my $response = $ua->delete( $BACKEND_SERVER_URL . $url, $arguments );
+
+    if ( $response->content ) {
+        $out = decode_json $response->content;
+    }
+    else {
+        $out = {
+            status  => $response->code,
+            message => $response->message,
+        };
+    }
+    print Dumper $out if DEBUG;
+    print "--------  /POST  ----------\n" if DEBUG;
+    return $out;
+}
+
 1;

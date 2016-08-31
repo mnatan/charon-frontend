@@ -10,7 +10,7 @@ register:
 faq: 
     /faq
 cart:
-    /cart
+    /students/cart
 timeline:
     /timeline
 my_fields:

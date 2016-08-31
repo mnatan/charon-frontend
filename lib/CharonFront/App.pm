@@ -137,6 +137,13 @@ post '/register_on_field' => sub {
     redirect $return_url;
 };
 
+del '/students/cart/:cartid' => sub {
+    my $cart_url = '/students/' . session("userid") . '/cart';
+
+    my $register
+        = backend_delete( $cart_url, param('cartid') );
+
+};
 
 get '/students/timeline' => sub {
     my $timeline;

@@ -19,7 +19,7 @@
 				</div>
 
 				<div class="panel-body">
-					Data: [% registration.end_date %]<br>
+					Data zakończenia rejestracji: [% registration.end_date %]<br>
 					Limit miejsc: [% registration.limit %]
                     [% IF session.role == 'student' %]
                         <form action = "register_on_field" method = "POST">

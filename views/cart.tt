@@ -1,42 +1,52 @@
+<!DOCTYPE html>
 <section id="cart">
-       <div class="panel panel-primary">
-               <div class="panel-heading">
-                       <h3 class="panel-title">Koszyk</h3>
-               </div>
-               [% IF cart %]
-               <div class="panel-body cart">
-                       [% FOREACH item in cart %]
-
-                       <div class="panel panel-info">
-                               <div class="panel-heading">
-                                       <h3 class="panel-title">[% item.name %]</h3>
-                               </div>
-                               <div class="panel-body">
-                                    <table>
-                                    <tr>
-                                        <th width=15%>Ranking</th>
-                                        <th width=15%>Limit miejsc</th>
-                                        <th width=25%>Data zakończenia<br> rejestracji</th>
-                                        <th width=35%>Status</th>
-                                        <th width=10%>Anuluj<br> rejestrację</th>
-                                    </tr>
-                                    <tr>
-                                        <td>[% item.rank %]</td>
-                                        <td>[% item.limit %]</td>
-                                        <td>[% item.due %]</td>
-                                        <td>[% item.status %]</td>
-                                        <td><img src="/images/button-delete.png" alt="Usuń" style="width:30px;height:30px;"></td>
-                                    </tr>
-                                    </table>
-                               </div>
-                       </div>
-
-                       [% END %]
-               </div>
-               [% ELSE %]
-               <div class="panel-body">
-                    Obecnie nie jesteś zarejestrowany na żaden kierunek
-               </div>
-               [% END %]
+   <div class="panel panel-primary">
+       <div class="panel-heading">
+           <h3 class="panel-title">Koszyk</h3>
        </div>
+       [% IF cart %]
+       <div class="panel-body cart">
+           [% FOREACH item in cart %]
+
+           <div class="panel panel-info">
+               <div class="panel-heading">
+                   <h3 class="panel-title">[% item.name %]</h3>
+               </div>
+               <div class="panel-body">
+                    <table>
+                    <tr>
+                        <th width=15%>Ranking</th>
+                        <th width=15%>Limit miejsc</th>
+                        <th width=25%>Data zakończenia<br> rejestracji</th>
+                        <th width=35%>Status</th>
+                        <th width=10%>Anuluj<br> rejestrację</th>
+                    </tr>
+                    <tr>
+                        <td>[% item.rank %]</td>
+                        <td>[% item.limit %]</td>
+                        <td>[% item.end_date%]</td>
+                        <td>[% item.status %]</td>
+                        <td>
+                            <form action = "/students/cart/[% item.fieldid %]" method = "POST">
+                                <input type="hidden" name="return_url" value="[% request.path %]">
+                                <input type="hidden" name="field_id" value="[% info.0.field_id %]">
+                                <button type="submit" class="btn">
+                                    <img src="/images/button-delete.png" alt="Usuń" 
+                                    style="width:30px;height:30px;">
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </table>
+               </div>
+           </div>
+
+           [% END %]
+       </div>
+       [% ELSE %]
+       <div class="panel-body">
+            Obecnie nie jesteś zarejestrowany na żaden kierunek
+       </div>
+       [% END %]
+   </div>
 </section>
