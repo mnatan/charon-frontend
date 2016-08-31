@@ -22,19 +22,14 @@
                         <th width=10%>Anuluj<br> rejestrację</th>
                     </tr>
                     <tr>
-                        <td>[% item.rank %]</td>
+                        <td>[% item.ranking %]</td>
                         <td>[% item.limit %]</td>
-                        <td>[% item.end_date%]</td>
+                        <td>[% item.due %]</td>
                         <td>[% item.status %]</td>
                         <td>
-                            <form action = "/students/cart/[% item.fieldid %]" method = "POST">
-                                <input type="hidden" name="return_url" value="[% request.path %]">
-                                <input type="hidden" name="field_id" value="[% info.0.field_id %]">
-                                <button type="submit" class="btn">
+                        <a href="/delete_from_field/[% item.field_instanceid %]">
                                     <img src="/images/button-delete.png" alt="Usuń" 
-                                    style="width:30px;height:30px;">
-                                </button>
-                            </form>
+                                    style="width:30px;height:30px;"></a>
                         </td>
                     </tr>
                     </table>

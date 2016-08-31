@@ -13,7 +13,7 @@ use lib realpath("$FindBin::Bin/..");
 
 use YAML::XS qw/LoadFile/;
 
-use CharonFront::RESTUser qw(backend_post backend_get);
+use CharonFront::RESTUser qw(backend_post backend_get backend_delete);
 
 our $VERSION = '0.1';
 
@@ -91,8 +91,8 @@ post '/register' => sub {
     redirect "/";
 };
 
-get '/registration_info/:fieldid' => sub {
-    my $info = backend_get( $API{registration_info} . param('fieldid') );
+get '/registration_info/:id' => sub {
+    my $info = backend_get( $API{registration_info} . param('id') );
     my $timeline = backend_get( $API{timeline} );
     template 'registration_info', { form => $forms->{registration_info}, 
                                     info => $info, timeline => $timeline };
@@ -117,11 +117,8 @@ get '/faq' => sub {
 # ========= Applicant pages ========= #
 
 get '/students/cart' => sub {
-    my $cart;
-    if ( session "logged_in" ) {
-        my $cart_url = '/students/' . session("userid") . '/cart';
-        $cart = backend_get( $cart_url );
-    }
+    my $cart_url = '/students/' . session("userid") . '/cart';
+    my $cart = backend_get( $cart_url, { userid => session("userid"), token => session("token")} );
     template 'cart', { cart => $cart, };
 };
 
@@ -129,20 +126,32 @@ post '/register_on_field' => sub {
     my $return_url = param('return_url') // '/';
     my $cart_url= '/students/' . session("userid") . '/cart';
 
-    my $register
-        = backend_post( $cart_url, param('fieldid') );
+    my $register = backend_post( $cart_url, 
+        { fieldid => param('fieldid'), userid => session("userid"), token => session("token") } );
 
-    deferred success => "Zostałeś pomyślnie zapisany!";
+    if ( $register->{status} =~ /2\d\d/ ) {
+        deferred success => "Zostałeś pomyślnie zapisany!";
+    } else {
+        deferred error => "Niestety nie udało się zarejestrować.";
+    }
 
     redirect $return_url;
 };
 
-del '/students/cart/:cartid' => sub {
-    my $cart_url = '/students/' . session("userid") . '/cart';
+get '/delete_from_field/:cartid' => sub {
+    my $return_url = '/students/cart';
+    my $cart_url = '/students/' . session("userid") . '/cart/' . param('cartid') ;
 
-    my $register
-        = backend_delete( $cart_url, param('cartid') );
+    my $register = backend_delete( $cart_url, 
+        { userid => session("userid"), token => session("token") } );
 
+    if ( $register->{status} =~ /2\d\d/ ) {
+        deferred success => "Zostałeś wyrejestrowany z kierunku.";
+    } else {
+        deferred error => "Niestety nie udało się wyrejestrować.";
+    }
+
+    redirect $return_url;
 };
 
 get '/students/timeline' => sub {

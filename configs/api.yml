@@ -22,7 +22,7 @@ create_instance:
 directors_list:
     /directors/directors_list
 registration_info:
-    /registration_info
+    /fields/
 register_on_field:
     /register_on_field
 ...
