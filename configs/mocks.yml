@@ -73,12 +73,12 @@ get:/directors/directors_list:
 
 get:/registration_info:
   - fieldid: 1
-    field: field1
+    name: field1
     mode: mode1
-    info: info1
-    rules: rules1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>
+    description: info1
+    requirements: rules1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>mode1<br>
     dates: dates1
     limit: limit1
-    documents: documents32
+    required_documents: documents32
     payments: payments12
 ...

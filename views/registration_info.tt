@@ -23,17 +23,23 @@
                     <td>[% info.0.$item %]</td>
                 </tr>
             [% END %]
+                </td>
             </table>
-            <br>
 
-            <!-- Tab -->
-            <div class="tab">
-            [% FOREACH field IN form.0.tabs %]
-                [% item = field.item %]
-                <div class="tab-painel">
-                    <input class="tab-open" id="[% field.item %]" name="tab-wrap-1" type="radio" checked>
-                    <label class="tab-nav" for="[% field.item %]"><b>[% field.label %]</b></label>
-                    <div class="tab-inner">
+            <ul class="tabs">
+
+                <li class="tab-labels">
+                    [% FOREACH field IN form.0.tabs %]
+                        <label for="tab[% field.item %]" id="label[% field.item %]"><b>[% field.label %]</b></label>
+                    [% END %]
+                </li>
+
+                [% FOREACH field IN form.0.tabs %]
+                    [% item = field.item %]
+                <li>
+                    <input type="radio" name="tabs" id="tab[% field.item %]" 
+                        [% IF field.item == 'description' %] checked [% END %]>
+                    <div id="tab-content[% field.item %]" class="tab-content">
                         [% IF item != "dates" %]
                             [% info.0.$item %]
                         [% ELSE %]
@@ -44,10 +50,32 @@
                             [% END %]
                         [% END %]
                     </div>
-                </div>
-            [% END %]
-            </div>
-            <div style="clear:left">
+                </li>
+                [% END %]
+
+            </ul>  
+
+            <!--[> Tab <]-->
+            <!--<div class="tab">-->
+            <!--[% FOREACH field IN form.0.tabs %]-->
+                <!--% item = field.item %]-->
+                <!--<div class="tab-painel">-->
+                    <!--<input class="tab-open" id="[% field.item %]" name="tab-wrap-1" type="radio" checked>-->
+                    <!--<label class="tab-nav" for="[% field.item %]"><b>[% field.label %]</b></label>-->
+                    <!--<div class="tab-inner">-->
+                        <!--[% IF item != "dates" %]-->
+                            <!--[% info.0.$item %]-->
+                        <!--[% ELSE %]-->
+                            <!--[% IF timeline %]-->
+                                <!--[% INCLUDE timeline.tt %]-->
+                            <!--[% ELSE %]-->
+                                <!--Terminy nie zdefiniowano-->
+                            <!--[% END %]-->
+                        <!--[% END %]-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--[% END %]-->
+            <!--</div>-->
         </div>
     </div>
 </section>

@@ -157,21 +157,21 @@ instance:
 
 registration_info:
     - main:
-          - item: field
+          - item: name
             label: Kierunek
           - item: mode
             label: Tryb
       tabs:
-          - item: info
-            label: Opis<br>studiów
-          - item: rules
-            label: Zasady<br>kwalifikacji
+          - item: description
+            label: Opis studiów
+          - item: requirements
+            label: Zasady kwalifikacji
           - item: dates
             label: Terminy
           - item: limit
-            label: Limit<br>przyjęć
-          - item: documents
-            label: Wymagane<br>dokumenty
+            label: Limit przyjęć
+          - item: required_documents
+            label: Wymagane dokumenty
           - item: payments
             label: Opłaty
 ...

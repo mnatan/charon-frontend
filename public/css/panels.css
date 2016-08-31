@@ -515,60 +515,57 @@ fieldset[disabled] .btn-primary.focus {
 
 /* registration info page */
 
-@media (max-width:$screen-xs-max){}
-@media (min-width:$screen-sm){}
-@media (min-width:$screen-sm){}
-.tab {
-    position:relative
+.tabs {
+    width: 100%;
+    float: none;
+    list-style: none;
+    padding: 0;
+    margin: 25px auto;
 }
-.tab-painel {
-    display:inline-block;
-    min-height:150px;
-    overflow:hidden;
+
+.tabs li {
+    display: block;
 }
-.tab-painel
-.tab-open {
-    position:absolute;
-    display:table;
-    width:1px;
-    height:1px;
-    margin:-1px;
-    padding:0;
-    overflow:hidden;
-    clip:rect(0,0,0,0);
-    border:0
+
+.tab-labels:after {
+    content: '';
+    display: table;
+    clear: both;
 }
-.tab-nav {
-    border:#ddd solid 1px;
-    /*cursor:pointer;*/
-    font-size:0.8rem;
-    /*display:inline-block;*/
-    display:table-cell;
-    text-align:center;
-    padding:7px 20px;
-    height: 55px;
-    vertical-align: middle;
-    margin-right:10px
+
+.tabs .tab-labels label {
+    display: inline-block;
+    float: left;
+    padding: 10px 20px;
+    color: #111111;
+    font-weight: normal;
+    background: #DDDDDD;
+    cursor: pointer;
 }
-.tab-open,
-.tab-nav:hover,
-.tab-open:checked ~ .tab-nav {
-    background-color:#eaeaea
+
+.tabs .tab-labels label:hover {
+    background: #3498db;
 }
-.tab-inner {
-    opacity:0;
-    margin-top:20px;
-    position:absolute;
-    left:0;
-    transition:opacity .1s;
-    visibility:hidden;
-    width:100%;
+
+
+
+.tab-content {
+    display: none;
+    width: 100%;
+    padding: 15px;
+    /*border:1px solid #ccc;*/
+    background-color:#ffffff;
 }
-.tab-open:focus:checked ~ .tab-nav {
-    outline:thin
+
+.tabs input[type=radio] {
+    display:none;
 }
-.tab-open:checked ~ .tab-inner {
-    opacity:100;
-    visibility:visible;
-    transition:opacity .6 ease
+
+[id^=tab]:checked ~ div[id^=tab-content] {
+    display: block;
+}
+
+[id^=tab]:checked ~ [id^=label]  {
+    background: #08C;
+    color: white;
 }
