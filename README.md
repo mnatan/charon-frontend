@@ -3,7 +3,7 @@ Charon Frontend
 
 Użyte technologie:
 * NodeJS:
-    * Express - serwowanie plików statycznych
+    * Express - serwowanie plików statycznych i proxowanie zapytań do backendu
     * Protractor - automatyczcne testy E2E przy użyciu Selenium
 * AngularJS
 
