@@ -7,26 +7,47 @@
 // var mockModule = require("./mocks/mocked-backend.js");
 // var angularMocks = require("../../node_modules/angular-mocks/angular-mocks");
 
-var menu = require("./navigation.page.js");
+var katalog = require("./katalog.page.js");
+var kierunek = require("./kierunek.page.js");
+var EC = protractor.ExpectedConditions;
 
-describe("Widok katalogu", function () {
+describe("Katalog", function () {
+    describe("Widok katalogu", function () {
 
-    var EC = protractor.ExpectedConditions;
+        var EC = protractor.ExpectedConditions;
 
-    beforeEach(function () {
-        menu.get_main_page();
-        browser.get(browser.params.front_url + '#/katalog');
-        browser.wait(function () {
-            return browser.isElementPresent(element(by.id("main-logo")));
-        }, 1000);
-    });
+        beforeEach(function () {
+            katalog.navigation.get_main_page();
+        });
 
-    it("Wyświetla listę rejestracji", function () {
-        // zakłada że używamy mocków /registrations
-        browser.wait(EC.textToBePresentInElement(element(by.id("wrapper")), "Rejestracja"), 4000).then(function () {
-            var registrations = element.all(by.className("registration-card"));
-            expect(registrations.count()).toEqual(2);
+        it("Wyświetla listę rejestracji", function () {
+            // zakłada że używamy mocków /registrations
+            browser.wait(EC.textToBePresentInElement(katalog.wrapper, "Rejestracja"), 4000).then(function () {
+                expect(katalog.registrations.count()).toEqual(2);
+            });
+        });
+
+        it("Przekierowuje do podstrony kierunku po kliknięciu 'więcej'", function () {
+            // zakłada że używamy mocków /registrations
+            browser.wait(EC.visibilityOf(katalog.first_registration.more), 4000).then(function () {
+                katalog.first_registration.more.click().then(function () {
+                    expect(browser.getCurrentUrl()).toMatch("#/kierunek");
+                });
+            });
         });
     });
 
+    describe("Widok kierunku", function () {
+        beforeEach(function () {
+            kierunek.get_page();
+        });
+
+        it("Przekierowuje do katalogu kierunku po kliknięciu 'porwrót'", function () {
+            browser.wait(EC.visibilityOf(kierunek.back), 4000).then(function () {
+                kierunek.back.click().then(function () {
+                    expect(browser.getCurrentUrl()).toMatch("#/katalog");
+                });
+            });
+        });
+    });
 });
