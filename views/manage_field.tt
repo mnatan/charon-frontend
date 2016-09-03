@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<section id="manage_field">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+			<h3 class="panel-title">Zarządzanie kierunkiem</h3>
+        </div>
+        <div class="panel-body">
+            [% IF session.role == 'director' %]
+                <table width=100% align="center">
+                    <tr>
+                        <td width=25%><b>Kierunek</b></td>
+                        <td>[% field.name %]</td>
+                    </tr>
+                    <tr>
+                        <td width=25%><b>Status</b></td>
+                        <td>[% field.status%]</td>
+                    </tr>
+                </table>
+
+                [% IF field.status != 'nonactive' %]
+                    <b>Lista osób zapisanych na kierunek</b>
+
+                    <table class="fields">
+                        <thead>
+                            <tr>
+                                <th>Ranking</th>
+                                <th>Imie Nazwisko</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        [% FOREACH user in users %]
+                        <tr>
+                            <td>[% user.ranking %]</td>
+                            <td>[% user.name %]</td>
+                        </tr>
+                        [% END %]
+                        </tbody>
+                    </table>
+                [% END> %]
+            [% ELSE %]
+                Nie masz uprawnień do zarządzania tym kierunkiem.
+            [% END %]
+        </div>
+    </div>
+</section>

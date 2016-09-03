@@ -166,23 +166,17 @@ get '/students/timeline' => sub {
 
 # ========= Director pages ========= #
 
-get '/userlist' => sub {
-    my $users;
-    if ( session "logged_in" ) {
-        $users = backend_get( $API{users},
+get '/directors/fields/:fieldid' => sub {
+    my $users = backend_get( '/directors/' . session("userid") . '/fields/' . param("fieldid") . '/students',
             { userid => session("userid"), token => session("token") } );
-    }
-    template "userlist", { users => $users };
+    my $field = backend_get( '/fields' . param("fieldid") );
+    template "manage_field", { users => $users, field => $field };
 };
 
-# TODO: add director's id
-# must be available only if director logged in
 get '/directors/fields' => sub {
     my $fields;
-    if ( session "logged_in" ) {
-        my $fields_url = '/students/' . session("userid") . '/fields';
-        $fields = backend_get( $fields_url );
-    }
+    my $fields_url = '/directors/' . session("userid") . '/fields';
+    $fields = backend_get( $fields_url, { userid => session("userid"), token => session("token")} );
 
     template 'my_fields', { fields => $fields, };
 };

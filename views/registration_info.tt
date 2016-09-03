@@ -23,7 +23,6 @@
                     <td>[% info.0.$item %]</td>
                 </tr>
             [% END %]
-                </td>
             </table>
 
             <ul class="tabs">
