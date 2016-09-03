@@ -30,3 +30,5 @@ build
 
 # ctags file
 tags
+
+.idea
