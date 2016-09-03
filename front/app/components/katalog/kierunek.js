@@ -15,11 +15,11 @@ angular.module('charonFront.katalog')
                     });
                 }
             },
-            templateUrl: '/app/components/katalog/katalog.html',
+            templateUrl: '/app/components/katalog/kierunek.html',
             controller: function ($scope, kierunek_data) {
-                $scope.title = 'Katalog Rekrutacji';
+                $scope.title = 'Kierunek: ' + kierunek_data.name;
                 $scope.kierunek = kierunek_data;
+                console.log($scope.kierunek);
             }
-        })
-        ;
+        });
     }]);

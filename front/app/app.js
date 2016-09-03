@@ -17,10 +17,10 @@ angular.module('charonFront', [
     'charonFront.login',
     'charonFront.login.signup',
     'charonFront.login.signin'
-]).config(function ($stateProvider, $urlRouterProvider, $interpolateProvider, $locationProvider) {
-    
+]).config(function ($stateProvider, $urlRouterProvider) {
+
     $urlRouterProvider.otherwise("/katalog"); // Katalog to nasz home page
-    
+
 }).run(function ($rootScope, $window, $state, navigation) {
 
     $rootScope.$on('$stateChangeStart', function () {
