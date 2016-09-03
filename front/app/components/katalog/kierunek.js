@@ -4,7 +4,7 @@
 
 "use strict";
 
-angular.module('charonFront.katalog', [])
+angular.module('charonFront.katalog')
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider.state('kierunek', {
             url: '/kierunek/{id:[^/]*}',
