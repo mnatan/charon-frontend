@@ -2,6 +2,7 @@
   "name": "charon-frontend-angular",
   "version": "0.0.1",
   "devDependencies": {
+    "fs-extra": "*",
     "grunt-express-server": "*",
     "grunt-nodemon": "*",
     "express": "*",

@@ -21,8 +21,8 @@ exports.config = {
         }
     },
     params: {
-        front_url: 'http://mnatan.pl:8001/',
-        back_url: 'http://mnatan.pl:3000/'
+        front_url: 'http://localhost:8000/',
+        back_url: 'http://localhost:3000/'
     },
     noColor: false,
     plugins: [{
@@ -30,10 +30,13 @@ exports.config = {
         logLevels: ['severe']
     }],
     onPrepare: function () {
-        var fs = require('fs');
-        browser.params.build_dir = __dirname + '/build/';
+        var fs = require('fs-extra');
+        browser.params.build_dir = __dirname + '/../build/';
         if (!fs.existsSync(browser.params.build_dir)) {
             fs.mkdirSync(browser.params.build_dir);
+        }
+        if (fs.existsSync(browser.params.build_dir + 'html')) {
+            fs.removeSync(browser.params.build_dir + 'html')
         }
 
         var SpecReporter = require('jasmine-spec-reporter');
@@ -45,12 +48,12 @@ exports.config = {
             displayFailedSpec: true,      // display each failed spec
             displayPendingSpec: true,    // display each pending spec
             displaySpecDuration: true,   // display each spec duration
-            displaySuiteNumber: true,    // display each suite number (hierarchical)
+            displaySuiteNumber: true    // display each suite number (hierarchical)
         }));
 
         var HtmlReporter2 = require('protractor-angular-screenshot-reporter');
         jasmine.getEnv().addReporter(new HtmlReporter2({
-            baseDirectory: browser.params.build_dir + 'html',
+            baseDirectory: browser.params.build_dir + 'html'
         }).getJasmine2Reporter());
     }
 };
