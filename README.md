@@ -20,3 +20,10 @@ Uruchamianie testów:
 1. Wykonaj wszystkie kroki instalacji
 2. `$ ./node_modules/grunt/bin/grunt e2e-tests`
 
+
+Środowisko integracyjne
+
+* `mnatan.pl:3306` - integracyjny mariadb
+* `mnatan.pl:3000` - integracyjny server backendu
+
+Serwery znajdują się w kontenerach dockera. Jak dokończę automatyzować procedurę uruchamiania, napiszę jak ustawić takie kontenery lokalnie.
