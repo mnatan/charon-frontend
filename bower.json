@@ -1,6 +1,7 @@
 {
   "name": "charon-front",
   "dependencies": {
-    "angular-schema-form": "latest"
+    "angular-schema-form": "latest",
+    "angular-cookies": "latest"
   }
 }

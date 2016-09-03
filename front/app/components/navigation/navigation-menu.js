@@ -5,27 +5,22 @@
 "use strict";
 
 angular.module('charonFront.navigation', [])
-    .directive('navigationMenu', function () {
+    .directive('navigationMenu', function (LoginService, $state) {
         return {
             restrict: 'A',
             replace: true,
             templateUrl: '/app/components/navigation/navigation-menu.html',
             controller: function ($rootScope, $scope, navigation) {
+                $scope.logout = function () {
+                    LoginService.set_user(null);
+                    $state.go('katalog');
+                };
+                $scope.rootScope = $rootScope;
                 $scope.navigation = navigation;
                 $scope.debug = function () {
                     debugger;
                 }
             }
-            // link: function (scope, element, attrs) {
-            //     $(element).find(".dropdown").hover(
-            //         function () {
-            //             $(this).addClass('open')
-            //         },
-            //         function () {
-            //             $(this).removeClass('open')
-            //         }
-            //     );
-            // }
         };
     })
     .factory('navigation', function ($rootScope) {

@@ -32,72 +32,130 @@
             schema: {
                 'type': 'object',
                 'properties': {
+                    'login': {
+                        'title': 'Email',
+                        'type': 'string',
+                        'required': true
+                    },
                     'email': {
                         'title': 'Email',
                         'type': 'string',
-                        'required': true,
-                        "x-schema-form": {
-                            "type": "email",
-                            "placeholder": "Podaj swój adres email"
-                        }
+                        'required': true
                     },
                     'password': {
                         'title': 'Hasło',
                         'type': 'string',
-                        'required': true,
-                        "x-schema-form": {
-                            "type": "password",
-                            "placeholder": "Wpisz hasło, którego chcesz używać"
-                        }
+                        'required': true
                     },
                     'password_check': {
                         'title': 'Potwierdź hasło',
                         'type': 'string',
-                        'required': true,
-                        "x-schema-form": {
-                            "type": "password",
-                            "placeholder": "Wpisz raz jeszcze hasło podane powyżej"
-                        }
+                        'required': true
                     },
                     'name': {
                         'title': 'Imię',
-                        'type': 'string'
+                        'type': 'string',
+                        'required': true
                     },
-                    'lastname': {
+                    'surname': {
                         'title': 'Nazwisko',
-                        'type': 'string'
+                        'type': 'string',
+                        'required': true
                     },
-                    'gender': {
+                    'sex': {
                         'title': 'Płeć',
                         'type': 'string',
-                        'enum': [
-                            'Mężczyzna',
-                            'Kobieta'
-                        ]
+                        'required': true
+                    },
+                    'citizenship': {
+                        'title': 'Obywatelstwo',
+                        'type': 'string',
+                        'required': true
+                    },
+                    'pesel': {
+                        'title': 'PESEL',
+                        'type': 'number',
+                        'required': true
+                    },
+                    'phone_number': {
+                        'title': 'Numer telefonu',
+                        'type': 'number',
+                        'required': true
                     }
                 }
             },
             register: {
                 form: [
-                    "email",
-                    "password",
-                    "password_check",
-                    'name',
-                    'lastname',
-                    'gender',
                     {
-                        type: "submit",
-                        title: "Zarejestruj"
+                        "key": "name",
+                        "placeholder": "Podaj swoje imię"
+                    },
+                    {
+                        "key": "surname",
+                        "placeholder": "Podaj swoje nazwisko"
+                    },
+                    {
+                        "key": "email",
+                        "type": "email",
+                        "placeholder": "Podaj swój adres email"
+                    },
+                    {
+                        "key": "sex",
+                        "placeholder": "Wybierz",
+                        "type": "select",
+                        "titleMap": {
+                            "male": "Mężczyzna",
+                            "female": "Kobieta"
+                        }
+                    },
+                    "citizenship",
+                    "pesel",
+                    "phone_number",
+                    {
+                        "key": "password",
+                        "type": "password",
+                        "placeholder": "Wpisz hasło, którego chcesz używać"
+                    },
+                    {
+                        "key": "password_check",
+                        "type": "password",
+                        "placeholder": "Wpisz raz jeszcze hasło podane powyżej"
+                    },
+                    {
+                        "type": "submit",
+                        "title": "Zarejestruj"
                     }
                 ]
             },
             login: {
                 form: [
-                    "email",
-                    "password",
                     {
-                        type: "submit",
-                        title: "Zaloguj"
+                        "key": "login",
+                        "placeholder": "Adres email podany przy rejestracji",
+                        "type": "email"
+                    },
+                    {
+                        "key": "password",
+                        "placeholder": "Hasło podane przy rejestracji",
+                        "type": "password"
+                    },
+                    {
+                        type: "actions",
+                        items: [
+                            {type: 'submit', style: 'btn-success', title: 'Zaloguj'},
+                            {
+                                type: 'button',
+                                style: 'btn',
+                                title: 'Zapomniałem hasła',
+                                onClick: "$state.go('login.passwordReset')"
+                            },
+                            {
+                                type: 'button',
+                                style: 'btn',
+                                title: 'Rejestruj',
+                                onClick: "$state.go('login.signup')"
+                            }
+                        ]
                     }
                 ]
             }
@@ -129,7 +187,20 @@
                 phone: "123 123 123",
                 mail: "poczta@uj.com"
             }
-        ]
+        ],
+        users: {
+            natan: {
+                id: 1,
+                name: "Marcin",
+                surname: "Natanek",
+                email: "mnatan@openmailbox.org",
+                sex: "male",
+                citizenship: "Polskie",
+                pesel: "23408934",
+                login: "mnatan@openmailbox.org",
+                role: "student"
+            }
+        }
     }
 })
 (window);

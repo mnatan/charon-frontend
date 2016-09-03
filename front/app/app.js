@@ -5,7 +5,9 @@
 "use strict";
 
 angular.module('charonFront', [
+   
     'httpBackendMock',
+    'ngCookies',
     'ui.router',
     'ui.bootstrap',
     'schemaForm',
@@ -17,11 +19,12 @@ angular.module('charonFront', [
     'charonFront.login',
     'charonFront.login.signup',
     'charonFront.login.signin'
+
 ]).config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/katalog"); // Katalog to nasz home page
+    $urlRouterProvider.otherwise("/katalog"); // Login to nasz home page
 
-}).run(function ($rootScope, $window, $state, navigation) {
+}).run(function ($rootScope, $window, $state, navigation, LoginService, $cookieStore) {
 
     $rootScope.$on('$stateChangeStart', function () {
         navigation.loading();
@@ -41,5 +44,8 @@ angular.module('charonFront', [
     };
 
     $rootScope.$state = $state;
+    
+    var user = $cookieStore.get('user');
+    LoginService.set_user(user);
 
 });

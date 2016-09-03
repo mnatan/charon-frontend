@@ -4,11 +4,6 @@
 
 "use strict";
 
-// var mockModule = require("./mocks/mocked-backend.js");
-// var angularMocks = require("../../node_modules/angular-mocks/angular-mocks");
-
-"use strict";
-
 var EC = protractor.ExpectedConditions;
 
 var Katalog = function () {

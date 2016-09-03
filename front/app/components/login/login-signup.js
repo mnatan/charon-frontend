@@ -15,7 +15,7 @@ angular.module('charonFront.login.signup', [])
                     return FormService.getSchema();
                 }
             },
-            controller: function ($scope, form, formSchema) {
+            controller: function ($scope, form, formSchema, LoginService) {
                 $scope.title = 'Załóż nowe konto';
 
                 $scope.schema = formSchema;
@@ -24,8 +24,11 @@ angular.module('charonFront.login.signup', [])
                 $scope.onSubmit = function (form) {
                     $scope.$broadcast('schemaFormValidate');
                     if (form.$valid) {
-                        console.log(form);
-                        console.log($scope.model);
+                        if ($scope.model.password != $scope.model.password_check) {
+                            $scope.$broadcast('schemaForm.error.password_check', 'passwordsDontMatch', 'Wpisane nie zgadzają się');
+                        } else {
+                            LoginService.register($scope.model);
+                        }
                     }
                 }
             }

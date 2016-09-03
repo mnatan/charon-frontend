@@ -28,7 +28,7 @@ describe("Publiczne Menu", function () {
         browser.wait(menu.isCssActive(menu.katalog_btn), 1000);
     });
 
-    it("Guzik Katalog odsyła na główną", function () {
+    it("Guzik Login odsyła na główną", function () {
         menu.katalog_btn.click();
         expect(browser.getCurrentUrl()).toMatch("#/katalog");
         menu.takeScreenshot("home");

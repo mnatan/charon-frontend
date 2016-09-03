@@ -8,7 +8,7 @@ angular.module('charonFront.katalog', [])
             url: '/katalog',
             templateUrl: '/app/components/katalog/katalog.html',
             controller: function ($scope, KatalogService) {
-                $scope.title = 'Katalog Rekrutacji';
+                $scope.title = 'Login Rekrutacji';
                 KatalogService.getRegistrations().then(function (data) {
                     $scope.activeRegistrations = data;
                 });

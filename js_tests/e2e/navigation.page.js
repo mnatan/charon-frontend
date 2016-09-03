@@ -26,6 +26,8 @@ var NavigationMenu = function () {
     this.login_btn = element(by.id('signin-btn'));
     this.register_btn = element(by.id('signup-btn'));
     this.loading = element(by.id('loading-image'));
+    
+    this.logout_btn = element(by.id('logout-btn'));
 
     this.takeScreenshot = function (name) {
         var dir = browser.params.build_dir + 'screenshots/';

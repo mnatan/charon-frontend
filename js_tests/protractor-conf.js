@@ -2,6 +2,7 @@
 exports.config = {
     specs: [
         'e2e/**/*.js'
+        // 'e2e/**/login.spec.js'
     ],
     seleniumAddress: 'http://localhost:6969/wd/hub',
     capabilities: {

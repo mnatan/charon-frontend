@@ -8,10 +8,10 @@
 // var angularMocks = require("../../node_modules/angular-mocks/angular-mocks");
 
 var katalog = require("./katalog.page.js");
-var kierunek = require("./kierunek.page.js");
+var kierunek = require("./katalog.kierunek.page.js");
 var EC = protractor.ExpectedConditions;
 
-describe("Katalog", function () {
+describe("Login", function () {
     describe("Widok katalogu", function () {
 
         var EC = protractor.ExpectedConditions;
