@@ -9,7 +9,7 @@ angular.module('charonFront.navigation', [])
         return {
             restrict: 'A',
             replace: true,
-            templateUrl: '/front/static/app/components/navigation/navigation-menu.html',
+            templateUrl: '/app/components/navigation/navigation-menu.html',
             controller: function ($rootScope, $scope, navigation) {
                 $scope.navigation = navigation;
                 $scope.debug = function () {

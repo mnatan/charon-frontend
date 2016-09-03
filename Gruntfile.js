@@ -21,17 +21,22 @@ module.exports = function (grunt) {
                 singleRun: false
             }
         },
-        // connect: {
-        //     options: {
-        //         port: 4444,
-        //         hostname: 'localhost'
-        //     },
-        //     test: {
-        //         options: {
-        //             base: ['front/static/app']
-        //         }
-        //     }
-        // },
+        express: {
+            options: {
+                // Override defaults here
+            },
+            prod: {
+                options: {
+                    background: true,
+                    script: 'server.js'
+                }
+            }
+        },
+        nodemon: {
+            dev: {
+                script: 'server.js'
+            }
+        },
         protractor: {
             options: {
                 configFile: "js_tests/protractor-conf.js" // Default config file 
@@ -49,6 +54,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-protractor-runner');
+    grunt.loadNpmTasks('grunt-express-server');
+    grunt.loadNpmTasks('grunt-nodemon');
+
+    grunt.registerTask('dev-server', [
+        'nodemon:dev'
+    ]);
 
     grunt.registerTask('e2e-tests', [
         'protractor:e2e'

@@ -6,7 +6,7 @@ angular.module('charonFront.faq', [])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider.state('faq', {
             url: '/faq',
-            templateUrl: '/front/static/app/components/faq/faq.html',
+            templateUrl: '/app/components/faq/faq.html',
             resolve: {
                 faq: function (FaqService) {
                     return FaqService.getFaq();

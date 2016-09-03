@@ -15,7 +15,7 @@ angular.module('charonFront.katalog', [])
                     });
                 }
             },
-            templateUrl: '/front/static/app/components/katalog/katalog.html',
+            templateUrl: '/app/components/katalog/katalog.html',
             controller: function ($scope, kierunek_data) {
                 $scope.title = 'Katalog Rekrutacji';
                 $scope.kierunek = kierunek_data;

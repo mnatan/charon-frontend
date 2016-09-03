@@ -6,7 +6,7 @@ angular.module('charonFront.kontakt', [])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider.state('kontakt', {
             url: '/kontakt',
-            templateUrl: '/front/static/app/components/kontakt/kontakt.html',
+            templateUrl: '/app/components/kontakt/kontakt.html',
             resolve: {
                 contacts: function (KontaktService) {
                     return KontaktService.getKontakt();

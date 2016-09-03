@@ -46,16 +46,11 @@ exports.config = {
             displayPendingSpec: true,    // display each pending spec
             displaySpecDuration: true,   // display each spec duration
             displaySuiteNumber: true,    // display each suite number (hierarchical)
-            colors: {
-                success: 'green',
-                failure: 'red',
-                pending: 'yellow'
-            },
-            prefixes: {
-                success: '✓ ',
-                failure: '✗ ',
-                pending: '* '
-            }
         }));
+
+        var HtmlReporter2 = require('protractor-angular-screenshot-reporter');
+        jasmine.getEnv().addReporter(new HtmlReporter2({
+            baseDirectory: browser.params.build_dir + 'html',
+        }).getJasmine2Reporter());
     }
 };

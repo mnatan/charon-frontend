@@ -6,7 +6,7 @@ angular.module('charonFront.login.signin', [])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider.state('login.signin', {
             url: '',
-            templateUrl: '/front/static/app/components/login/login-signin.html',
+            templateUrl: '/app/components/login/login-signin.html',
             resolve: {
                 form: function (FormService) {
                     return FormService.getForm("login");
