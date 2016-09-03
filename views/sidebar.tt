@@ -49,12 +49,14 @@
 					<div class="panel-body">
 						<div class="list-group">
 							<a href="/" class="list-group-item">Katalog studiów</a>
+                            [% IF session.role == 'student' %]
+                                <a href="/students/cart" class="list-group-item">Koszyk</a>
+                                <a href="/students/timeline" class="list-group-item">Terminy</a>
+                            [% ELSIF session.role == 'director' %]
+                                <a href="/directors/fields" class="list-group-item">Moje kierunki</a>
+                            [% END %]
 							<a href="[% faq_url %]" class="list-group-item">FAQ</a>
 							<a href="[% contact_url %]" class="list-group-item">Kontakt</a>
-                            [% IF session.logged_in %]
-                                <a href="/userlist" class="list-group-item">
-                                    Lista użytkowników</a>
-                            [% END %]
 						</div>
 					</div>
 				</div>

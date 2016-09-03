@@ -1,16 +1,16 @@
 ---
 registrations: 
-    /registrations
+    /fields
 authorize: 
-    /authorize
+    /auth
 users: 
     /users
-register_user: 
-    /users/register
+register: 
+    /register
 faq: 
     /faq
 cart:
-    /cart
+    /students/cart
 timeline:
     /timeline
 my_fields:
@@ -21,4 +21,8 @@ create_instance:
     /directors/create_instance/
 directors_list:
     /directors/directors_list
+registration_info:
+    /fields/
+register_on_field:
+    /register_on_field
 ...

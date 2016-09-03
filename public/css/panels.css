@@ -509,6 +509,67 @@ fieldset[disabled] .btn-primary.focus {
     width:30px;height:30px;
 }
 
+.img-link:hover {
+    background:#FFFFFF;    
+}
+
 .fields, .fields th, .fields td {
   border: 1px solid #ddd;
+}
+
+/* registration info page */
+
+.tabs {
+    width: 100%;
+    float: none;
+    list-style: none;
+    padding: 0;
+    margin: 25px auto;
+}
+
+.tabs li {
+    display: block;
+}
+
+.tab-labels:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.tabs .tab-labels label {
+    display: inline-block;
+    float: left;
+    padding: 10px 20px;
+    color: #111111;
+    font-weight: normal;
+    background: #DDDDDD;
+    cursor: pointer;
+}
+
+.tabs .tab-labels label:hover {
+    background: #3498db;
+}
+
+
+
+.tab-content {
+    display: none;
+    width: 100%;
+    padding: 15px;
+    /*border:1px solid #ccc;*/
+    background-color:#ffffff;
+}
+
+.tabs input[type=radio] {
+    display:none;
+}
+
+[id^=tab]:checked ~ div[id^=tab-content] {
+    display: block;
+}
+
+[id^=tab]:checked ~ [id^=label]  {
+    background: #08C;
+    color: white;
 }

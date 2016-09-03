@@ -19,9 +19,11 @@
                             <td>[% item.name %]</td>
                             <td>[% item.status %]</td>
                             <!--TODO dodać link-->
-                            <td><a href="http://ddg.gg">
-                                <img src="/images/button-edit.png" alt="Edytuj" class="img-control">
-                            </a></td>
+                            <td>
+                                <a href="/directors/fields/[% item.fieldid %]" class="img-link">
+                                    <img src="/images/button-edit.png" alt="Edytuj" class="img-control">
+                                </a>
+                            </td>
                         </tr>
                    [% END %]
                     </table>

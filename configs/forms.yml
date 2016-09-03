@@ -24,11 +24,11 @@ registration:
             text: Mężczyzna
             additional:
                 - checked
-                - value="m"
+                - value="male"
           - sex: female
             text: Kobieta
             additional:
-                - value="f"
+                - value="female"
     
     
     - name: citizenship
@@ -154,4 +154,24 @@ instance:
       additional:
           - min="0"  
           - required
+
+registration_info:
+    - main:
+          - item: name
+            label: Kierunek
+          - item: mode
+            label: Tryb
+      tabs:
+          - item: description
+            label: Opis studiów
+          - item: requirements
+            label: Zasady kwalifikacji
+          - item: dates
+            label: Terminy
+          - item: limit
+            label: Limit przyjęć
+          - item: required_documents
+            label: Wymagane dokumenty
+          - item: payments
+            label: Opłaty
 ...

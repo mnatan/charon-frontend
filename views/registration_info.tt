@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<section id="registration_info">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Opis kierunku</h3>
+        </div>
+        <div class="panel-body">
+
+            [% IF session.role == 'student' %]
+                <form action = "register_on_field" method = "POST">
+                    <input type="hidden" name="return_url" value="[% request.path %]">
+                    <input type="hidden" name="field_id" value="[% info.0.field_id %]">
+                    <button type="submit" class="btn btn-primary">Zarejestruj mnie</button>
+                </form>
+            [% END %]
+            <br>
+
+            <table width=100% align="center">
+            [% FOREACH field IN form.0.main %]
+                [% item = field.item %]
+                <tr>
+                    <td width=25%><b>[% field.label %]</b></td>
+                    <td>[% info.0.$item %]</td>
+                </tr>
+            [% END %]
+            </table>
+
+            <ul class="tabs">
+
+                <li class="tab-labels">
+                    [% FOREACH field IN form.0.tabs %]
+                        <label for="tab[% field.item %]" id="label[% field.item %]"><b>[% field.label %]</b></label>
+                    [% END %]
+                </li>
+
+                [% FOREACH field IN form.0.tabs %]
+                    [% item = field.item %]
+                <li>
+                    <input type="radio" name="tabs" id="tab[% field.item %]" 
+                        [% IF field.item == 'description' %] checked [% END %]>
+                    <div id="tab-content[% field.item %]" class="tab-content">
+                        [% IF item != "dates" %]
+                            [% info.0.$item %]
+                        [% ELSE %]
+                            [% IF timeline %]
+                                [% INCLUDE timeline.tt %]
+                            [% ELSE %]
+                                Terminy nie zdefiniowano
+                            [% END %]
+                        [% END %]
+                    </div>
+                </li>
+                [% END %]
+
+            </ul>  
+
+            <!--[> Tab <]-->
+            <!--<div class="tab">-->
+            <!--[% FOREACH field IN form.0.tabs %]-->
+                <!--% item = field.item %]-->
+                <!--<div class="tab-painel">-->
+                    <!--<input class="tab-open" id="[% field.item %]" name="tab-wrap-1" type="radio" checked>-->
+                    <!--<label class="tab-nav" for="[% field.item %]"><b>[% field.label %]</b></label>-->
+                    <!--<div class="tab-inner">-->
+                        <!--[% IF item != "dates" %]-->
+                            <!--[% info.0.$item %]-->
+                        <!--[% ELSE %]-->
+                            <!--[% IF timeline %]-->
+                                <!--[% INCLUDE timeline.tt %]-->
+                            <!--[% ELSE %]-->
+                                <!--Terminy nie zdefiniowano-->
+                            <!--[% END %]-->
+                        <!--[% END %]-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--[% END %]-->
+            <!--</div>-->
+        </div>
+    </div>
+</section>

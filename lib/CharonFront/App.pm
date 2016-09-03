@@ -13,7 +13,7 @@ use lib realpath("$FindBin::Bin/..");
 
 use YAML::XS qw/LoadFile/;
 
-use CharonFront::RESTUser qw(backend_post backend_get);
+use CharonFront::RESTUser qw(backend_post backend_get backend_delete);
 
 our $VERSION = '0.1';
 
@@ -41,12 +41,12 @@ post '/login' => sub {
         redirect $return_url;
     }
 
-    my $user_data = backend_get("$API{users}/$login");
+    #my $user_data = backend_get("$API{users}/$login");
 
     session userid    => $backend_auth->{userid};
     session token     => $backend_auth->{token};
-    session role      => $user_data->{role};
-    session name      => $user_data->{name} . " " . $user_data->{surname};
+    session role      => $backend_auth->{role};
+    #session name      => $user_data->{name} . " " . $user_data->{surname};
     session logged_in => 1;
 
     deferred success => "Użytkownik "
@@ -58,7 +58,7 @@ post '/login' => sub {
 get '/logout' => sub {
     my $return_url = param('return_url') // '/';
     app->destroy_session;
-    deferred info => "Pomyślnie wylogowano użytkownika: " . session 'user';
+    deferred info => "Pomyślnie wylogowano.";
     redirect $return_url;
 };
 
@@ -76,21 +76,26 @@ post '/register' => sub {
     }
 
     my $backend_registration
-        = backend_post( $API{register_user}, $submitted );
+        = backend_post( $API{register}, $submitted );
 
-    if ( $backend_registration->{status} eq 500 ) {
+    if ( $backend_registration->{status} =~ /2\d\d/ ) {
+        deferred success => "Użytkownik "
+            . param("name") . " "
+            . param("surname")
+            . " został pomyślnie zarejestrowany.";
+    } else {
         deferred error => $backend_registration->{exception};
         redirect '/register';
     }
 
-    deferred success => "Użytkownik "
-        . param("name") . " "
-        . param("surname")
-        . " został pomyślnie zarejestrowany.";
-
-    #TODO login user?
-
     redirect "/";
+};
+
+get '/registration_info/:id' => sub {
+    my $info = backend_get( $API{registration_info} . param('id') );
+    my $timeline = backend_get( $API{timeline} );
+    template 'registration_info', { form => $forms->{registration_info}, 
+                                    info => $info, timeline => $timeline };
 };
 
 get '/contact' => sub {
@@ -111,53 +116,69 @@ get '/faq' => sub {
 
 # ========= Applicant pages ========= #
 
-get '/cart' => sub {
-    my $cart = backend_get( $API{cart} );
-
-    # TODO: add cart to backend
-    #my $cart;
-    #if ( session "logged_in" ) {
-        #$cart = backend_get( $API{cart},
-            #{ userid => session("userid"), token => session("token") } );
-    #}
+get '/students/cart' => sub {
+    my $cart_url = '/students/' . session("userid") . '/cart';
+    my $cart = backend_get( $cart_url, { userid => session("userid"), token => session("token")} );
     template 'cart', { cart => $cart, };
 };
 
-get '/timeline' => sub {
-    my $timeline = backend_get( $API{timeline} );
-    # TODO: add timeline to backend
-    #my $timeline;
-    #if ( session "logged_in" ) {
-        #$timeline = backend_get( $API{timeline},
-            #{ userid => session("userid"), token => session("token") } );
-    #}
-    template 'timeline', { timeline => $timeline, };
+post '/register_on_field' => sub {
+    my $return_url = param('return_url') // '/';
+    my $cart_url= '/students/' . session("userid") . '/cart';
+
+    my $register = backend_post( $cart_url, 
+        { fieldid => param('fieldid'), userid => session("userid"), token => session("token") } );
+
+    if ( $register->{status} =~ /2\d\d/ ) {
+        deferred success => "Zostałeś pomyślnie zapisany!";
+    } else {
+        deferred error => "Niestety nie udało się zarejestrować.";
+    }
+
+    redirect $return_url;
 };
 
+get '/delete_from_field/:cartid' => sub {
+    my $return_url = '/students/cart';
+    my $cart_url = '/students/' . session("userid") . '/cart/' . param('cartid') ;
+
+    my $register = backend_delete( $cart_url, 
+        { userid => session("userid"), token => session("token") } );
+
+    if ( $register->{status} =~ /2\d\d/ ) {
+        deferred success => "Zostałeś wyrejestrowany z kierunku.";
+    } else {
+        deferred error => "Niestety nie udało się wyrejestrować.";
+    }
+
+    redirect $return_url;
+};
+
+get '/students/timeline' => sub {
+    my $timeline;
+    if ( session "logged_in" ) {
+        my $timeline_url = '/students/' . session("userid") . '/timeline';
+        $timeline = backend_get( $timeline_url );
+    }
+
+    template 'deadlines', { timeline => $timeline, };
+};
 
 # ========= Director pages ========= #
 
-get '/userlist' => sub {
-    my $users;
-    if ( session "logged_in" ) {
-        $users = backend_get( $API{users},
+get '/directors/fields/:fieldid' => sub {
+    my $users = backend_get( '/directors/' . session("userid") . '/fields/' . param("fieldid") . '/students',
             { userid => session("userid"), token => session("token") } );
-    }
-    template "userlist", { users => $users };
+    my $field = backend_get( '/fields/' . param("fieldid") );
+    template "manage_field", { users => $users, instance => $field };
 };
 
-# TODO: add director's id
-# must be available only if director logged in
-get '/directors/my_fields' => sub {
-    my $fields = backend_get( $API{my_fields} );
+get '/directors/fields' => sub {
+    my $fields;
+    my $fields_url = '/directors/' . session("userid") . '/fields';
+    $fields = backend_get( $fields_url, { userid => session("userid"), token => session("token")} );
 
-    # TODO: add my_fields to backend
-    #my $cart;
-    #if ( session "logged_in" ) {
-        #$cart = backend_get( $API{cart},
-            #{ userid => session("userid"), token => session("token") } );
-    #}
-    template 'my_fields', { fields => $fields };
+    template 'my_fields', { fields => $fields, };
 };
 
 get '/directors/create_field' => sub {
@@ -167,17 +188,9 @@ get '/directors/create_field' => sub {
 
 post '/directors/create_field' => sub {
     my $return_url = param('return_url') // '/';
+    my $field_url = '/directors/' . session("userid") . '/fields';
     my $create_field
-        = backend_post( $API{create_field} . session("userid"), params);
-
-    #if ( $create_field->{status} eq 500 ) {
-        #deferred error => $create_field->{exception};
-        #redirect '/field';
-    #}
-
-    #deferred success => "Kierunek"
-        #. param("field_name") . " "
-        #. " został stworzony.";
+        = backend_post( $field_url, params);
 
     redirect $return_url;
 };
