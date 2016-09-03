@@ -509,6 +509,10 @@ fieldset[disabled] .btn-primary.focus {
     width:30px;height:30px;
 }
 
+.img-link:hover {
+    background:#FFFFFF;    
+}
+
 .fields, .fields th, .fields td {
   border: 1px solid #ddd;
 }

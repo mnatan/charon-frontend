@@ -13,9 +13,9 @@
 					<h3 class="panel-title" style="display:inline-block">
                         <a href="/registration_info/[% registration.fieldid %]">[% registration.name %]</a></h3>
                         
-                        <a href="/registration_info/[% registration.fieldid %]">
+                        <a href="/registration_info/[% registration.fieldid %]" class="img-link">
                             <img src="/images/button-info.png" align="right"
-                            alt="Informacja" style="width:30px;height:30px;margin-right:10px;"></a>
+                            alt="Informacja" class="img-control"></a>
 				</div>
 
 				<div class="panel-body">

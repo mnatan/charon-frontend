@@ -169,8 +169,8 @@ get '/students/timeline' => sub {
 get '/directors/fields/:fieldid' => sub {
     my $users = backend_get( '/directors/' . session("userid") . '/fields/' . param("fieldid") . '/students',
             { userid => session("userid"), token => session("token") } );
-    my $field = backend_get( '/fields' . param("fieldid") );
-    template "manage_field", { users => $users, field => $field };
+    my $field = backend_get( '/fields/' . param("fieldid") );
+    template "manage_field", { users => $users, instance => $field };
 };
 
 get '/directors/fields' => sub {

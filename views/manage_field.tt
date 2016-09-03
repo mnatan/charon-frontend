@@ -8,35 +8,48 @@
             [% IF session.role == 'director' %]
                 <table width=100% align="center">
                     <tr>
-                        <td width=25%><b>Kierunek</b></td>
-                        <td>[% field.name %]</td>
+                        <td width=25%>Kierunek</td>
+                        <td><b>[% instance.0.name %]</b></td>
                     </tr>
                     <tr>
-                        <td width=25%><b>Status</b></td>
-                        <td>[% field.status%]</td>
+                        <td width=25%>Tryb studiów</td>
+                        <td><b>[% instance.0.mode %]</b></td>
+                    </tr>
+                    <tr>
+                        <td width=25%>Bierzący rocznik</td>
+                        <td><b>[% instance.0.year %]</b></td>
+                    </tr>
+                    <tr>
+                        <td width=25%>Status</td>
+                        <td><b>[% instance.0.status %]</b></td>
                     </tr>
                 </table>
 
-                [% IF field.status != 'nonactive' %]
-                    <b>Lista osób zapisanych na kierunek</b>
+                <br>
+                <b>Lista osób zapisanych na kierunek</b>
+                <br>
+                <br>
 
-                    <table class="fields">
-                        <thead>
-                            <tr>
-                                <th>Ranking</th>
-                                <th>Imie Nazwisko</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        [% FOREACH user in users %]
+                <table class="fields" width=100%>
+                    <thead>
                         <tr>
-                            <td>[% user.ranking %]</td>
-                            <td>[% user.name %]</td>
+                            <th width=15%>Ranking</th>
+                            <th width=85%>Imie Nazwisko</th>
                         </tr>
-                        [% END %]
-                        </tbody>
-                    </table>
-                [% END> %]
+                    </thead>
+                    <tbody>
+                    [% best = 0 %]
+                    [% FOREACH user in users %]
+                    <tr [% IF $best < instance.0.limit %] bgcolor="#CCFFCC" 
+                        [% ELSE %] bgcolor="#FFD9B2"
+                        [% END %]>
+                        <td align="center">[% user.ranking %]</td>
+                        <td style="padding:10px">[% user.name %]</td>
+                    </tr>
+                    [% $best = $best+1 %]
+                    [% END %]
+                    </tbody>
+                </table>
             [% ELSE %]
                 Nie masz uprawnień do zarządzania tym kierunkiem.
             [% END %]
