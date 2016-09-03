@@ -24,13 +24,13 @@ describe("Publiczne Menu", function () {
 
     it("Charon Logo odsyła na główną", function () {
         menu.site_logo.click();
-        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/katalog");
+        expect(browser.getCurrentUrl()).toMatch("#/katalog");
         browser.wait(menu.isCssActive(menu.katalog_btn), 1000);
     });
 
     it("Guzik Katalog odsyła na główną", function () {
         menu.katalog_btn.click();
-        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/katalog");
+        expect(browser.getCurrentUrl()).toMatch("#/katalog");
         menu.takeScreenshot("home");
         browser.wait(menu.isCssActive(menu.katalog_btn), 1000);
     });
@@ -39,13 +39,13 @@ describe("Publiczne Menu", function () {
         menu.konto_btn.click();
         menu.wait_for_loaidng();
         browser.wait(menu.isCssActive(menu.konto_btn), 1000);
-        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/login");
+        expect(browser.getCurrentUrl()).toMatch("#/login");
     });
 
     it("Guzik Kontakt odsyła do /kontakt", function () {
         menu.kontakt_btn.click();
         menu.wait_for_loaidng();
-        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/kontakt");
+        expect(browser.getCurrentUrl()).toMatch("#/kontakt");
         menu.takeScreenshot("kontakt");
         browser.wait(menu.isCssActive(menu.kontakt_btn), 1000);
     });
@@ -53,7 +53,7 @@ describe("Publiczne Menu", function () {
     it("Guzik FAQ odsyła do /faq", function () {
         menu.faq_btn.click();
         menu.wait_for_loaidng();
-        expect(browser.getCurrentUrl()).toEqual(browser.params.front_url + "#/faq");
+        expect(browser.getCurrentUrl()).toMatch("#/faq");
         menu.takeScreenshot("faq");
         browser.wait(menu.isCssActive(menu.faq_btn), 1000);
     });
