@@ -6,6 +6,7 @@
     "grunt-express-server": "*",
     "grunt-nodemon": "*",
     "express": "*",
+    "express-http-proxy": "*",
     "morgan": "*",
     "bower": "*",
     "grunt": "*",

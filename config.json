@@ -1,0 +1,8 @@
+{
+  "dev": {
+    "backend_url": "mnatan.pl:3000"
+  },
+  "prod": {
+    "backend_url": "mnatan.pl:3000"
+  }
+}

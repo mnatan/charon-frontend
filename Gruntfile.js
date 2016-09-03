@@ -28,7 +28,8 @@ module.exports = function (grunt) {
             prod: {
                 options: {
                     background: true,
-                    script: 'server.js'
+                    script: 'server.js',
+                    args: ['prod']
                 }
             }
         },
@@ -36,7 +37,8 @@ module.exports = function (grunt) {
             dev: {
                 script: 'server.js',
                 options: {
-                    ignore: ["build/*", "js_tests/*"]
+                    ignore: ["build/*", "js_tests/*"],
+                    args: ['dev']
                 }
             }
         },
