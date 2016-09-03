@@ -84,7 +84,7 @@ post '/register' => sub {
             . param("surname")
             . " został pomyślnie zarejestrowany.";
     } else {
-        deferred error => $backend_registration->{exception};
+        deferred error => "Podczas rejestracji wystąpił błąd. Spróbuj jeszcze raz.";
         redirect '/register';
     }
 
@@ -111,6 +111,30 @@ get '/faq' => sub {
 	}
 	print Dumper($faq);
     template 'faq', { questions => $faq, };
+};
+
+get '/change_password' => sub {
+    template 'change_password';
+};
+
+post '/change_password' => sub {
+    my $return_url = param('return_url') // '/';
+
+    if ( param("password") ne param("password_c") ) {
+        deferred error => "Nowe hasła się nie zgadzają!";
+        redirect $return_url;
+    }
+
+    my $backend_registration
+        = backend_post( $API{change_password},  { password => param("password"), userid => session("userid"), token => session("token")} );
+
+    if ( $backend_registration->{status} =~ /2\d\d/ ) {
+        deferred success => "Hasło pomyślnie zmieniono.";
+    } else {
+        deferred error => "Podczas zmiany hasła wystąpił błąd. Spróbuj jeszcze raz.";
+    }
+
+    redirect $return_url;
 };
 
 
@@ -223,12 +247,13 @@ post '/directors/create_instance' => sub {
 hook before_template => sub {
     my $tokens = shift;
 
-    $tokens->{contact_url}    = uri_for('/contact');
-    $tokens->{faq_url}        = uri_for('/faq');
-    $tokens->{register_url}   = uri_for('/register');
-    $tokens->{logout_url}     = uri_for('/logout');
-    $tokens->{login_url}      = uri_for('/login');
-    $tokens->{validator_path} = uri_for('/');
+    $tokens->{contact_url}              = uri_for('/contact');
+    $tokens->{faq_url}                  = uri_for('/faq');
+    $tokens->{change_password_url}      = uri_for('/change_password');
+    $tokens->{register_url}             = uri_for('/register');
+    $tokens->{logout_url}               = uri_for('/logout');
+    $tokens->{login_url}                = uri_for('/login');
+    $tokens->{validator_path}           = uri_for('/');
 };
 
 true;

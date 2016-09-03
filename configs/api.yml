@@ -25,4 +25,6 @@ registration_info:
     /fields/
 register_on_field:
     /register_on_field
+change_password:
+    /change_password
 ...
