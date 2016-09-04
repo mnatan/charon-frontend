@@ -1,0 +1,75 @@
+<nav class="navbar navbar-default" id="main-navbar">
+    <div class="container-fluid" id="main-nav-wrapper">
+        <!-- left -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" id="main-logo">
+                <img src="/images/charon-logo.png" alt="Charon Logo">Charon
+            </a>
+        </div>
+        <div class="nav navbar-nav">
+            <img id="loading-image" ng-show="navigation.isLoading()" src="/images/hourglass.svg" />
+        </div>
+        <ul class="nav navbar-nav">
+            <li ng-class="{active: $state.includes('katalog')}">
+                <a ui-sref="katalog" id="katalog-btn">Katalog</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li ng-class="{active: $state.includes('faq')}">
+                <a ui-sref="faq" id="faq-btn">FAQ</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li ng-class="{active: $state.includes('kontakt')}">
+                <a ui-sref="kontakt" id="kontakt-btn">Kontakt</a>
+            </li>
+        </ul>
+
+        <!-- right -->
+        <div class="navbar-header navbar-right">
+            <a class="navbar-brand" href="http://uj.edu.pl" id="uj_logo">
+                <img src="/images/uj-logo.png" alt="Charon Logo">UJ
+            </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right" ng-if="!rootScope.user.logged_in">
+            <li ng-class="{active: $state.includes('login.signin')}" class="dropdown">
+                <a ui-sref="login.signin" id="konto-btn">Konto</a>
+                <ul class="dropdown-menu">
+                    <li ng-class="{active: $state.includes('login.signin')}">
+                        <a ui-sref="login.signin" id="signin-btn">Logowanie</a>
+                    </li>
+                    <li ng-class="{active: $state.includes('login.signup')}">
+                        <a ui-sref="login.signup" id="signup-btn">Rejestracja</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" ng-if="rootScope.user.logged_in">
+            <li ng-class="{active: $state.includes('login.signin')}" class="dropdown">
+                <a id="konto-btn">{{ rootScope.user.fullname }}</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a id="logout-btn"
+                           ng-click="logout()"
+                           style="cursor:pointer;">Wyloguj</a>
+                    </li>
+                    <li>
+                        <a class="todo">Profil</a>
+                    </li>
+                    <li>
+                        <a class="todo">Koszyk</a>
+                    </li>
+                    <li>
+                        <a class="todo">Nadchodzące Terminy</a>
+                    </li>
+                    <li>
+                        <a class="todo">Historia</a>
+                    </li>
+                    <li>
+                        <a class="todo">Ranking</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

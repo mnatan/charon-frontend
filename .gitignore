@@ -10,3 +10,25 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+__pycache__
+Dockerfile
+
+*.swp
+*.sqlite3
+node_modules
+.idea/
+build/
+
+vendors/
+
+*.log
+build
+# vim swap files
+*.swp
+*.swo
+*.swn
+
+# ctags file
+tags
+
+.idea

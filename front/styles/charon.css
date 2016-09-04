@@ -1,0 +1,49 @@
+#main_logo img, #uj_logo img {
+    height: 300%;
+}
+
+#wrapper, #main-nav-wrapper {
+    width: 1000px;
+    margin: auto;
+}
+
+#wrapper {
+    margin-top: 80px;
+}
+
+#loading-image {
+    width: 50px;
+    min-width: 50px;
+    display: inline-block;
+}
+
+#loading-image > img {
+    margin: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.registration-card {
+    padding: 20px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.loading-info {
+    height: 100vh;
+    text-align: center;
+    font-size: 50px;
+}
+
+.todo:before {
+    content: "TODO: ";
+}
+
+.todo {
+    background: rgba(0,0,0,0.2);
+    color: gray;
+    text-decoration: line-through;
+}

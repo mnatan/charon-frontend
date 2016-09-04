@@ -1,0 +1,26 @@
+{
+  "name": "charon-frontend-angular",
+  "version": "0.0.1",
+  "devDependencies": {
+    "fs-extra": "*",
+    "grunt-express-server": "*",
+    "grunt-nodemon": "*",
+    "express": "*",
+    "express-http-proxy": "*",
+    "morgan": "*",
+    "bower": "*",
+    "grunt": "*",
+    "grunt-karma": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-protractor-runner": "*",
+    "jasmine-core": "*",
+    "protractor-console": "*",
+    "jasmine-spec-reporter": "*",
+    "protractor-angular-screenshot-reporter": "*"
+  },
+  "scripts": {
+    "install": "node node_modules/grunt-protractor-runner/scripts/webdriver-manager-update",
+    "postinstall": "bower install"
+  }
+}

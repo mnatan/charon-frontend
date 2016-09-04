@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl" ng-app="charonFront">
+<head>
+    <meta charset="UTF-8">
+    <title>Charon</title>
+
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/charon.css">
+    <!-- /stylesheets -->
+
+</head>
+<body>
+
+<header>
+    <div navigation-menu></div>
+</header>
+
+<div messages></div>
+
+<div ng-if="false" class="loading-info">
+    Wczytywanie...
+</div>
+
+<div id="wrapper">
+    <div ui-view></div>
+
+    <footer>
+        <div class="panel panel-default">
+            <div class="panel-footer text-right">
+                CHARON © Jagiellonian University 2016
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<!-- scripts -->
+<!-- Vendor CDN part to ensure faster loading -->
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"
+        integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-mocks.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap.min.js"></script>
+
+<!-- Local vendors installed with bower -->
+<script type="text/javascript" src="/vendors/angular-cookies/angular-cookies.min.js"></script>
+<script type="text/javascript" src="/vendors/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="/vendors/tv4/tv4.js"></script>
+<script type="text/javascript" src="/vendors/objectpath/lib/ObjectPath.js"></script>
+<script type="text/javascript" src="/vendors/angular-schema-form/dist/schema-form.min.js"></script>
+<script type="text/javascript" src="/vendors/angular-schema-form/dist/bootstrap-decorator.min.js"></script>
+
+<!-- project sources -->
+<script type="text/javascript" src="/app/app.js"></script>
+<script type="text/javascript" src="/mocks/mocks.js"></script>
+<script type="text/javascript" src="/mocks/mocked-backend.js"></script>
+
+<script type="text/javascript" src="/app/components/forms/forms-service.js"></script>
+
+<script type="text/javascript" src="/app/components/navigation/navigation-menu.js"></script>
+
+<script type="text/javascript" src="/app/components/katalog/katalog.js"></script>
+<script type="text/javascript" src="/app/components/katalog/kierunek.js"></script>
+<script type="text/javascript" src="/app/components/katalog/katalog-service.js"></script>
+
+<script type="text/javascript" src="/app/components/faq/faq.js"></script>
+<script type="text/javascript" src="/app/components/faq/faq-service.js"></script>
+
+<script type="text/javascript" src="/app/components/kontakt/kontakt.js"></script>
+<script type="text/javascript" src="/app/components/kontakt/kontakt-service.js"></script>
+
+<script type="text/javascript" src="/app/components/login/login.js"></script>
+<script type="text/javascript" src="/app/components/login/login-signin.js"></script>
+<script type="text/javascript" src="/app/components/login/login-signup.js"></script>
+<script type="text/javascript" src="/app/components/login/login-service.js"></script>
+
+<!-- /scripts -->
+
+</body>
+</html>
